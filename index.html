@@ -365,6 +365,10 @@ footer {
 }
 .footer-bottom p { font-size: 12px; color: rgba(245,243,239,0.25); }
 
+/* ── 스크롤 애니메이션 ── */
+.anim-hidden { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.anim-show { opacity: 1; transform: translateY(0); }
+
 /* ── 반응형 ── */
 @media (max-width: 768px) {
   nav { padding: 16px 20px; }
@@ -606,20 +610,19 @@ function toggleMenu() {
   }
 }
 
-// 스크롤 애니메이션 (간단)
+// 스크롤 애니메이션
+document.querySelectorAll('.about-cell, .pillar, .bmoim-cell, .kw').forEach(el => {
+  el.classList.add('anim-hidden');
+});
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
+      e.target.classList.remove('anim-hidden');
+      e.target.classList.add('anim-show');
     }
   });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.about-cell, .pillar, .bmoim-cell, .kw').forEach(el => {
-  el.style.cssText += 'opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;';
-  observer.observe(el);
-});
+}, { threshold: 0.08 });
+document.querySelectorAll('.anim-hidden').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
