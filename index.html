@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>비북스 B.BOOKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #faf7f2;
+  color: #2d2417;
+  min-height: 100vh;
+}
+
+/* 헤더 */
+header {
+  padding: 28px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e8e0d0;
+  background: #fff;
+}
+.logo {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #2d2417;
+  letter-spacing: 2px;
+}
+.logo span { color: #b8860b; }
+nav { display: flex; gap: 28px; }
+nav a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #6b5c40;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+nav a:hover { color: #2d2417; }
+
+/* 히어로 */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 24px 60px;
+  background: linear-gradient(180deg, #fff 0%, #faf7f2 100%);
+}
+.hero-badge {
+  display: inline-block;
+  background: #2d2417;
+  color: #e8c98a;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: clamp(32px, 6vw, 56px);
+  font-weight: 700;
+  color: #2d2417;
+  line-height: 1.3;
+  margin-bottom: 20px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: #b8860b;
+}
+.hero p {
+  font-size: 16px;
+  color: #7a6a50;
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.btn-primary {
+  background: #2d2417;
+  color: #e8c98a;
+  padding: 14px 32px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: #1a150d; transform: translateY(-2px); }
+.btn-secondary {
+  background: transparent;
+  color: #2d2417;
+  padding: 13px 32px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1.5px solid #c8b898;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: #2d2417; }
+
+/* 소개 섹션 */
+.intro {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 28px;
+}
+@media (max-width: 640px) { .intro { grid-template-columns: 1fr; } }
+
+.intro-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 24px;
+  border: 1px solid #ede5d5;
+  text-align: center;
+}
+.intro-card .icon { font-size: 32px; margin-bottom: 14px; }
+.intro-card h3 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #2d2417;
+  margin-bottom: 10px;
+}
+.intro-card p {
+  font-size: 13px;
+  color: #7a6a50;
+  line-height: 1.7;
+}
+
+/* 링크 섹션 */
+.links {
+  background: #2d2417;
+  padding: 60px 24px;
+  text-align: center;
+}
+.links h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 24px;
+  color: #e8c98a;
+  margin-bottom: 8px;
+}
+.links p { font-size: 14px; color: #a89878; margin-bottom: 36px; }
+.links-grid {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.link-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(232,201,138,0.25);
+  border-radius: 16px;
+  padding: 24px 28px;
+  text-decoration: none;
+  color: #fff;
+  min-width: 180px;
+  transition: all 0.2s;
+  text-align: left;
+}
+.link-card:hover {
+  background: rgba(232,201,138,0.12);
+  border-color: rgba(232,201,138,0.6);
+  transform: translateY(-3px);
+}
+.link-card .lc-icon { font-size: 24px; margin-bottom: 10px; }
+.link-card .lc-title { font-size: 15px; font-weight: 700; color: #e8c98a; margin-bottom: 4px; }
+.link-card .lc-desc { font-size: 12px; color: #a89878; }
+
+/* 푸터 */
+footer {
+  background: #1a150d;
+  padding: 28px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+footer .footer-logo {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px;
+  color: #e8c98a;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+footer p {
+  font-size: 12px;
+  color: #6b5c40;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">B.<span>BOOKS</span></div>
+  <nav>
+    <a href="https://moim.bbooks.co.kr">📅 모임 신청</a>
+    <a href="https://www.instagram.com" target="_blank">📷 인스타그램</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-badge">B O O K S T O R E &nbsp;·&nbsp; B U C H E O N</div>
+  <h1>책을 통해<br/>연결되는 공간<br/><em>비북스</em></h1>
+  <p>부천의 작은 독립 서점 비북스입니다.<br/>책을 좋아하는 사람들이 함께 모여<br/>읽고, 나누고, 연결되는 시간을 만들어갑니다.</p>
+  <div class="hero-btns">
+    <a href="https://moim.bbooks.co.kr" class="btn-primary">📅 5월 모임 신청하기</a>
+    <a href="https://www.instagram.com" target="_blank" class="btn-secondary">인스타그램 →</a>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="intro-card">
+    <div class="icon">📚</div>
+    <h3>독립 서점</h3>
+    <p>큐레이션된 도서와 0.1평 서점주들의 책이 함께하는 공간</p>
+  </div>
+  <div class="intro-card">
+    <div class="icon">🫶</div>
+    <h3>모임 공간</h3>
+    <p>매달 다양한 책방지기들과 함께하는 b.moim 독서 모임</p>
+  </div>
+  <div class="intro-card">
+    <div class="icon">🌱</div>
+    <h3>커뮤니티</h3>
+    <p>책을 매개로 사람과 사람이 연결되는 따뜻한 커뮤니티</p>
+  </div>
+</section>
+
+<section class="links">
+  <h2>비북스 바로가기</h2>
+  <p>모임 신청과 소식을 확인하세요</p>
+  <div class="links-grid">
+    <a href="https://moim.bbooks.co.kr" class="link-card">
+      <div class="lc-icon">📅</div>
+      <div class="lc-title">b.moim 모임 신청</div>
+      <div class="lc-desc">5월 모임 일정 & 신청</div>
+    </a>
+    <a href="crew-guide.html" class="link-card">
+      <div class="lc-icon">📋</div>
+      <div class="lc-title">일일지기 가이드</div>
+      <div class="lc-desc">크루 운영 안내</div>
+    </a>
+    <a href="https://www.instagram.com" target="_blank" class="link-card">
+      <div class="lc-icon">📷</div>
+      <div class="lc-title">인스타그램</div>
+      <div class="lc-desc">비북스 소식 & 일상</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">B.BOOKS</div>
+  <p>© 2026 비북스 · 부천 독립 서점</p>
+</footer>
+
+</body>
+</html>
