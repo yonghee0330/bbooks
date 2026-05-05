@@ -41,82 +41,70 @@ header p { font-size: 11px; color: #a89878; margin-top: 2px; }
 }
 .filter-btn.active, .filter-btn:hover { background: #2d2417; color: #e8c98a; border-color: #2d2417; }
 
-.export-btn {
-  padding: 7px 14px; border-radius: 8px; border: none;
-  background: #4a9e6b; color: #fff; font-size: 12px; font-weight: 700;
-  cursor: pointer; font-family: inherit;
-}
-.export-btn:hover { background: #3a8a5a; }
-
-.table-wrap { max-width: 1100px; margin: 20px auto; padding: 0 16px 60px; }
+.table-wrap { max-width: 960px; margin: 20px auto; padding: 0 16px 60px; }
 .store-count { font-size: 12px; color: #7a6a50; margin-bottom: 10px; }
 
 .notice {
   background: #fffbf0; border: 1px solid #f0d890; border-radius: 8px;
   padding: 10px 14px; font-size: 12px; color: #7a6218; margin-bottom: 14px;
-  display: flex; align-items: center; gap: 8px;
 }
 
 table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
 thead { background: #2d2417; color: #e8c98a; }
-thead th { padding: 11px 14px; font-size: 11px; font-weight: 700; text-align: left; letter-spacing: 0.5px; white-space: nowrap; }
+thead th { padding: 11px 16px; font-size: 11px; font-weight: 700; text-align: left; letter-spacing: 0.5px; white-space: nowrap; }
 tbody tr { border-bottom: 1px solid #f5f0e8; transition: background 0.1s; }
 tbody tr:hover { background: #fdf9f4; }
-tbody tr.empty-row { opacity: 0.4; }
-td { padding: 9px 14px; font-size: 13px; vertical-align: middle; }
-.td-no { color: #a89878; font-size: 11px; width: 44px; }
-.td-loc { font-weight: 700; color: #2d2417; font-size: 12px; width: 58px; font-family: monospace; }
-.td-store { font-weight: 600; min-width: 120px; }
-.td-owner { color: #6b5c40; min-width: 90px; font-size: 12px; }
-.td-region { color: #7a6a50; font-size: 12px; min-width: 70px; }
-.td-sns { min-width: 180px; }
-.td-action { width: 60px; text-align: center; }
+td { padding: 10px 16px; font-size: 13px; vertical-align: middle; }
+
+.td-no { color: #c8baa8; font-size: 11px; width: 40px; }
+.td-loc { font-weight: 700; color: #a89878; font-size: 11px; width: 54px; font-family: monospace; }
+.td-store { font-weight: 700; color: #2d2417; min-width: 130px; }
+.td-owner { color: #6b5c40; font-size: 12px; min-width: 100px; }
+.td-sns { min-width: 200px; }
+.td-action { width: 52px; text-align: center; }
 
 .sns-link {
   display: inline-flex; align-items: center; gap: 4px;
-  padding: 3px 9px; border-radius: 12px; font-size: 11px; font-weight: 600;
-  text-decoration: none; margin: 2px 2px 2px 0; transition: all 0.1s; white-space: nowrap;
+  padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;
+  text-decoration: none; margin: 2px 2px 2px 0; transition: all 0.15s; white-space: nowrap;
+  cursor: pointer;
 }
-.sns-link:hover { transform: translateY(-1px); opacity: 0.85; }
+.sns-link:hover { transform: translateY(-1px); filter: brightness(0.9); }
 .sns-instagram { background: #fce4f0; color: #c13584; }
-.sns-facebook { background: #e8eeff; color: #1877f2; }
-.sns-youtube { background: #ffecec; color: #ff0000; }
-.sns-naver { background: #e6f7e6; color: #03c75a; }
-.sns-etc { background: #f0f0f0; color: #555; }
-.no-sns { font-size: 11px; color: #c8baa8; font-style: italic; }
-.empty-name { color: #c8baa8; font-style: italic; }
-.local-badge { font-size: 10px; background: #fff8e0; color: #b08800; border: 1px solid #f0d050; padding: 1px 6px; border-radius: 8px; margin-left: 4px; vertical-align: middle; }
+.sns-facebook  { background: #e8eeff; color: #1877f2; }
+.sns-youtube   { background: #ffecec; color: #ff0000; }
+.sns-naver     { background: #e6f7e6; color: #03c75a; }
+.sns-etc       { background: #f0f0f0; color: #555; }
+.no-sns { font-size: 11px; color: #d4c8b8; font-style: italic; }
 
-/* 수정 버튼 */
 .edit-btn {
-  padding: 4px 10px; border-radius: 6px; border: 1px solid #e2d8c8;
-  background: #fff; color: #6b5c40; font-size: 11px; font-weight: 600;
+  padding: 4px 8px; border-radius: 6px; border: 1px solid #e2d8c8;
+  background: #fff; color: #6b5c40; font-size: 11px;
   cursor: pointer; font-family: inherit; transition: all 0.15s;
 }
 .edit-btn:hover { background: #2d2417; color: #e8c98a; border-color: #2d2417; }
 
-/* 인라인 편집 */
 .edit-row td { background: #fffbf0 !important; }
-.edit-input-wrap { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.edit-input-wrap { display: flex; gap: 6px; align-items: flex-start; flex-wrap: wrap; }
 .sns-input {
   flex: 1; min-width: 200px;
   padding: 6px 10px; border: 1.5px solid #e2d8c8; border-radius: 6px;
-  font-size: 12px; font-family: inherit;
+  font-size: 12px; font-family: inherit; resize: vertical;
 }
 .sns-input:focus { outline: none; border-color: #2d2417; }
 .save-btn {
-  padding: 5px 14px; border-radius: 6px; border: none;
+  padding: 6px 14px; border-radius: 6px; border: none;
   background: #2d2417; color: #e8c98a; font-size: 12px; font-weight: 700;
   cursor: pointer; font-family: inherit; white-space: nowrap;
 }
 .save-btn:hover { background: #1a150d; }
+.save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .cancel-btn {
-  padding: 5px 10px; border-radius: 6px; border: 1px solid #e2d8c8;
+  padding: 6px 10px; border-radius: 6px; border: 1px solid #e2d8c8;
   background: #fff; color: #6b5c40; font-size: 12px; cursor: pointer; font-family: inherit;
 }
-.hint { font-size: 11px; color: #a89878; width: 100%; margin-top: 2px; }
+.hint { font-size: 11px; color: #a89878; width: 100%; }
 
-/* 로딩 */
 #loading { text-align: center; padding: 50px; color: #7a6a50; font-size: 14px; }
 .spinner {
   display: inline-block; width: 22px; height: 22px;
@@ -125,27 +113,12 @@ td { padding: 9px 14px; font-size: 13px; vertical-align: middle; }
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* 내보내기 모달 */
-.modal-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.5); z-index: 100;
-  align-items: center; justify-content: center;
+@media (max-width: 600px) {
+  .filter-bar { padding: 10px 16px; }
+  td, thead th { padding: 9px 10px; font-size: 12px; }
+  .td-loc { display: none; }
+  .td-no { display: none; }
 }
-.modal-overlay.open { display: flex; }
-.modal {
-  background: #fff; border-radius: 16px; padding: 28px; max-width: 560px; width: 90%;
-  max-height: 80vh; overflow-y: auto;
-}
-.modal h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
-.modal p { font-size: 12px; color: #7a6a50; margin-bottom: 16px; }
-.modal textarea {
-  width: 100%; height: 240px; padding: 12px;
-  border: 1.5px solid #e2d8c8; border-radius: 8px;
-  font-size: 12px; font-family: monospace; resize: vertical;
-}
-.modal-btns { display: flex; gap: 8px; margin-top: 12px; justify-content: flex-end; }
-.modal-close { padding: 8px 18px; border-radius: 8px; border: 1px solid #e2d8c8; background: #fff; cursor: pointer; font-family: inherit; }
-.modal-copy { padding: 8px 18px; border-radius: 8px; border: none; background: #2d2417; color: #e8c98a; font-weight: 700; cursor: pointer; font-family: inherit; }
 </style>
 </head>
 <body>
@@ -153,68 +126,47 @@ td { padding: 9px 14px; font-size: 13px; vertical-align: middle; }
 <header>
   <div>
     <h1>📚 비북스 0.1평 서점 디렉토리</h1>
-    <p>SNS 주소를 직접 입력·수정할 수 있습니다 · 입력 내용은 이 기기에 저장됩니다</p>
+    <p>SNS 주소를 직접 입력·수정할 수 있습니다 · 저장 시 바로 반영됩니다</p>
   </div>
   <div class="stat-badge" id="statBadge">로딩 중...</div>
 </header>
 
 <div class="filter-bar">
-  <input type="text" id="searchInput" placeholder="🔍 서점명, 서점주, 지역 검색..." oninput="filterTable()" />
+  <input type="text" id="searchInput" placeholder="🔍 서점명, 서점주 검색..." oninput="filterTable()" />
   <button class="filter-btn active" onclick="setFilter('all',this)">전체</button>
   <button class="filter-btn" onclick="setFilter('sns',this)">SNS 있음</button>
-  <button class="filter-btn" onclick="setFilter('nosns',this)">미등록</button>
-  <button class="filter-btn" onclick="setFilter('empty',this)">빈 자리</button>
-  <button class="filter-btn" onclick="setFilter('local',this)">✏️ 수정됨</button>
-  <button class="export-btn" onclick="showExport()">📋 수정내역 보기</button>
+  <button class="filter-btn" onclick="setFilter('nosns',this)">SNS 없음</button>
 </div>
 
 <div class="table-wrap">
-  <div class="notice">💡 ✏️ 버튼을 눌러 각 서점의 SNS 주소를 입력하세요. 저장된 내용은 이 기기에 유지됩니다.</div>
+  <div class="notice">💡 ✏️ 버튼을 눌러 SNS 주소를 입력하세요. 저장하면 구글 시트에 바로 반영됩니다.</div>
   <div class="store-count" id="storeCount"></div>
   <div id="loading"><div class="spinner"></div><br/>데이터 불러오는 중...</div>
   <table id="storeTable" style="display:none;">
     <thead>
       <tr>
-        <th>No</th><th>위치</th><th>서점명</th><th>서점주</th><th>지역</th><th>SNS / 홍보채널</th><th>수정</th>
+        <th>No</th>
+        <th>위치</th>
+        <th>서점명</th>
+        <th>서점주</th>
+        <th>SNS / 홍보채널</th>
+        <th>수정</th>
       </tr>
     </thead>
     <tbody id="tableBody"></tbody>
   </table>
 </div>
 
-<!-- 내보내기 모달 -->
-<div class="modal-overlay" id="exportModal">
-  <div class="modal">
-    <h3>📋 수정된 SNS 내역</h3>
-    <p>아래 내용을 복사해서 구글 시트에 붙여넣으세요.</p>
-    <textarea id="exportText" readonly></textarea>
-    <div class="modal-btns">
-      <button class="modal-close" onclick="closeExport()">닫기</button>
-      <button class="modal-copy" onclick="copyExport()">📋 복사하기</button>
-    </div>
-  </div>
-</div>
-
 <script>
-const SHEET_ID = '1F52A9d0aBitMNrn_yWqAPCzpBDqnMkSIrcBrer15VvQ';
-const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
-const LS_KEY = 'bbooks_sns_data';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWgXqzD2mQobxlNCovkyKqmyBX-PzOPvIDND9YNl_sq5umcyktpFIgVkLPLmggnNWt-g/exec';
 
 let allRows = [];
 let currentFilter = 'all';
 let editingLoc = null;
 
-// localStorage에서 로컬 수정 내역 로드
-function getLocalData() {
-  try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch { return {}; }
-}
-function saveLocalData(data) {
-  localStorage.setItem(LS_KEY, JSON.stringify(data));
-}
-
 function parseSNS(raw) {
-  if (!raw || raw.trim() === '' || raw.trim() === '-') return [];
-  return raw.split(/[\n,]/)
+  if (!raw || !raw.trim() || raw.trim() === '-' || raw.trim() === '상동') return [];
+  return raw.split(/[\n]/)
     .map(s => s.trim())
     .filter(s => s && s !== '-' && (s.startsWith('http') || s.startsWith('www.')))
     .map(s => s.startsWith('www.') ? 'https://' + s : s);
@@ -222,9 +174,9 @@ function parseSNS(raw) {
 
 function getSNSType(url) {
   if (url.includes('instagram.com')) return { label: '📷 Instagram', cls: 'sns-instagram' };
-  if (url.includes('facebook.com')) return { label: '📘 Facebook', cls: 'sns-facebook' };
-  if (url.includes('youtube.com')) return { label: '▶ YouTube', cls: 'sns-youtube' };
-  if (url.includes('blog.naver.com') || url.includes('naver.com')) return { label: '📝 블로그', cls: 'sns-naver' };
+  if (url.includes('facebook.com'))  return { label: '📘 Facebook',  cls: 'sns-facebook'  };
+  if (url.includes('youtube.com'))   return { label: '▶ YouTube',   cls: 'sns-youtube'   };
+  if (url.includes('naver.com'))     return { label: '📝 블로그',    cls: 'sns-naver'     };
   return { label: '🔗 링크', cls: 'sns-etc' };
 }
 
@@ -236,63 +188,35 @@ function snsLinksHTML(urls) {
   }).join('');
 }
 
-function parseCSV(text) {
-  const rows = [];
-  for (const line of text.split(/\r?\n/)) {
-    let row = [], cell = '', inQ = false;
-    for (let i = 0; i < line.length; i++) {
-      const ch = line[i];
-      if (ch === '"') {
-        if (inQ && line[i+1] === '"') { cell += '"'; i++; } else inQ = !inQ;
-      } else if (ch === ',' && !inQ) { row.push(cell); cell = ''; }
-      else cell += ch;
-    }
-    row.push(cell);
-    rows.push(row);
-  }
-  return rows;
-}
-
 async function loadData() {
   document.getElementById('loading').style.display = 'block';
   document.getElementById('storeTable').style.display = 'none';
   try {
-    const res = await fetch(CSV_URL + '&t=' + Date.now());
-    const text = await res.text();
-    const rows = parseCSV(text);
-    let headerIdx = rows.findIndex(r => r[0] === 'No');
-    if (headerIdx === -1) headerIdx = 1;
+    const res = await fetch(APPS_SCRIPT_URL + '?action=read&t=' + Date.now());
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.error);
 
-    const local = getLocalData();
-    allRows = [];
-    for (let i = headerIdx + 1; i < rows.length; i++) {
-      const r = rows[i];
-      if (!r || r.length < 4) continue;
-      const loc = r[1]?.trim() || '';
-      if (!loc) continue;
-      const no = r[0]?.trim() || '';
-      const store = r[2]?.trim() || '';
-      const owner = r[3]?.trim() || '';
-      const region = r[13]?.trim() || '';
-      const sheetSNS = parseSNS(r[11]?.trim() || '');
-      // 로컬 수정 있으면 우선
-      const localEntry = local[loc];
-      const sns = localEntry ? parseSNS(localEntry) : sheetSNS;
-      const isLocal = !!localEntry;
-      const isEmpty = !store;
-      allRows.push({ no, loc, store, owner, region, sns, sheetSNS, isLocal, isEmpty });
-    }
+    // 빈 자리 제외, 서점명 있는 것만
+    allRows = json.data
+      .filter(row => row.store && row.store.trim())
+      .map(row => ({
+        no: row.no,
+        loc: row.loc,
+        store: row.store.replace(/\n/g, ' ').trim(),
+        owner: row.owner.replace(/\n/g, ' ').trim(),
+        sns: parseSNS(row.sns),
+        rawSns: row.sns,
+        isEmpty: false
+      }));
 
-    const occupied = allRows.filter(r => !r.isEmpty).length;
-    const withSNS = allRows.filter(r => !r.isEmpty && r.sns.length > 0).length;
-    const localCount = allRows.filter(r => r.isLocal).length;
-    document.getElementById('statBadge').textContent = `${occupied}개 서점 · SNS ${withSNS}개${localCount ? ` · ✏️ ${localCount}개 수정됨` : ''}`;
+    const withSNS = allRows.filter(r => r.sns.length > 0).length;
+    document.getElementById('statBadge').textContent = `총 ${allRows.length}개 서점 · SNS ${withSNS}개`;
 
     filterTable();
     document.getElementById('loading').style.display = 'none';
     document.getElementById('storeTable').style.display = 'table';
   } catch(e) {
-    document.getElementById('loading').innerHTML = '⚠️ 데이터 로드 실패. 구글 시트 공유 설정을 확인해주세요.<br/><small>' + e.message + '</small>';
+    document.getElementById('loading').innerHTML = '⚠️ 데이터 로드 실패<br/><small>' + e.message + '</small>';
   }
 }
 
@@ -311,32 +235,26 @@ function filterTable() {
   let shown = 0;
 
   for (const row of allRows) {
-    if (currentFilter === 'sns' && (row.isEmpty || row.sns.length === 0)) continue;
-    if (currentFilter === 'nosns' && (row.isEmpty || row.sns.length > 0)) continue;
-    if (currentFilter === 'empty' && !row.isEmpty) continue;
-    if (currentFilter === 'local' && !row.isLocal) continue;
+    if (currentFilter === 'sns'   && row.sns.length === 0) continue;
+    if (currentFilter === 'nosns' && row.sns.length > 0)  continue;
     if (q) {
-      const hay = [row.store, row.owner, row.region, row.loc].join(' ').toLowerCase();
+      const hay = [row.store, row.owner, row.loc].join(' ').toLowerCase();
       if (!hay.includes(q)) continue;
     }
     shown++;
     tbody.appendChild(buildRow(row));
   }
-  document.getElementById('storeCount').textContent = `${shown}개 표시 중`;
+  document.getElementById('storeCount').textContent = `${shown}개 서점 표시 중`;
 }
 
 function buildRow(row) {
   const tr = document.createElement('tr');
   tr.dataset.loc = row.loc;
-  if (row.isEmpty) tr.classList.add('empty-row');
-
-  const localBadge = row.isLocal ? '<span class="local-badge">수정됨</span>' : '';
   tr.innerHTML = `
     <td class="td-no">${row.no || '–'}</td>
     <td class="td-loc">${row.loc}</td>
-    <td class="td-store">${row.store ? row.store + localBadge : '<span class="empty-name">빈 자리</span>'}</td>
+    <td class="td-store">${row.store}</td>
     <td class="td-owner">${row.owner || ''}</td>
-    <td class="td-region">${row.region || ''}</td>
     <td class="td-sns" id="sns-${row.loc}">${snsLinksHTML(row.sns)}</td>
     <td class="td-action"><button class="edit-btn" onclick="startEdit('${row.loc}')">✏️</button></td>
   `;
@@ -348,48 +266,51 @@ function startEdit(loc) {
   if (!row) return;
   const tr = document.querySelector(`tr[data-loc="${loc}"]`);
   if (!tr) return;
-
-  // 이미 편집 중인 행 닫기
   if (editingLoc && editingLoc !== loc) cancelEdit(editingLoc);
   editingLoc = loc;
-
   const currentVal = row.sns.join('\n');
   tr.classList.add('edit-row');
-  const snsTd = tr.querySelector(`#sns-${loc}`);
-  snsTd.innerHTML = `
+  tr.querySelector(`#sns-${loc}`).innerHTML = `
     <div class="edit-input-wrap">
-      <textarea class="sns-input" id="input-${loc}" rows="3" placeholder="https://www.instagram.com/계정명&#10;(줄바꿈으로 여러 개 입력 가능)">${currentVal}</textarea>
-      <button class="save-btn" onclick="saveEdit('${loc}')">저장</button>
-      <button class="cancel-btn" onclick="cancelEdit('${loc}')">취소</button>
-      <span class="hint">여러 개는 줄바꿈으로 구분 · 빈칸으로 저장하면 초기화</span>
+      <textarea class="sns-input" id="input-${loc}" rows="3"
+        placeholder="https://www.instagram.com/계정명&#10;(줄바꿈으로 여러 개 입력)">${currentVal}</textarea>
+      <div style="display:flex;gap:6px;flex-direction:column;">
+        <button class="save-btn" id="savebtn-${loc}" onclick="saveEdit('${loc}')">저장</button>
+        <button class="cancel-btn" onclick="cancelEdit('${loc}')">취소</button>
+      </div>
+      <span class="hint">여러 개는 줄바꿈으로 구분</span>
     </div>
   `;
   tr.querySelector(`#input-${loc}`).focus();
 }
 
-function saveEdit(loc) {
+async function saveEdit(loc) {
   const input = document.querySelector(`#input-${loc}`);
   if (!input) return;
   const val = input.value.trim();
+  const btn = document.getElementById(`savebtn-${loc}`);
+  btn.textContent = '저장 중...'; btn.disabled = true;
 
-  const local = getLocalData();
-  if (val) local[loc] = val; else delete local[loc];
-  saveLocalData(local);
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'update', loc, sns: val })
+    });
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.error || '저장 실패');
 
-  // allRows 업데이트
-  const row = allRows.find(r => r.loc === loc);
-  if (row) {
-    row.sns = parseSNS(val);
-    row.isLocal = !!val;
+    const row = allRows.find(r => r.loc === loc);
+    if (row) { row.sns = parseSNS(val); row.rawSns = val; }
+
+    cancelEdit(loc);
+
+    // 통계 갱신
+    const withSNS = allRows.filter(r => r.sns.length > 0).length;
+    document.getElementById('statBadge').textContent = `총 ${allRows.length}개 서점 · SNS ${withSNS}개`;
+  } catch(e) {
+    alert('저장 실패: ' + e.message);
+    btn.textContent = '저장'; btn.disabled = false;
   }
-
-  cancelEdit(loc);
-  filterTable();
-  // 통계 갱신
-  const occupied = allRows.filter(r => !r.isEmpty).length;
-  const withSNS = allRows.filter(r => !r.isEmpty && r.sns.length > 0).length;
-  const localCount = allRows.filter(r => r.isLocal).length;
-  document.getElementById('statBadge').textContent = `${occupied}개 서점 · SNS ${withSNS}개${localCount ? ` · ✏️ ${localCount}개 수정됨` : ''}`;
 }
 
 function cancelEdit(loc) {
@@ -401,29 +322,8 @@ function cancelEdit(loc) {
   if (row) tr.querySelector(`#sns-${loc}`).innerHTML = snsLinksHTML(row.sns);
 }
 
-// 수정 내역 내보내기
-function showExport() {
-  const local = getLocalData();
-  if (Object.keys(local).length === 0) {
-    alert('수정된 내역이 없습니다.');
-    return;
-  }
-  let text = '위치\t서점명\tSNS 주소\n';
-  for (const [loc, sns] of Object.entries(local)) {
-    const row = allRows.find(r => r.loc === loc);
-    text += `${loc}\t${row?.store || ''}\t${sns.replace(/\n/g, ' | ')}\n`;
-  }
-  document.getElementById('exportText').value = text;
-  document.getElementById('exportModal').classList.add('open');
-}
-function closeExport() { document.getElementById('exportModal').classList.remove('open'); }
-function copyExport() {
-  const ta = document.getElementById('exportText');
-  ta.select(); document.execCommand('copy');
-  alert('복사됐어요! 구글 시트에 붙여넣기 해주세요.');
-}
-
 loadData();
 </script>
 </body>
 </html>
+
