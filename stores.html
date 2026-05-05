@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>비북스 0.1평 서점 디렉토리</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans KR', sans-serif; background: #faf7f2; color: #2d2417; }
+
+header {
+  background: #2d2417; color: #fff;
+  padding: 18px 28px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+header h1 { font-size: 17px; font-weight: 800; color: #e8c98a; }
+header p { font-size: 11px; color: #a89878; margin-top: 2px; }
+.stat-badge {
+  background: rgba(232,201,138,0.15); border: 1px solid rgba(232,201,138,0.3);
+  color: #e8c98a; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;
+}
+
+.filter-bar {
+  background: #fff; padding: 12px 28px;
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  border-bottom: 1px solid #ede5d5;
+  position: sticky; top: 0; z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.filter-bar input {
+  flex: 1; min-width: 180px;
+  padding: 8px 14px; border: 1.5px solid #e2d8c8; border-radius: 8px;
+  font-size: 13px; font-family: inherit; background: #faf7f2;
+}
+.filter-bar input:focus { outline: none; border-color: #2d2417; }
+.filter-btn {
+  padding: 7px 14px; border-radius: 20px; border: 1.5px solid #e2d8c8;
+  background: #fff; font-size: 12px; font-weight: 600; color: #6b5c40;
+  cursor: pointer; transition: all 0.15s; font-family: inherit;
+}
+.filter-btn.active, .filter-btn:hover { background: #2d2417; color: #e8c98a; border-color: #2d2417; }
+
+.table-wrap { max-width: 960px; margin: 20px auto; padding: 0 16px 60px; }
+.store-count { font-size: 12px; color: #7a6a50; margin-bottom: 10px; }
+
+.notice {
+  background: #fffbf0; border: 1px solid #f0d890; border-radius: 8px;
+  padding: 10px 14px; font-size: 12px; color: #7a6218; margin-bottom: 14px;
+}
+
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+thead { background: #2d2417; color: #e8c98a; }
+thead th { padding: 11px 16px; font-size: 11px; font-weight: 700; text-align: left; letter-spacing: 0.5px; white-space: nowrap; }
+tbody tr { border-bottom: 1px solid #f5f0e8; transition: background 0.1s; }
+tbody tr:hover { background: #fdf9f4; }
+td { padding: 10px 16px; font-size: 13px; vertical-align: middle; }
+
+.td-no { color: #c8baa8; font-size: 11px; width: 40px; }
+.td-loc { font-weight: 700; color: #a89878; font-size: 11px; width: 54px; font-family: monospace; }
+.td-store { font-weight: 700; color: #2d2417; min-width: 130px; }
+.td-owner { color: #6b5c40; font-size: 12px; min-width: 100px; }
+.td-sns { min-width: 200px; }
+.td-action { width: 52px; text-align: center; }
+
+.sns-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 600;
+  text-decoration: none; margin: 2px 2px 2px 0; transition: all 0.15s; white-space: nowrap;
+  cursor: pointer;
+}
+.sns-link:hover { transform: translateY(-1px); filter: brightness(0.9); }
+.sns-instagram { background: #fce4f0; color: #c13584; }
+.sns-facebook  { background: #e8eeff; color: #1877f2; }
+.sns-youtube   { background: #ffecec; color: #ff0000; }
+.sns-naver     { background: #e6f7e6; color: #03c75a; }
+.sns-etc       { background: #f0f0f0; color: #555; }
+.no-sns { font-size: 11px; color: #d4c8b8; font-style: italic; }
+
+.edit-btn {
+  padding: 4px 8px; border-radius: 6px; border: 1px solid #e2d8c8;
+  background: #fff; color: #6b5c40; font-size: 11px;
+  cursor: pointer; font-family: inherit; transition: all 0.15s;
+}
+.edit-btn:hover { background: #2d2417; color: #e8c98a; border-color: #2d2417; }
+
+.edit-row td { background: #fffbf0 !important; }
+.edit-input-wrap { display: flex; gap: 6px; align-items: flex-start; flex-wrap: wrap; }
+.sns-input {
+  flex: 1; min-width: 200px;
+  padding: 6px 10px; border: 1.5px solid #e2d8c8; border-radius: 6px;
+  font-size: 12px; font-family: inherit; resize: vertical;
+}
+.sns-input:focus { outline: none; border-color: #2d2417; }
+.save-btn {
+  padding: 6px 14px; border-radius: 6px; border: none;
+  background: #2d2417; color: #e8c98a; font-size: 12px; font-weight: 700;
+  cursor: pointer; font-family: inherit; white-space: nowrap;
+}
+.save-btn:hover { background: #1a150d; }
+.save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.cancel-btn {
+  padding: 6px 10px; border-radius: 6px; border: 1px solid #e2d8c8;
+  background: #fff; color: #6b5c40; font-size: 12px; cursor: pointer; font-family: inherit;
+}
+.hint { font-size: 11px; color: #a89878; width: 100%; }
+
+#loading { text-align: center; padding: 50px; color: #7a6a50; font-size: 14px; }
+.spinner {
+  display: inline-block; width: 22px; height: 22px;
+  border: 3px solid #e2d8c8; border-top-color: #2d2417;
+  border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 10px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 600px) {
+  .filter-bar { padding: 10px 16px; }
+  td, thead th { padding: 9px 10px; font-size: 12px; }
+  .td-loc { display: none; }
+  .td-no { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>📚 비북스 0.1평 서점 디렉토리</h1>
+    <p>SNS 주소를 직접 입력·수정할 수 있습니다 · 저장 시 바로 반영됩니다</p>
+  </div>
+  <div class="stat-badge" id="statBadge">로딩 중...</div>
+</header>
+
+<div class="filter-bar">
+  <input type="text" id="searchInput" placeholder="🔍 서점명, 서점주 검색..." oninput="filterTable()" />
+  <button class="filter-btn active" onclick="setFilter('all',this)">전체</button>
+  <button class="filter-btn" onclick="setFilter('sns',this)">SNS 있음</button>
+  <button class="filter-btn" onclick="setFilter('nosns',this)">SNS 없음</button>
+</div>
+
+<div class="table-wrap">
+  <div class="notice">💡 ✏️ 버튼을 눌러 SNS 주소를 입력하세요. 저장하면 구글 시트에 바로 반영됩니다.</div>
+  <div class="store-count" id="storeCount"></div>
+  <div id="loading"><div class="spinner"></div><br/>데이터 불러오는 중...</div>
+  <table id="storeTable" style="display:none;">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>위치</th>
+        <th>서점명</th>
+        <th>서점주</th>
+        <th>SNS / 홍보채널</th>
+        <th>수정</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWgXqzD2mQobxlNCovkyKqmyBX-PzOPvIDND9YNl_sq5umcyktpFIgVkLPLmggnNWt-g/exec';
+
+let allRows = [];
+let currentFilter = 'all';
+let editingLoc = null;
+
+function parseSNS(raw) {
+  if (!raw || !raw.trim() || raw.trim() === '-' || raw.trim() === '상동') return [];
+  return raw.split(/[\n]/)
+    .map(s => s.trim())
+    .filter(s => s && s !== '-' && (s.startsWith('http') || s.startsWith('www.')))
+    .map(s => s.startsWith('www.') ? 'https://' + s : s);
+}
+
+function getSNSType(url) {
+  if (url.includes('instagram.com')) return { label: '📷 Instagram', cls: 'sns-instagram' };
+  if (url.includes('facebook.com'))  return { label: '📘 Facebook',  cls: 'sns-facebook'  };
+  if (url.includes('youtube.com'))   return { label: '▶ YouTube',   cls: 'sns-youtube'   };
+  if (url.includes('naver.com'))     return { label: '📝 블로그',    cls: 'sns-naver'     };
+  return { label: '🔗 링크', cls: 'sns-etc' };
+}
+
+function snsLinksHTML(urls) {
+  if (!urls || urls.length === 0) return '<span class="no-sns">미등록</span>';
+  return urls.map(url => {
+    const { label, cls } = getSNSType(url);
+    return `<a href="${url}" target="_blank" rel="noopener" class="sns-link ${cls}">${label}</a>`;
+  }).join('');
+}
+
+async function loadData() {
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('storeTable').style.display = 'none';
+  try {
+    const res = await fetch(APPS_SCRIPT_URL + '?action=read&t=' + Date.now());
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.error);
+
+    // 빈 자리 제외, 서점명 있는 것만
+    allRows = json.data
+      .filter(row => row.store && row.store.trim())
+      .map(row => ({
+        no: row.no,
+        loc: row.loc,
+        store: row.store.replace(/\n/g, ' ').trim(),
+        owner: row.owner.replace(/\n/g, ' ').trim(),
+        sns: parseSNS(row.sns),
+        rawSns: row.sns,
+        isEmpty: false
+      }));
+
+    const withSNS = allRows.filter(r => r.sns.length > 0).length;
+    document.getElementById('statBadge').textContent = `총 ${allRows.length}개 서점 · SNS ${withSNS}개`;
+
+    filterTable();
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('storeTable').style.display = 'table';
+  } catch(e) {
+    document.getElementById('loading').innerHTML = '⚠️ 데이터 로드 실패<br/><small>' + e.message + '</small>';
+  }
+}
+
+function setFilter(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterTable();
+}
+
+function filterTable() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+  editingLoc = null;
+  let shown = 0;
+
+  for (const row of allRows) {
+    if (currentFilter === 'sns'   && row.sns.length === 0) continue;
+    if (currentFilter === 'nosns' && row.sns.length > 0)  continue;
+    if (q) {
+      const hay = [row.store, row.owner, row.loc].join(' ').toLowerCase();
+      if (!hay.includes(q)) continue;
+    }
+    shown++;
+    tbody.appendChild(buildRow(row));
+  }
+  document.getElementById('storeCount').textContent = `${shown}개 서점 표시 중`;
+}
+
+function buildRow(row) {
+  const tr = document.createElement('tr');
+  tr.dataset.loc = row.loc;
+  tr.innerHTML = `
+    <td class="td-no">${row.no || '–'}</td>
+    <td class="td-loc">${row.loc}</td>
+    <td class="td-store">${row.store}</td>
+    <td class="td-owner">${row.owner || ''}</td>
+    <td class="td-sns" id="sns-${row.loc}">${snsLinksHTML(row.sns)}</td>
+    <td class="td-action"><button class="edit-btn" onclick="startEdit('${row.loc}')">✏️</button></td>
+  `;
+  return tr;
+}
+
+function startEdit(loc) {
+  const row = allRows.find(r => r.loc === loc);
+  if (!row) return;
+  const tr = document.querySelector(`tr[data-loc="${loc}"]`);
+  if (!tr) return;
+  if (editingLoc && editingLoc !== loc) cancelEdit(editingLoc);
+  editingLoc = loc;
+  const currentVal = row.sns.join('\n');
+  tr.classList.add('edit-row');
+  tr.querySelector(`#sns-${loc}`).innerHTML = `
+    <div class="edit-input-wrap">
+      <textarea class="sns-input" id="input-${loc}" rows="3"
+        placeholder="https://www.instagram.com/계정명&#10;(줄바꿈으로 여러 개 입력)">${currentVal}</textarea>
+      <div style="display:flex;gap:6px;flex-direction:column;">
+        <button class="save-btn" id="savebtn-${loc}" onclick="saveEdit('${loc}')">저장</button>
+        <button class="cancel-btn" onclick="cancelEdit('${loc}')">취소</button>
+      </div>
+      <span class="hint">여러 개는 줄바꿈으로 구분</span>
+    </div>
+  `;
+  tr.querySelector(`#input-${loc}`).focus();
+}
+
+async function saveEdit(loc) {
+  const input = document.querySelector(`#input-${loc}`);
+  if (!input) return;
+  const val = input.value.trim();
+  const btn = document.getElementById(`savebtn-${loc}`);
+  btn.textContent = '저장 중...'; btn.disabled = true;
+
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'update', loc, sns: val })
+    });
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.error || '저장 실패');
+
+    const row = allRows.find(r => r.loc === loc);
+    if (row) { row.sns = parseSNS(val); row.rawSns = val; }
+
+    cancelEdit(loc);
+
+    // 통계 갱신
+    const withSNS = allRows.filter(r => r.sns.length > 0).length;
+    document.getElementById('statBadge').textContent = `총 ${allRows.length}개 서점 · SNS ${withSNS}개`;
+  } catch(e) {
+    alert('저장 실패: ' + e.message);
+    btn.textContent = '저장'; btn.disabled = false;
+  }
+}
+
+function cancelEdit(loc) {
+  const tr = document.querySelector(`tr[data-loc="${loc}"]`);
+  if (!tr) return;
+  tr.classList.remove('edit-row');
+  editingLoc = null;
+  const row = allRows.find(r => r.loc === loc);
+  if (row) tr.querySelector(`#sns-${loc}`).innerHTML = snsLinksHTML(row.sns);
+}
+
+loadData();
+</script>
+</body>
+</html>
+
