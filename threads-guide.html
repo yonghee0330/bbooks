@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>스레드(Threads) 활용법 — 비북스 점주 가이드</title>
+<meta property="og:title" content="스레드 활용법 — 비북스 점주 가이드"/>
+<meta property="og:description" content="책방을 알리는 가장 쉬운 SNS, 하루 5분으로 시작해요"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR',sans-serif;background:#f4f6f9;color:#1a1d23;line-height:1.6;}
+
+/* 상단 헤더 */
+.hero{background:linear-gradient(135deg,#0f1d3a 0%,#1a3060 100%);color:#fff;padding:48px 24px 40px;text-align:center;}
+.hero .badge{display:inline-block;background:#c9a84c;color:#000;font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px;letter-spacing:1px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,5vw,42px);font-weight:900;line-height:1.2;margin-bottom:12px;}
+.hero h1 span{color:#c9a84c;}
+.hero p{font-size:16px;color:#b0bbd0;max-width:500px;margin:0 auto;}
+
+/* 목차 네비 */
+.nav{background:#fff;border-bottom:1px solid #e2e6ed;position:sticky;top:0;z-index:100;overflow-x:auto;}
+.nav ul{display:flex;list-style:none;padding:0 16px;min-width:max-content;}
+.nav ul li a{display:block;padding:14px 16px;font-size:13px;font-weight:600;color:#6b7280;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;}
+.nav ul li a:hover,.nav ul li a.active{color:#0f1d3a;border-bottom-color:#c9a84c;}
+
+/* 본문 */
+.container{max-width:800px;margin:0 auto;padding:32px 20px 80px;}
+
+/* 섹션 */
+.section{background:#fff;border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+.section-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;color:#c9a84c;background:#fdf8ee;border:1px solid #e8d89a;padding:3px 12px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;}
+.section h2{font-size:22px;font-weight:900;color:#0f1d3a;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid #f0f0f0;}
+
+/* 비교 테이블 */
+table{width:100%;border-collapse:collapse;margin:12px 0;}
+th{background:#0f1d3a;color:#fff;font-size:13px;padding:10px 14px;text-align:center;}
+td{font-size:13px;padding:10px 14px;border-bottom:1px solid #eee;text-align:center;}
+tr:nth-child(even) td{background:#f8f9fb;}
+td:first-child{font-weight:600;color:#0f1d3a;text-align:left;}
+
+/* 카드 그리드 */
+.grid{display:grid;gap:16px;margin:12px 0;}
+.grid-2{grid-template-columns:1fr 1fr;}
+.grid-3{grid-template-columns:1fr 1fr 1fr;}
+@media(max-width:600px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+.card{background:#f8f9fb;border:1px solid #e2e6ed;border-radius:12px;padding:20px;}
+.card.gold{background:#fdf8ee;border-color:#e8d89a;}
+.card.navy{background:#0f1d3a;color:#fff;}
+.card.navy h3{color:#fff;}
+.card.navy p,.card.navy li{color:#b0bbd0;}
+.card h3{font-size:15px;font-weight:700;color:#0f1d3a;margin-bottom:10px;}
+.card p{font-size:14px;color:#6b7280;}
+.card ul{list-style:none;padding:0;}
+.card ul li{font-size:14px;color:#6b7280;padding:4px 0;border-bottom:1px solid #eee;}
+.card ul li:last-child{border-bottom:none;}
+.card ul li::before{content:'→ ';color:#c9a84c;font-weight:700;}
+
+/* 팁 박스 */
+.tip{background:#fdf8ee;border-left:4px solid #c9a84c;border-radius:6px;padding:14px 18px;margin:14px 0;}
+.tip .tip-label{font-size:11px;font-weight:700;color:#c9a84c;letter-spacing:1px;margin-bottom:4px;}
+.tip p{font-size:14px;color:#1a1d23;}
+
+/* 단계 */
+.step{display:flex;gap:14px;margin-bottom:16px;}
+.step-num{width:36px;height:36px;border-radius:50%;background:#0f1d3a;color:#fff;font-size:15px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step h4{font-size:15px;font-weight:700;color:#0f1d3a;margin-bottom:3px;}
+.step p{font-size:14px;color:#6b7280;}
+
+/* 예시 포스트 */
+.post{background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;margin-bottom:12px;}
+.post-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.avatar{width:36px;height:36px;border-radius:50%;background:#0f1d3a;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.post-name{font-size:14px;font-weight:700;color:#0f1d3a;}
+.post-handle{font-size:12px;color:#999;}
+.post-text{font-size:14px;color:#1a1d23;line-height:1.7;white-space:pre-line;}
+.post-footer{margin-top:10px;font-size:12px;color:#bbb;border-top:1px solid #eee;padding-top:8px;}
+
+/* 체크리스트 */
+.checklist{list-style:none;padding:0;}
+.checklist li{display:flex;align-items:flex-start;gap:10px;font-size:14px;padding:10px 0;border-bottom:1px solid #eee;}
+.checklist li:last-child{border-bottom:none;}
+.checklist .check{width:22px;height:22px;border-radius:50%;background:#e8f5f0;border:2px solid #b2ddd0;flex-shrink:0;margin-top:1px;}
+
+/* CTA */
+.cta{background:#0f1d3a;border-radius:14px;padding:28px;text-align:center;margin-top:24px;}
+.cta p{font-size:18px;font-weight:700;color:#fff;line-height:1.7;}
+.cta span{color:#c9a84c;}
+
+/* 푸터 */
+footer{text-align:center;padding:32px 20px;font-size:13px;color:#aaa;}
+footer strong{color:#0f1d3a;}
+</style>
+</head>
+<body>
+
+<!-- 헤더 -->
+<div class="hero">
+  <div class="badge">비북스 점주 교육자료</div>
+  <h1>스레드<span>(Threads)</span> 활용법</h1>
+  <p>책방을 알리는 가장 쉬운 SNS<br/>하루 5분으로 시작할 수 있어요 📚</p>
+</div>
+
+<!-- 네비 -->
+<nav class="nav">
+  <ul>
+    <li><a href="#intro">스레드란?</a></li>
+    <li><a href="#setup">계정 세팅</a></li>
+    <li><a href="#content">콘텐츠 아이디어</a></li>
+    <li><a href="#formula">글쓰기 공식</a></li>
+    <li><a href="#algorithm">알고리즘</a></li>
+    <li><a href="#examples">실전 예시</a></li>
+    <li><a href="#checklist">시작 체크리스트</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- 1. 스레드란? -->
+  <div class="section" id="intro">
+    <div class="section-tag">01 · 기초</div>
+    <h2>스레드가 뭔가요?</h2>
+    <table>
+      <tr><th>항목</th><th>인스타그램</th><th>스레드</th></tr>
+      <tr><td>중심 콘텐츠</td><td>📷 사진·영상</td><td>📝 글·텍스트</td></tr>
+      <tr><td>부담감</td><td>사진 퀄리티 신경 씀</td><td>글만 써도 OK</td></tr>
+      <tr><td>노출 방식</td><td>팔로워 위주</td><td>모르는 사람도 봄</td></tr>
+      <tr><td>분위기</td><td>꾸민 피드</td><td>일상·솔직한 이야기</td></tr>
+    </table>
+    <div class="tip">
+      <div class="tip-label">💡 책방 운영자에게 딱인 이유</div>
+      <p>매일 찍을 사진이 없어도 괜찮아요. 오늘 들어온 책, 읽다가 발견한 문장, 손님과 나눈 이야기 — 글로 쓰면 그게 콘텐츠예요.</p>
+    </div>
+  </div>
+
+  <!-- 2. 계정 세팅 -->
+  <div class="section" id="setup">
+    <div class="section-tag">02 · 시작하기</div>
+    <h2>계정 만들기 + 프로필 세팅</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div><h4>앱 설치</h4><p>앱스토어/플레이스토어에서 "Threads" 검색 후 설치. 인스타그램 로고와 비슷하게 생긴 앱이에요.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div><h4>인스타 계정으로 로그인</h4><p>인스타그램 계정이 있으면 클릭 한 번으로 바로 가입 완료. 팔로워도 자동 연동돼요.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div><h4>프로필 사진 + 이름 확인</h4><p>인스타 프로필이 그대로 불러와져요. 책방 이름과 사진이 맞는지 확인만 하면 돼요.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div><h4>바이오(소개글) 한 줄 쓰기</h4><p>예: "서울 마포구 작은 책방 📚 하루 한 권, 천천히" — 짧고 명확하게! 동네 이름 꼭 넣기.</p></div>
+    </div>
+  </div>
+
+  <!-- 3. 콘텐츠 아이디어 -->
+  <div class="section" id="content">
+    <div class="section-tag">03 · 콘텐츠</div>
+    <h2>어떤 글을 올리면 좋을까요?</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>📖 책 이야기</h3>
+        <ul>
+          <li>오늘 새로 들어온 책</li>
+          <li>인상적인 문장 공유</li>
+          <li>"이런 분께 추천해요"</li>
+          <li>숨은 명작 소개</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>☕ 책방 일상</h3>
+        <ul>
+          <li>오늘 책방 분위기</li>
+          <li>손님과 나눈 대화</li>
+          <li>진열 바꾼 이야기</li>
+          <li>혼자 읽는 조용한 시간</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📢 소식 & 이벤트</h3>
+        <ul>
+          <li>이번 주 영업시간</li>
+          <li>북클럽·모임 모집</li>
+          <li>책 할인·재고정리</li>
+          <li>임시 휴무 공지</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-label">💡 황금 비율</div>
+      <p>소식·홍보 글 1개 : 책·일상 이야기 3~4개. 홍보만 하면 사람들이 안 봐요. 이야기가 먼저예요.</p>
+    </div>
+  </div>
+
+  <!-- 4. 글쓰기 공식 -->
+  <div class="section" id="formula">
+    <div class="section-tag">04 · 글쓰기</div>
+    <h2>반응 오는 글에는 공식이 있어요</h2>
+    <div class="grid grid-3">
+      <div class="card gold">
+        <h3>① 첫 줄 훅</h3>
+        <p>첫 문장에서 궁금하게 만들기<br/><br/><em>"오늘 손님이 울면서 책을 사갔다."</em></p>
+      </div>
+      <div class="card gold">
+        <h3>② 질문으로 끝내기</h3>
+        <p>댓글 유도 → 알고리즘 상승<br/><br/><em>"여러분은 책 고를 때 표지 보세요, 제목 보세요?"</em></p>
+      </div>
+      <div class="card gold">
+        <h3>③ 짧게 자르기</h3>
+        <p>한 문장씩 줄바꿈 → 읽기 편함<br/><br/>긴 문단은 스크롤을 멈추지 않아요.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 알고리즘 -->
+  <div class="section" id="algorithm">
+    <div class="section-tag">05 · 알고리즘</div>
+    <h2>팔로워 없어도 노출되는 이유</h2>
+    <div class="grid grid-2">
+      <div class="card navy">
+        <h3>🔍 스레드 알고리즘 원리</h3>
+        <ul>
+          <li>초기엔 팔로워와 무관하게 노출</li>
+          <li>댓글·리포스트 많을수록 더 뿌림</li>
+          <li>꾸준히 올리면 노출 범위 넓어짐</li>
+          <li>해시태그보다 본문 키워드가 중요</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📈 팔로워 늘리는 3가지 습관</h3>
+        <ul>
+          <li>하루 1개, 꾸준히 올리기</li>
+          <li>다른 책방·독서 계정 댓글 달기</li>
+          <li>리포스트된 글에 감사 댓글 남기기</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-label">💡 가장 중요한 것</div>
+      <p>처음엔 반응이 없어도 괜찮아요. 스레드는 <strong>꾸준함이 전략</strong>이에요. 3개월 후의 나를 위해 지금 심어두는 씨앗이에요.</p>
+    </div>
+  </div>
+
+  <!-- 6. 실전 예시 -->
+  <div class="section" id="examples">
+    <div class="section-tag">06 · 실전 예시</div>
+    <h2>이런 글 써보세요 — 책방 특화 예시</h2>
+
+    <div class="post">
+      <div class="post-hdr">
+        <div class="avatar">📚</div>
+        <div><div class="post-name">예시 ① 일상 이야기</div><div class="post-handle">@ourbookshop</div></div>
+      </div>
+      <div class="post-text">오늘 책방 창가에 놔둔 책이 하루에 세 권 팔렸다.
+
+특별히 추천한 것도 아닌데.
+그냥 햇살 좋은 자리에 놔뒀을 뿐인데.
+
+📍 위치가 이렇게 중요한 거구나.</div>
+      <div class="post-footer">❤️ 좋아요 · 💬 댓글 · 🔁 리포스트</div>
+    </div>
+
+    <div class="post">
+      <div class="post-hdr">
+        <div class="avatar">📚</div>
+        <div><div class="post-name">예시 ② 문장 공유</div><div class="post-handle">@ourbookshop</div></div>
+      </div>
+      <div class="post-text">오늘 읽다가 밑줄 친 문장.
+
+"빠르게 읽는 것보다 오래 기억하는 편이 낫다."
+
+— 『느리게 읽기의 즐거움』 중
+
+책방 하는 사람으로서 완전 공감..</div>
+      <div class="post-footer">❤️ 좋아요 · 💬 댓글 · 🔁 리포스트</div>
+    </div>
+
+    <div class="post">
+      <div class="post-hdr">
+        <div class="avatar">📚</div>
+        <div><div class="post-name">예시 ③ 질문형</div><div class="post-handle">@ourbookshop</div></div>
+      </div>
+      <div class="post-text">책방에서 책 고를 때 여러분은 어떻게 고르세요?
+
+1️⃣ 제목 보고
+2️⃣ 표지 보고
+3️⃣ 첫 페이지 읽어보고
+4️⃣ 주인 추천 믿고
+
+저는 사실 4번 손님이 제일 좋아요 ㅎㅎ</div>
+      <div class="post-footer">❤️ 좋아요 · 💬 댓글 · 🔁 리포스트</div>
+    </div>
+
+    <div class="post">
+      <div class="post-hdr">
+        <div class="avatar">📚</div>
+        <div><div class="post-name">예시 ④ 소식 공지</div><div class="post-handle">@ourbookshop</div></div>
+      </div>
+      <div class="post-text">이번 주 토요일 오후 2시
+📖 5월 북클럽 모임
+
+이번 달 책은 『82년생 김지영』이에요.
+자리 딱 3개 남았어요.
+
+참여하실 분 DM 주세요 :)</div>
+      <div class="post-footer">❤️ 좋아요 · 💬 댓글 · 🔁 리포스트</div>
+    </div>
+  </div>
+
+  <!-- 7. 체크리스트 -->
+  <div class="section" id="checklist">
+    <div class="section-tag">07 · 시작하기</div>
+    <h2>오늘 바로 시작 체크리스트</h2>
+    <ul class="checklist">
+      <li><div class="check"></div><span>Threads 앱 설치하기</span></li>
+      <li><div class="check"></div><span>인스타 계정으로 로그인</span></li>
+      <li><div class="check"></div><span>프로필 소개글 한 줄 쓰기 (동네 이름 포함)</span></li>
+      <li><div class="check"></div><span>첫 글 하나 올려보기 (짧아도 OK)</span></li>
+      <li><div class="check"></div><span>다른 책방 계정 3개 팔로우하기</span></li>
+      <li><div class="check"></div><span>마음에 드는 글에 댓글 달기</span></li>
+    </ul>
+    <div class="cta">
+      <p>처음엔 아무도 안 봐도 괜찮아요.<br/><span>꾸준히 쓰다 보면</span><br/>책방을 찾아오는 사람이 생깁니다. 📚</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>BeBooks</strong> 점주 교육자료 · 스레드 활용법<br/>
+  비북스 0.1평 책방 네트워크
+</footer>
+
+<script>
+// 스크롤 시 네비 활성화
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
