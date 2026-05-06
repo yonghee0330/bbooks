@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>인스타그램 활용법 — 비북스 점주 가이드</title>
+<meta property="og:title" content="인스타그램 활용법 — 비북스 점주 가이드"/>
+<meta property="og:description" content="2026 최신 업데이트 반영! 책방을 위한 인스타그램 완전 가이드"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR',sans-serif;background:#f4f6f9;color:#1a1d23;line-height:1.6;}
+
+.hero{background:linear-gradient(135deg,#833ab4 0%,#fd1d1d 50%,#fcb045 100%);color:#fff;padding:48px 24px 40px;text-align:center;}
+.hero .badge{display:inline-block;background:rgba(255,255,255,0.25);color:#fff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px;letter-spacing:1px;margin-bottom:16px;border:1px solid rgba(255,255,255,0.4);}
+.hero h1{font-size:clamp(28px,5vw,42px);font-weight:900;line-height:1.2;margin-bottom:12px;}
+.hero h1 span{color:#ffe066;}
+.hero p{font-size:16px;color:rgba(255,255,255,0.85);max-width:500px;margin:0 auto 16px;}
+.hero .update-badge{display:inline-block;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.4);font-size:12px;padding:4px 12px;border-radius:20px;}
+
+.nav{background:#fff;border-bottom:1px solid #e2e6ed;position:sticky;top:0;z-index:100;overflow-x:auto;}
+.nav ul{display:flex;list-style:none;padding:0 16px;min-width:max-content;}
+.nav ul li a{display:block;padding:14px 14px;font-size:13px;font-weight:600;color:#6b7280;text-decoration:none;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s;}
+.nav ul li a:hover,.nav ul li a.active{color:#833ab4;border-bottom-color:#833ab4;}
+
+.container{max-width:800px;margin:0 auto;padding:32px 20px 80px;}
+
+.section{background:#fff;border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+.section-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;color:#833ab4;background:#f8f0ff;border:1px solid #d8b4fe;padding:3px 12px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;}
+.new-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;color:#fff;background:#fd1d1d;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle;}
+.section h2{font-size:22px;font-weight:900;color:#1a1d23;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid #f0f0f0;}
+
+table{width:100%;border-collapse:collapse;margin:12px 0;}
+th{background:#1a1d23;color:#fff;font-size:13px;padding:10px 14px;text-align:center;}
+td{font-size:13px;padding:10px 14px;border-bottom:1px solid #eee;text-align:center;}
+tr:nth-child(even) td{background:#f8f9fb;}
+td:first-child{font-weight:600;color:#1a1d23;text-align:left;}
+
+.grid{display:grid;gap:16px;margin:12px 0;}
+.grid-2{grid-template-columns:1fr 1fr;}
+.grid-3{grid-template-columns:1fr 1fr 1fr;}
+.grid-4{grid-template-columns:1fr 1fr 1fr 1fr;}
+@media(max-width:600px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+
+.card{background:#f8f9fb;border:1px solid #e2e6ed;border-radius:12px;padding:20px;}
+.card.purple{background:#f8f0ff;border-color:#d8b4fe;border-top:3px solid #833ab4;}
+.card.gradient{background:linear-gradient(135deg,#833ab4,#fd1d1d);color:#fff;}
+.card.gradient h3,.card.gradient p,.card.gradient li{color:#fff;}
+.card h3{font-size:15px;font-weight:700;color:#1a1d23;margin-bottom:8px;}
+.card .card-icon{font-size:26px;margin-bottom:8px;}
+.card p{font-size:14px;color:#6b7280;line-height:1.6;}
+.card ul{list-style:none;padding:0;}
+.card ul li{font-size:14px;color:#6b7280;padding:4px 0;border-bottom:1px solid #eee;}
+.card ul li:last-child{border-bottom:none;}
+.card ul li::before{content:'→ ';color:#833ab4;font-weight:700;}
+.card.gradient ul li{border-bottom-color:rgba(255,255,255,0.2);}
+.card.gradient ul li::before{color:#ffe066;}
+
+.tip{background:#f8f0ff;border-left:4px solid #833ab4;border-radius:6px;padding:14px 18px;margin:14px 0;}
+.tip .tip-label{font-size:11px;font-weight:700;color:#833ab4;letter-spacing:1px;margin-bottom:4px;}
+.tip p{font-size:14px;color:#1a1d23;}
+
+.alert{background:#fff8e1;border-left:4px solid #fcb045;border-radius:6px;padding:14px 18px;margin:14px 0;}
+.alert .alert-label{font-size:11px;font-weight:700;color:#e65c00;letter-spacing:1px;margin-bottom:4px;}
+.alert p{font-size:14px;color:#1a1d23;}
+
+.step{display:flex;gap:14px;margin-bottom:16px;}
+.step-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#833ab4,#fd1d1d);color:#fff;font-size:15px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step h4{font-size:15px;font-weight:700;color:#1a1d23;margin-bottom:3px;}
+.step p{font-size:14px;color:#6b7280;}
+
+/* 포스트 예시 */
+.post{background:#fff;border:1px solid #e2e6ed;border-radius:12px;padding:16px;margin-bottom:12px;}
+.post-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#833ab4,#fd1d1d);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.post-name{font-size:14px;font-weight:700;}
+.post-handle{font-size:12px;color:#999;}
+.post-text{font-size:14px;color:#1a1d23;line-height:1.7;white-space:pre-line;}
+.post-img{background:#f0f0f0;border-radius:8px;padding:12px;margin:10px 0;font-size:13px;color:#999;text-align:center;}
+.post-footer{margin-top:10px;font-size:12px;color:#bbb;border-top:1px solid #eee;padding-top:8px;}
+
+/* 기능 비교 카드 */
+.feature-row{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid #eee;}
+.feature-row:last-child{border-bottom:none;}
+.feature-icon{font-size:28px;flex-shrink:0;width:44px;text-align:center;}
+.feature-body h4{font-size:15px;font-weight:700;color:#1a1d23;margin-bottom:3px;}
+.feature-body p{font-size:14px;color:#6b7280;line-height:1.5;}
+.feature-body .ftag{display:inline-block;font-size:10px;font-weight:700;background:#833ab4;color:#fff;padding:2px 8px;border-radius:10px;margin-bottom:4px;}
+
+/* 통계 숫자 */
+.stat-row{display:flex;gap:16px;margin:16px 0;flex-wrap:wrap;}
+.stat-item{flex:1;min-width:120px;text-align:center;background:#f8f9fb;border-radius:10px;padding:16px;}
+.stat-num{font-size:36px;font-weight:900;background:linear-gradient(135deg,#833ab4,#fd1d1d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.stat-label{font-size:13px;color:#6b7280;margin-top:4px;}
+
+/* 체크리스트 */
+.checklist{list-style:none;padding:0;}
+.checklist li{display:flex;align-items:flex-start;gap:10px;font-size:14px;padding:10px 0;border-bottom:1px solid #eee;}
+.checklist li:last-child{border-bottom:none;}
+.check{width:22px;height:22px;border-radius:50%;background:#f8f0ff;border:2px solid #d8b4fe;flex-shrink:0;margin-top:1px;}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,#833ab4,#fd1d1d);border-radius:14px;padding:28px;text-align:center;margin-top:24px;}
+.cta p{font-size:18px;font-weight:700;color:#fff;line-height:1.7;}
+.cta span{color:#ffe066;}
+
+footer{text-align:center;padding:32px 20px;font-size:13px;color:#aaa;}
+footer strong{color:#1a1d23;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">비북스 점주 교육자료</div>
+  <h1>인스타그램<span>(Instagram)</span> 활용법</h1>
+  <p>사진부터 릴스까지, 책방을 알리는 완전 가이드 📚</p>
+  <div class="update-badge">✨ 2026 최신 업데이트 반영</div>
+</div>
+
+<nav class="nav">
+  <ul>
+    <li><a href="#intro">인스타 기초</a></li>
+    <li><a href="#update">2026 업데이트</a></li>
+    <li><a href="#setup">계정 세팅</a></li>
+    <li><a href="#content">콘텐츠 전략</a></li>
+    <li><a href="#formats">포맷 활용법</a></li>
+    <li><a href="#examples">실전 예시</a></li>
+    <li><a href="#checklist">시작 체크리스트</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- 1. 인스타 기초 -->
+  <div class="section" id="intro">
+    <div class="section-tag">01 · 기초</div>
+    <h2>인스타그램이 책방에 왜 중요한가요?</h2>
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="stat-num">2억+</div>
+        <div class="stat-label">국내 월간 활성 사용자</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">70%</div>
+        <div class="stat-label">쇼핑 결정에 인스타 영향</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4배</div>
+        <div class="stat-label">팔로워 없어도 도달 가능한 배수 (릴스)</div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-label">💡 책방에 딱인 이유</div>
+      <p>책은 <strong>시각적</strong>이에요. 책 표지, 진열 사진, 아늑한 책방 분위기 — 이게 다 콘텐츠예요. 이미 가진 것들이 인스타 콘텐츠가 됩니다.</p>
+    </div>
+    <table>
+      <tr><th>항목</th><th>스레드</th><th>인스타그램</th></tr>
+      <tr><td>중심 콘텐츠</td><td>📝 글·텍스트</td><td>📷 사진·영상·글 모두</td></tr>
+      <tr><td>도달 방식</td><td>글로 발견</td><td>사진+영상+알고리즘 추천</td></tr>
+      <tr><td>기능 수</td><td>단순</td><td>릴스·스토리·캐러셀·하이라이트 등 다양</td></tr>
+      <tr><td>마케팅 활용</td><td>관계·소통 중심</td><td>브랜딩+판매까지 가능</td></tr>
+    </table>
+  </div>
+
+  <!-- 2. 2026 최신 업데이트 -->
+  <div class="section" id="update">
+    <div class="section-tag">02 · 최신 업데이트</div>
+    <h2>2026 인스타그램, 이렇게 바뀌었어요 <span class="new-tag">NEW</span></h2>
+    <div class="feature-row">
+      <div class="feature-icon">🎬</div>
+      <div class="feature-body">
+        <div class="ftag">릴스</div>
+        <h4>릴스 최대 20분으로 확장</h4>
+        <p>기존 90초 → 최대 20분. 책 소개, 북클럽 후기, 책방 브이로그 등 긴 이야기를 담을 수 있어요. 짧은 클립 경쟁에서 벗어나 <strong>깊이 있는 콘텐츠</strong>가 유리해졌어요.</p>
+      </div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-icon">🖼️</div>
+      <div class="feature-body">
+        <div class="ftag">캐러셀</div>
+        <h4>캐러셀 최대 20장</h4>
+        <p>기존 10장 → 20장. 책 추천 리스트, 독서 후기, "이런 분께 어울리는 책" 같은 <strong>스토리텔링 콘텐츠</strong>에 딱이에요. 중간 장이 다시 노출되는 리타겟팅 기능도 있어요.</p>
+      </div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-icon">#️⃣</div>
+      <div class="feature-body">
+        <div class="ftag">알고리즘</div>
+        <h4>해시태그 5개로 제한 + 영향력 감소</h4>
+        <p>예전처럼 해시태그 30개 쓰는 시대 끝났어요. 이제 <strong>본문 키워드</strong>와 <strong>콘텐츠 반응률</strong>이 훨씬 중요해요. 진짜 관심 있는 해시태그 3~5개만.</p>
+      </div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-icon">🧪</div>
+      <div class="feature-body">
+        <div class="ftag">신기능</div>
+        <h4>파일럿 릴스 — 팔로워 없이 먼저 테스트</h4>
+        <p>릴스를 팔로워에게 먼저 올리지 않고 비팔로워에게 테스트 노출하는 기능. 반응 보고 올릴지 결정할 수 있어요. <strong>실패 부담이 낮아졌어요.</strong></p>
+      </div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-icon">📊</div>
+      <div class="feature-body">
+        <div class="ftag">알고리즘</div>
+        <h4>AI 관심사 기반 추천으로 전환</h4>
+        <p>팔로워 수보다 <strong>주제 일관성</strong>과 <strong>다음 행동(저장·공유·DM)</strong>을 더 중요하게 봐요. 애매하게 이것저것 올리는 계정보다 <strong>책방 한 주제 계정</strong>이 더 유리해요.</p>
+      </div>
+    </div>
+    <div class="alert">
+      <div class="alert-label">⚠️ 2026년 핵심 변화 요약</div>
+      <p>조회수 → 저장·공유·DM 등 <strong>'다음 행동'</strong>이 더 중요해졌어요. 많이 보이는 것보다 <strong>저장하고 싶은 콘텐츠</strong>를 만드는 게 목표예요.</p>
+    </div>
+  </div>
+
+  <!-- 3. 계정 세팅 -->
+  <div class="section" id="setup">
+    <div class="section-tag">03 · 시작하기</div>
+    <h2>계정 세팅 — 첫인상이 전부예요</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div><h4>프로필 사진</h4><p>책방 로고 또는 책방 내부 감성 사진. 너무 어두우면 안 보여요 — 밝고 따뜻한 톤으로.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div><h4>계정명 (아이디)</h4><p>책방 이름 그대로가 가장 좋아요. 기억하기 쉽게. 예: <strong>@책방이름_서울</strong></p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div><h4>바이오(소개글) — 딱 3줄</h4><p>① 무슨 책방인지 ② 위치(동네) ③ 특징 한 가지<br/>예: "📚 서울 마포구 작은 독립서점 / 큐레이션 책방 / 매일 오후 1시~9시"</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div><h4>비즈니스 계정으로 전환</h4><p>설정 → 계정 → 프로페셔널 계정으로 전환. 조회수·도달 통계를 볼 수 있어요. 무료예요.</p></div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div><h4>하이라이트 세팅</h4><p>스토리 중 중요한 것들 하이라이트로 보관. 예: "책 추천" / "영업 안내" / "이달의 이벤트"</p></div>
+    </div>
+  </div>
+
+  <!-- 4. 콘텐츠 전략 -->
+  <div class="section" id="content">
+    <div class="section-tag">04 · 콘텐츠</div>
+    <h2>어떤 콘텐츠를 올릴까요?</h2>
+    <div class="grid grid-3">
+      <div class="card purple">
+        <div class="card-icon">📖</div>
+        <h3>책 콘텐츠</h3>
+        <ul>
+          <li>오늘의 추천 책 (사진+이유)</li>
+          <li>인상적인 구절 텍스트 카드</li>
+          <li>"이런 분께 추천해요"</li>
+          <li>신간 도착 알림</li>
+        </ul>
+      </div>
+      <div class="card purple">
+        <div class="card-icon">🏡</div>
+        <h3>책방 일상</h3>
+        <ul>
+          <li>오늘 책방 감성 사진</li>
+          <li>진열 바꾼 과정</li>
+          <li>손님 없는 조용한 오후</li>
+          <li>계절 분위기 (비오는 날 등)</li>
+        </ul>
+      </div>
+      <div class="card purple">
+        <div class="card-icon">📢</div>
+        <h3>소식 & 이벤트</h3>
+        <ul>
+          <li>영업시간·휴무 공지</li>
+          <li>북클럽 모집</li>
+          <li>책 할인·기획전</li>
+          <li>작가 사인회 소식</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-label">💡 2026 황금 비율</div>
+      <p><strong>소식·홍보 1 : 책·일상 이야기 4</strong> — 그리고 이 모든 게시물에 <strong>"저장하고 싶은 이유"</strong>를 하나씩 넣어요. 저장률이 높을수록 알고리즘이 밀어줘요.</p>
+    </div>
+  </div>
+
+  <!-- 5. 포맷 활용법 -->
+  <div class="section" id="formats">
+    <div class="section-tag">05 · 포맷 전략</div>
+    <h2>포맷별 역할 나누기 <span class="new-tag">2026 핵심</span></h2>
+    <div class="grid grid-2">
+      <div class="card gradient">
+        <div class="card-icon">🎬</div>
+        <h3>릴스 — 새 사람 유입</h3>
+        <ul>
+          <li>팔로워 없는 사람에게도 노출</li>
+          <li>책방 분위기 쇼츠 (15~60초)</li>
+          <li>책 추천 영상 (저자 소개 등)</li>
+          <li>북클럽 후기 영상</li>
+        </ul>
+      </div>
+      <div class="card gradient">
+        <div class="card-icon">🖼️</div>
+        <h3>캐러셀 — 저장·공유 유도</h3>
+        <ul>
+          <li>최대 20장, 스토리텔링 구조</li>
+          <li>"이달의 추천 책 5선"</li>
+          <li>"독서 슬럼프 탈출법"</li>
+          <li>저장하고 싶은 정보형 콘텐츠</li>
+        </ul>
+      </div>
+      <div class="card purple">
+        <div class="card-icon">🟡</div>
+        <h3>스토리 — 관계 유지</h3>
+        <ul>
+          <li>오늘의 책방 일상 (날것 OK)</li>
+          <li>투표·질문 스티커 활용</li>
+          <li>팔로워와 소통하는 채널</li>
+          <li>24시간 후 사라지니 부담 없음</li>
+        </ul>
+      </div>
+      <div class="card purple">
+        <div class="card-icon">💬</div>
+        <h3>DM — 실제 전환</h3>
+        <ul>
+          <li>책 재고 문의, 예약 접수</li>
+          <li>북클럽 신청 받기</li>
+          <li>"DM 주시면 추천해드려요"</li>
+          <li>자동 응답 설정 활용 가능</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alert">
+      <div class="alert-label">🎯 2026 포맷 전략 한 줄 요약</div>
+      <p><strong>릴스로 유입 → 캐러셀로 설득(저장) → 스토리로 관계 → DM으로 전환.</strong> 이 흐름이 잡히면 팔로워가 자연스럽게 늘어요.</p>
+    </div>
+  </div>
+
+  <!-- 6. 실전 예시 -->
+  <div class="section" id="examples">
+    <div class="section-tag">06 · 실전 예시</div>
+    <h2>이런 콘텐츠 써보세요 — 책방 특화</h2>
+
+    <div class="post">
+      <div class="post-hdr">
+        <div class="avatar">📚</div>
+        <div><div class="post-name">예시 ① 릴스 캡션 (사진 릴스)</div><div class="post-handle">@ourbookshop · 🎬 릴스</div></div>
+      </div>
+      <div class="post-img">🎬 [책방 창가 + 빗소리 배경 + 책 클로즈업 영상 15초]</div>
+      <div class="post-text">비 오는 날 책방,
+이런 날은 꼭 읽어야 하는 책이 있어요.
+
+📖 『나는 나로 살기로 했다』
+
+창 밖 빗소리 들으면서
+이 책 첫 장 펼쳐보세요.
+
+오늘 3권 남았어요 🌧️</div>
+      <div class="post-footer">❤️ 좋아요 · 💬 댓글 · 🔖 저장 · ➡️ 공유</div>
+    </div>
+
+    <div class="post">
+      <div class="post-hdr">
+        <div class="avatar">📚</div>
+        <div><div class="post-name">예시 ② 캐러셀 (저장 유도)</div><div class="post-handle">@ourbookshop · 🖼️ 캐러셀 5장</div></div>
+      </div>
+      <div class="post-img">🖼️ [1장: 제목 카드] "직장인이 퇴근 후 읽기 좋은 책 5권"<br/>[2~6장: 책 표지 + 한 줄 소개]</div>
+      <div class="post-text">오늘 하루 지쳤다면
+퇴근 후 딱 30분, 이 책들 어때요?
+
+→ 넘겨서 확인해보세요 👉
+
+나중에 보려면 저장해두세요 🔖</div>
+      <div class="post-footer">❤️ 좋아요 · 💬 댓글 · 🔖 저장 1.2K · ➡️ 공유</div>
+    </div>
+
+    <div class="post">
+      <div class="post-hdr">
+        <div class="avatar">📚</div>
+        <div><div class="post-name">예시 ③ 스토리 (소통)</div><div class="post-handle">@ourbookshop · 🟡 스토리</div></div>
+      </div>
+      <div class="post-img">🟡 [오늘 책방 사진 + 투표 스티커]<br/>"오늘 읽고 싶은 장르 골라봐요!"<br/>📘 소설 vs 📗 에세이</div>
+      <div class="post-text">(결과 공유 → 많이 나온 쪽 책 추천 스토리로 후속 게시)</div>
+      <div class="post-footer">👁️ 조회 342 · 답장 12</div>
+    </div>
+
+    <div class="post">
+      <div class="post-hdr">
+        <div class="avatar">📚</div>
+        <div><div class="post-name">예시 ④ 일반 피드 (관계)</div><div class="post-handle">@ourbookshop · 📷 피드</div></div>
+      </div>
+      <div class="post-img">📷 [책방 안 햇살 가득한 코너 사진]</div>
+      <div class="post-text">오늘 이 자리가 좋았어요.
+
+아무도 없는 오전,
+햇살이 딱 여기까지만 들어오는 시간.
+
+가끔 책방 하길 잘했다 싶어요. 🌞
+
+여러분도 요즘 작은 행복 있으세요?</div>
+      <div class="post-footer">❤️ 좋아요 247 · 💬 댓글 38</div>
+    </div>
+  </div>
+
+  <!-- 7. 체크리스트 -->
+  <div class="section" id="checklist">
+    <div class="section-tag">07 · 시작하기</div>
+    <h2>오늘 바로 시작 체크리스트</h2>
+    <ul class="checklist">
+      <li><div class="check"></div><span>비즈니스 계정으로 전환하기</span></li>
+      <li><div class="check"></div><span>프로필 사진 · 바이오 3줄 완성</span></li>
+      <li><div class="check"></div><span>하이라이트 카테고리 3개 만들기 (책 추천 / 영업 안내 / 이벤트)</span></li>
+      <li><div class="check"></div><span>첫 피드 게시물 올리기 (책방 사진 + 소개글)</span></li>
+      <li><div class="check"></div><span>첫 릴스 올려보기 (책 클로즈업 15초 영상도 OK)</span></li>
+      <li><div class="check"></div><span>스토리에 투표 스티커 하나 올려보기</span></li>
+      <li><div class="check"></div><span>비슷한 책방·독서 계정 5개 팔로우 + 댓글 달기</span></li>
+    </ul>
+    <div class="tip" style="margin-top:20px;">
+      <div class="tip-label">💡 2026 단 하나의 원칙</div>
+      <p>조회수보다 <strong>저장·공유·DM</strong>이 더 가치 있어요. 많이 보이는 것보다 <strong>"저장하고 싶다"</strong>는 소리를 듣는 콘텐츠를 만드세요.</p>
+    </div>
+    <div class="cta">
+      <p>완벽하게 준비된 다음에 시작하면<br/>영원히 시작 못해요.<br/><span>오늘 사진 한 장이 시작입니다. 📸</span></p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>BeBooks</strong> 점주 교육자료 · 인스타그램 활용법 2026<br/>
+  비북스 0.1평 책방 네트워크
+</footer>
+
+<script>
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
