@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>비북스 b.moim - 월별 모임 신청</title>
+  <meta name="description" content="느슨하고 단단하게 함께 자라가는 비북스 b.moim 월별 모임 신청 페이지"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./moim.css"/>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <nav class="topbar" aria-label="주요 메뉴">
+      <a class="brand" href="../index.html">비북스 <span>b.moim</span></a>
+      <div class="top-links">
+        <a href="https://talks.bbooks.co.kr">b.talks</a>
+        <a href="https://bbooks.co.kr">b.books</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <p class="eyebrow">Monthly Gathering</p>
+      <h1>비북스 <span>b.moim</span></h1>
+      <p>느슨하고 단단하게 함께 자라가는 모임</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="month-tabs" aria-label="월별 모임 선택">
+      <a class="month-tab active" href="#may" data-month-tab="5">5월</a>
+      <a class="month-tab recruiting" href="#june" data-month-tab="6">6월 <span>모집중</span></a>
+      <a class="month-tab" href="#july" data-month-tab="7">7월</a>
+    </section>
+
+    <section class="month-section" id="may" data-month-section="5">
+      <div class="section-head">
+        <p class="section-label">May</p>
+        <h2>5월 모임</h2>
+        <p>지난 모임을 썸네일로 확인하고 상세 내용을 펼쳐볼 수 있어요.</p>
+      </div>
+      <div class="notice closed">5월 모임은 마감되었습니다</div>
+      <div class="meeting-grid" id="mayGrid"></div>
+    </section>
+
+    <section class="month-section" id="june" data-month-section="6">
+      <div class="section-head">
+        <p class="section-label">June</p>
+        <h2>6월 모임</h2>
+        <p>확정된 모임은 카드로 공개되며, 신청 가능 여부가 실시간으로 표시됩니다.</p>
+      </div>
+      <div class="notice upcoming">6월 모임 신청 오픈 예정</div>
+      <div class="meeting-grid" id="juneGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="month-section" id="july" data-month-section="7">
+      <div class="section-head">
+        <p class="section-label">July</p>
+        <h2>7월 모임</h2>
+        <p>7월에 열릴 b.moim을 준비하고 있어요.</p>
+      </div>
+      <div class="notice upcoming">7월 모임 신청 오픈 예정</div>
+      <div class="meeting-grid" id="julyGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="host-section" id="hostApply">
+      <div class="host-copy">
+        <p class="section-label">For 0.1 Store Owners</p>
+        <h2>모임을 기획하고 싶은 점주님!</h2>
+        <p>아래 폼을 작성하면 매니저가 검토 후 확정해드려요</p>
+      </div>
+      <form class="host-form" id="hostForm">
+        <fieldset class="radio-group">
+          <legend>신청월</legend>
+          <label><input type="radio" name="month" value="6월" checked/> 6월</label>
+          <label><input type="radio" name="month" value="7월"/> 7월</label>
+        </fieldset>
+
+        <div class="form-grid">
+          <label>점주 이름 <input type="text" name="ownerName" required/></label>
+          <label>연락처 <input type="tel" name="phone" required/></label>
+          <label class="wide">모임 제목 <input type="text" name="title" required/></label>
+          <label class="wide">모임 설명 <textarea name="description" rows="5" required></textarea></label>
+          <label>날짜/시간 <input type="text" name="dateTime" placeholder="예: 6월 15일 토요일 14:00" required/></label>
+          <label>최대 인원 <input type="number" name="capacity" min="1" required/></label>
+          <label>참가비 <input type="text" name="fee" placeholder="예: 10,000원" required/></label>
+          <label>포스터 이미지 URL <input type="url" name="posterUrl" placeholder="https://"/></label>
+        </div>
+
+        <button class="submit-btn" type="submit">기획 신청하기</button>
+        <p class="form-message" id="formMessage" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="https://talks.bbooks.co.kr">b.talks 작가와의 만남 →</a>
+    <a href="https://bbooks.co.kr">비북스 홈으로 →</a>
+  </footer>
+
+  <dialog class="meeting-modal" id="meetingModal">
+    <button class="modal-close" type="button" aria-label="닫기">×</button>
+    <div id="modalContent"></div>
+  </dialog>
+
+  <script>
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyngEVFqHifgZfg3Pt69R0NzlQQcEU-YEJs4FU_fZz0yn3uhrBz-gAnsmpsCtL0UhkR/exec';
+    const APPLY_URL = 'https://script.google.com/macros/s/AKfycbwggLeyc4ohjfpMeuTvUgL8FtV1nMig-KW5YIet88vhd0bySXb5_aSj16KXuP3-OCI7QA/exec';
+
+    const fallbackPoster = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420">
+        <rect width="640" height="420" fill="#0A1F44"/>
+        <path d="M70 70h500v280H70z" fill="none" stroke="#C9A84C" stroke-width="3"/>
+        <text x="320" y="196" text-anchor="middle" fill="#F5F3EF" font-family="serif" font-size="54" font-weight="700">b.moim</text>
+        <text x="320" y="244" text-anchor="middle" fill="#C9A84C" font-family="sans-serif" font-size="22">비북스 월별 모임</text>
+      </svg>
+    `);
+
+    const mayMeetings = [
+      {
+        month: 5,
+        title: '독서 모임',
+        dateTime: '5월 모임',
+        place: '비북스 0.1평 서점',
+        fee: '마감',
+        capacity: 8,
+        applied: 8,
+        status: '마감',
+        description: '책을 읽고 나누는 시간으로 진행된 5월 b.moim입니다.',
+        formUrl: ''
+      },
+      {
+        month: 5,
+        title: '드로잉 · 공예',
+        dateTime: '5월 모임',
+        place: '비북스 0.1평 서점',
+        fee: '마감',
+        capacity: 6,
+        applied: 6,
+        status: '마감',
+        description: '손으로 만드는 이야기를 함께 나눈 5월 b.moim입니다.',
+        formUrl: ''
+      },
+      {
+        month: 5,
+        title: '편지 쓰기',
+        dateTime: '5월 모임',
+        place: '비북스 0.1평 서점',
+        fee: '마감',
+        capacity: 10,
+        applied: 10,
+        status: '마감',
+        description: '한 사람을 위한 글을 쓰고 마음을 나눈 5월 b.moim입니다.',
+        formUrl: ''
+      },
+      {
+        month: 5,
+        title: '영화 · 음악',
+        dateTime: '5월 모임',
+        place: '비북스 0.1평 서점',
+        fee: '마감',
+        capacity: 8,
+        applied: 8,
+        status: '마감',
+        description: '감각을 나누는 모임으로 진행된 5월 b.moim입니다.',
+        formUrl: ''
+      }
+    ];
+
+    const grids = {
+      5: document.getElementById('mayGrid'),
+      6: document.getElementById('juneGrid'),
+      7: document.getElementById('julyGrid')
+    };
+
+    function pick(row, keys, fallback = '') {
+      for (const key of keys) {
+        const value = row?.[key];
+        if (value !== undefined && value !== null && String(value).trim() !== '') return value;
+      }
+      return fallback;
+    }
+
+    function getMonthValue(row) {
+      const rawMonth = pick(row, ['month', '월', '신청월', '모임월']);
+      const rawDate = pick(row, ['dateTime', '날짜/시간', '일시', '날짜', 'date']);
+      const raw = String(rawMonth || rawDate || '');
+      const match = raw.match(/(5|6|7)\s*월|2026[-/.](0?[5-7])/);
+      if (!match) return Number(raw.replace(/[^0-9]/g, '')) || null;
+      return Number(match[1] || match[2]);
+    }
+
+    function normalizeMeeting(row) {
+      const capacity = Number(pick(row, ['capacity', '최대 인원', '최대인원', '정원'], 0)) || 0;
+      const applied = Number(pick(row, ['applied', '신청 인원', '신청인원', '현재인원'], 0)) || 0;
+      const remaining = Math.max(capacity - applied, 0);
+      const explicitStatus = String(pick(row, ['status', '상태'], '')).trim();
+
+      return {
+        month: getMonthValue(row),
+        title: pick(row, ['title', '모임 제목', '제목'], '제목 미정'),
+        dateTime: pick(row, ['dateTime', '날짜/시간', '일시', '날짜'], '일정 조율 중'),
+        place: pick(row, ['place', '장소'], '장소 추후 안내'),
+        fee: pick(row, ['fee', '참가비'], '추후 안내'),
+        capacity,
+        applied,
+        remaining,
+        status: explicitStatus || (capacity > 0 && remaining <= 0 ? '마감' : '모집중'),
+        description: pick(row, ['description', '모임 설명', '설명'], '상세 설명은 곧 업데이트됩니다.'),
+        posterUrl: pick(row, ['posterUrl', '포스터 이미지 URL', '포스터', '이미지'], ''),
+        formUrl: pick(row, ['formUrl', '구글폼 링크', '신청 링크', '신청링크'], '')
+      };
+    }
+
+    function renderSkeleton(grid) {
+      grid.innerHTML = Array.from({ length: 3 }).map(() => `
+        <article class="meeting-card skeleton-card" aria-hidden="true">
+          <div class="skeleton poster"></div>
+          <div class="card-body">
+            <div class="skeleton line wide"></div>
+            <div class="skeleton line"></div>
+            <div class="skeleton line short"></div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderEmpty(grid) {
+      grid.innerHTML = `
+        <div class="empty-card">
+          <strong>곧 공개됩니다</strong>
+          <p>확정된 모임이 생기면 이곳에 가장 먼저 표시됩니다.</p>
+        </div>
+      `;
+    }
+
+    function renderMeetings(month, meetings) {
+      const grid = grids[month];
+      if (!meetings.length) {
+        renderEmpty(grid);
+        return;
+      }
+
+      grid.innerHTML = meetings.map((meeting, index) => {
+        const remaining = meeting.remaining ?? Math.max((meeting.capacity || 0) - (meeting.applied || 0), 0);
+        const isClosed = meeting.status.includes('마감') || remaining === 0;
+        const actionLabel = isClosed ? '마감되었습니다' : '신청하기';
+        const actionAttr = isClosed || !meeting.formUrl ? 'aria-disabled="true"' : `href="${meeting.formUrl}" target="_blank" rel="noopener"`;
+
+        return `
+          <article class="meeting-card" tabindex="0" data-month="${month}" data-index="${index}">
+            <div class="poster-wrap">
+              <img src="${meeting.posterUrl || fallbackPoster}" alt="${meeting.title} 포스터" loading="lazy" onerror="this.src='${fallbackPoster}'"/>
+              <span class="status-badge ${isClosed ? 'closed' : 'open'}">${isClosed ? '마감' : '모집중'}</span>
+            </div>
+            <div class="card-body">
+              <h3>${meeting.title}</h3>
+              <dl>
+                <div><dt>일시</dt><dd>${meeting.dateTime}</dd></div>
+                <div><dt>장소</dt><dd>${meeting.place}</dd></div>
+                <div><dt>참가비</dt><dd>${meeting.fee}</dd></div>
+                <div><dt>남은 자리</dt><dd>${remaining}자리</dd></div>
+              </dl>
+              <div class="card-actions">
+                <button type="button" class="detail-btn" data-month="${month}" data-index="${index}">상세보기</button>
+                <a class="apply-btn ${isClosed || !meeting.formUrl ? 'disabled' : ''}" ${actionAttr}>${actionLabel}</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      grid.dataset.meetings = JSON.stringify(meetings);
+    }
+
+    async function loadSheetMeetings() {
+      renderSkeleton(grids[6]);
+      renderSkeleton(grids[7]);
+
+      try {
+        const response = await fetch(SHEET_URL);
+        const payload = await response.json();
+        const rows = Array.isArray(payload) ? payload : (payload.data || payload.rows || []);
+        const meetings = rows.map(normalizeMeeting).filter(meeting => meeting.month === 6 || meeting.month === 7);
+        renderMeetings(6, meetings.filter(meeting => meeting.month === 6));
+        renderMeetings(7, meetings.filter(meeting => meeting.month === 7));
+      } catch (error) {
+        grids[6].innerHTML = '<div class="empty-card error"><strong>데이터를 불러오지 못했어요</strong><p>잠시 후 다시 확인해주세요.</p></div>';
+        grids[7].innerHTML = '<div class="empty-card error"><strong>데이터를 불러오지 못했어요</strong><p>잠시 후 다시 확인해주세요.</p></div>';
+      }
+    }
+
+    function openModal(meeting) {
+      const modal = document.getElementById('meetingModal');
+      const content = document.getElementById('modalContent');
+      const remaining = meeting.remaining ?? Math.max((meeting.capacity || 0) - (meeting.applied || 0), 0);
+      const isClosed = meeting.status.includes('마감') || remaining === 0;
+
+      content.innerHTML = `
+        <img class="modal-poster" src="${meeting.posterUrl || fallbackPoster}" alt="${meeting.title} 포스터"/>
+        <p class="status-badge ${isClosed ? 'closed' : 'open'}">${isClosed ? '마감' : '모집중'}</p>
+        <h2>${meeting.title}</h2>
+        <p>${meeting.description}</p>
+        <ul class="modal-list">
+          <li><strong>일시</strong>${meeting.dateTime}</li>
+          <li><strong>장소</strong>${meeting.place}</li>
+          <li><strong>참가비</strong>${meeting.fee}</li>
+          <li><strong>남은 자리</strong>${remaining}자리</li>
+        </ul>
+        ${!isClosed && meeting.formUrl ? `<a class="apply-btn modal-apply" href="${meeting.formUrl}" target="_blank" rel="noopener">신청하기</a>` : ''}
+      `;
+      modal.showModal();
+    }
+
+    function getMeetingFromGrid(month, index) {
+      const stored = grids[month]?.dataset.meetings;
+      return stored ? JSON.parse(stored)[index] : null;
+    }
+
+    document.querySelectorAll('.month-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.month-tab').forEach(item => item.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+
+    document.addEventListener('click', event => {
+      const detailButton = event.target.closest('.detail-btn');
+      const card = event.target.closest('.meeting-card');
+      const target = detailButton || card;
+      if (!target || event.target.closest('.apply-btn')) return;
+
+      const month = Number(target.dataset.month);
+      const index = Number(target.dataset.index);
+      const meeting = getMeetingFromGrid(month, index);
+      if (meeting) openModal(meeting);
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Enter') return;
+      const card = event.target.closest('.meeting-card');
+      if (!card) return;
+      const meeting = getMeetingFromGrid(Number(card.dataset.month), Number(card.dataset.index));
+      if (meeting) openModal(meeting);
+    });
+
+    document.querySelector('.modal-close').addEventListener('click', () => {
+      document.getElementById('meetingModal').close();
+    });
+
+    document.getElementById('hostForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const submitButton = form.querySelector('.submit-btn');
+      const message = document.getElementById('formMessage');
+      const formData = new FormData(form);
+
+      submitButton.disabled = true;
+      submitButton.textContent = '전송 중...';
+      message.textContent = '';
+
+      try {
+        await fetch(APPLY_URL, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors'
+        });
+        alert('신청이 접수됐어요! 매니저가 검토 후 연락드릴게요 😊');
+        form.reset();
+        form.querySelector('input[name="month"][value="6월"]').checked = true;
+        message.textContent = '신청이 접수됐어요.';
+      } catch (error) {
+        message.textContent = '전송 중 문제가 생겼어요. 잠시 후 다시 시도해주세요.';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = '기획 신청하기';
+      }
+    });
+
+    renderMeetings(5, mayMeetings.map(normalizeMeeting));
+    loadSheetMeetings();
+  </script>
+</body>
+</html>
