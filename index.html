@@ -1140,7 +1140,23 @@
       };
 
       if (NAVER_MAP_KEY_ID) {
-        window.initBbooksNaverMap = initNaverMap;
+        // SDK callback이 먼저 호출되거나, 전역 naver 생성이 약간 늦는 경우가 있어
+        // 짧게 재시도 후 실패하면 대체 지도로 전환합니다.
+        window.initBbooksNaverMap = function () {
+          var tries = 0;
+          (function waitForNaver() {
+            tries += 1;
+            if (window.naver && window.naver.maps) {
+              initNaverMap();
+              return;
+            }
+            if (tries >= 25) {
+              showOsmFallback();
+              return;
+            }
+            setTimeout(waitForNaver, 80);
+          })();
+        };
         var script = document.createElement('script');
         script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' +
           encodeURIComponent(NAVER_MAP_KEY_ID) + '&callback=initBbooksNaverMap';
