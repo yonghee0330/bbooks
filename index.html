@@ -653,6 +653,11 @@
       min-height: 280px;
     }
 
+    /* 네이버 지도 타일이 global img 규칙에 깨지지 않도록 */
+    #naverMap img {
+      max-width: none;
+    }
+
     .map-frame iframe {
       width: 100%;
       height: 100%;
@@ -1073,12 +1078,11 @@
 
   <!--
     네이버 지도 API: https://console.ncloud.com → Application → Maps → Web Dynamic Map
-    Client ID 발급 후 아래 NAVER_MAP_CLIENT_ID에 입력하면 페이지에 네이버 지도가 표시됩니다.
-    비어 있으면 OpenStreetMap으로 위치를 표시합니다.
+    ncpKeyId(클라이언트 ID) 입력 · Web 서비스 URL은 호스트만 등록 (예: https://bbooks.co.kr)
   -->
   <script>
     (function () {
-      var NAVER_MAP_CLIENT_ID = 'xfcg4uyt4m';
+      var NAVER_MAP_KEY_ID = 'xfcg4uyt4m';
       var LAT = 37.4963;
       var LNG = 126.7865;
       var PLACE_NAME = '비북스 b.books';
@@ -1127,11 +1131,16 @@
         });
       }
 
-      if (NAVER_MAP_CLIENT_ID) {
+      window.navermap_authFailure = function () {
+        showOsmFallback();
+      };
+
+      if (NAVER_MAP_KEY_ID) {
+        window.initBbooksNaverMap = initNaverMap;
         var script = document.createElement('script');
-        script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=' + encodeURIComponent(NAVER_MAP_CLIENT_ID);
+        script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' +
+          encodeURIComponent(NAVER_MAP_KEY_ID) + '&callback=initBbooksNaverMap';
         script.async = true;
-        script.onload = initNaverMap;
         script.onerror = showOsmFallback;
         document.head.appendChild(script);
       } else {
