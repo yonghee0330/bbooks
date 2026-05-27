@@ -1102,6 +1102,10 @@
       }
 
       function initNaverMap() {
+        if (!window.naver || !window.naver.maps) {
+          showOsmFallback();
+          return;
+        }
         var map = new naver.maps.Map('naverMap', {
           center: new naver.maps.LatLng(LAT, LNG),
           zoom: 17,
