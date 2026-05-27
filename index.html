@@ -626,17 +626,6 @@
 
     .btn-naver:hover { filter: brightness(1.06); }
 
-    .btn-kakao {
-      background: var(--white);
-      color: var(--text);
-      border: 1.5px solid var(--border);
-    }
-
-    .btn-kakao:hover {
-      border-color: var(--navy);
-      color: var(--navy);
-    }
-
     .map-frame {
       aspect-ratio: 16 / 11;
       min-height: 280px;
@@ -998,7 +987,6 @@
           </dl>
           <div class="visit-buttons">
             <a class="btn btn-naver" href="https://naver.me/5Ollmubn" target="_blank" rel="noopener">네이버 지도로 보기</a>
-            <a class="btn btn-kakao" href="https://map.kakao.com/link/search/부천시+원미구+부천로+136번길+24" target="_blank" rel="noopener">카카오맵으로 보기</a>
           </div>
         </div>
         <div class="map-frame">
@@ -1106,15 +1094,15 @@
           showOsmFallback();
           return;
         }
-        var map = new naver.maps.Map('naverMap', {
-          center: new naver.maps.LatLng(LAT, LNG),
+        var map = new window.naver.maps.Map('naverMap', {
+          center: new window.naver.maps.LatLng(LAT, LNG),
           zoom: 17,
           zoomControl: true,
-          zoomControlOptions: { position: naver.maps.Position.TOP_RIGHT }
+          zoomControlOptions: { position: window.naver.maps.Position.TOP_RIGHT }
         });
 
-        var marker = new naver.maps.Marker({
-          position: new naver.maps.LatLng(LAT, LNG),
+        var marker = new window.naver.maps.Marker({
+          position: new window.naver.maps.LatLng(LAT, LNG),
           map: map,
           title: PLACE_NAME
         });
@@ -1127,10 +1115,10 @@
           'style="display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:#03c75a;">길찾기 →</a>' +
           '</div>';
 
-        var infoWindow = new naver.maps.InfoWindow({ content: infoContent, borderWidth: 0, backgroundColor: '#fff' });
+        var infoWindow = new window.naver.maps.InfoWindow({ content: infoContent, borderWidth: 0, backgroundColor: '#fff' });
         infoWindow.open(map, marker);
 
-        naver.maps.Event.addListener(marker, 'click', function () {
+        window.naver.maps.Event.addListener(marker, 'click', function () {
           window.open(NAVER_PLACE_URL, '_blank', 'noopener');
         });
       }
