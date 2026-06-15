@@ -704,20 +704,6 @@
       font-weight: 300;
     }
 
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 24px;
-    }
-
-    .footer-links a {
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.85);
-    }
-
-    .footer-links a:hover { color: var(--accent); }
-
     .footer-copy {
       max-width: var(--max);
       margin: 32px auto 0;
@@ -760,7 +746,7 @@
       }
 
       .program-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 24px;
       }
 
@@ -779,12 +765,6 @@
         justify-content: space-between;
         align-items: flex-start;
       }
-
-      .footer-links {
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 14px;
-      }
     }
   </style>
 </head>
@@ -793,7 +773,7 @@
   <header class="header" id="header">
     <a href="#" class="logo">b.books</a>
     <nav class="nav-desktop" aria-label="주요 메뉴">
-      <a class="nav-link" href="https://moim.bbooks.co.kr" target="_blank" rel="noopener">비모임</a>
+      <a class="nav-link" href="https://moim.bbooks.co.kr/june.html" target="_blank" rel="noopener">비모임</a>
       <a class="nav-link" href="https://talks.bbooks.co.kr" target="_blank" rel="noopener">비톡스</a>
       <a class="nav-link" href="https://box.bbooks.co.kr" target="_blank" rel="noopener">비박스</a>
       <a class="nav-link" href="https://bam.bbooks.co.kr/" target="_blank" rel="noopener">밤밀온</a>
@@ -808,7 +788,7 @@
   </header>
 
   <nav class="nav-mobile" id="navMobile" aria-label="모바일 메뉴">
-    <a href="https://moim.bbooks.co.kr" target="_blank" rel="noopener">비모임</a>
+    <a href="https://moim.bbooks.co.kr/june.html" target="_blank" rel="noopener">비모임</a>
     <a href="https://talks.bbooks.co.kr" target="_blank" rel="noopener">비톡스</a>
     <a href="https://box.bbooks.co.kr" target="_blank" rel="noopener">비박스</a>
     <a href="https://bam.bbooks.co.kr/" target="_blank" rel="noopener">밤밀온</a>
@@ -913,13 +893,13 @@
     <div class="container">
       <p class="section-label">Together</p>
       <h2 class="section-title">함께 읽고,<br>함께 만드는 이야기</h2>
-      <p class="section-desc">책을 매개로 만나는 세 가지 방식</p>
+      <p class="section-desc">책을 매개로 만나는 다섯 가지 방식</p>
       <div class="program-grid">
         <article class="program-card">
           <div class="icon" aria-hidden="true">📖</div>
           <h3>b.moim 비모임</h3>
           <p>매달 b.books 서점주들이 직접 기획하는 소규모 모임. 독서, 드로잉, 편지, 영화— 책을 매개로 만나는 다양한 형태의 시간.</p>
-          <a class="btn btn-navy" href="https://moim.bbooks.co.kr" target="_blank" rel="noopener">모임 신청하기</a>
+          <a class="btn btn-navy" href="https://moim.bbooks.co.kr/june.html" target="_blank" rel="noopener">모임 신청하기</a>
         </article>
         <article class="program-card">
           <div class="icon" aria-hidden="true">🎙️</div>
@@ -933,6 +913,18 @@
           <h3>b.box 비박스 마켓</h3>
           <p>0.1평보다 작은 1박스 마켓. 책과 수공예, 독립출판물을 파는 셀러들의 작은 장터.</p>
           <a class="btn btn-navy" href="https://box.bbooks.co.kr" target="_blank" rel="noopener">비박스 보러가기</a>
+        </article>
+        <article class="program-card">
+          <div class="icon" aria-hidden="true">🌙</div>
+          <h3>b.am on 밤밀온</h3>
+          <p>잠들지 않는 서점에서 보내는 특별한 밤. 독서, 대화, 게임— 테마별로 이어지는 밀도 높은 야간 프로그램.</p>
+          <a class="btn btn-navy" href="https://bam.bbooks.co.kr/" target="_blank" rel="noopener">밤밀온 보러가기</a>
+        </article>
+        <article class="program-card">
+          <div class="icon" aria-hidden="true">🎤</div>
+          <h3>b.voice 비보이스</h3>
+          <p>점주가 미니 강연이나 행사로 꺼내는 이야기. 비북스 점주의 목소리를 듣는 별도의 자리.</p>
+          <a class="btn btn-navy" href="https://moim.bbooks.co.kr/june.html" target="_blank" rel="noopener">비보이스 보러가기</a>
         </article>
       </div>
     </div>
@@ -1013,11 +1005,6 @@
           0507-1353-4850<br>
           원미동 동네서점 · 0.1평 공유서점
         </p>
-      </div>
-      <div class="footer-links">
-        <a href="https://moim.bbooks.co.kr" target="_blank" rel="noopener">비모임</a>
-        <a href="https://talks.bbooks.co.kr" target="_blank" rel="noopener">비톡스</a>
-        <a href="https://www.instagram.com/b_books2026/" target="_blank" rel="noopener">인스타그램</a>
       </div>
     </div>
     <p class="footer-copy">© 2026 b.books. All rights reserved.</p>
