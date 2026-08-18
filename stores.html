@@ -56,6 +56,8 @@
   .sns a:hover{background:var(--green-dark)}
   .sns a.ghost{background:#fff;color:var(--green-dark);border:1px solid var(--line)}
   .sns a.ghost:hover{background:var(--green-soft);border-color:var(--green)}
+  .sns a.named{width:auto;height:auto;min-height:28px;padding:4px 6px;font-size:10px;
+    font-weight:800;line-height:1.25;text-align:center;letter-spacing:-.03em}
   .none{font-size:10.5px;font-weight:700;color:#A7AF9F;border:1px dashed #D6D4C4;
     border-radius:7px;padding:5px 6px;text-align:center}
 
@@ -115,7 +117,7 @@ const S = [
  {s:["A-16"],n:"읽는 서점",l:[]},
  {s:["A-17"],n:"책방, 파도",l:[["ig","https://www.instagram.com/padobooks0.1"]]},
  {s:["A-18"],n:"인생이회차서점",l:[["ig","https://www.instagram.com/goldenhorn447"]]},
- {s:["B-19"],n:"선이와 병수",l:[["ig","https://www.instagram.com/pyojinpyojin/"]]},
+ {s:["B-19"],n:"선이와 병수",l:[["ig","https://www.instagram.com/pyojinpyojin/","선이 @pyojinpyojin"],["ig","https://www.instagram.com/poet_pyo/","병수 @poet_pyo"]]},
  {s:["B-20"],n:"소소안책방",l:[["ig","https://www.instagram.com/sosoan_books"]]},
  {s:["B-21"],n:"살구네",l:[]},
  {s:["B-22"],n:"Blossom",l:[["ig","https://www.instagram.com/sun__book79/"]]},
@@ -173,9 +175,9 @@ const S = [
  {s:["C-82"],n:"수요일의 서재",l:[]},
  {s:["C-83"],n:"사이책방 (이정후)",l:[]},
  {s:["C-84","C-85"],n:"그릴고양 - 안다",l:[]},
- {s:["C-84","C-85"],n:"그릴고양 - 임잔디",l:[]},
+ {s:["C-84","C-85"],n:"그릴고양 - 임잔디",l:[["ig","https://www.instagram.com/missleem17/"]]},
  {s:["C-84","C-85"],n:"그릴고양 - 초록의서재",l:[]},
- {s:["C-86"],n:"시간수집소",l:[]},
+ {s:["C-86"],n:"시간수집소",l:[["ig","https://www.instagram.com/50doyag/"]]},
  {s:["C-87"],n:"가대서가",l:[]},
  {s:["C-88"],n:"사각사각",l:[]},
  {s:["C-89"],n:"chaesongart",l:[["ig","https://www.instagram.com/chaesongart"],["ig","https://www.instagram.com/clayholic_chae"],["ig","https://www.instagram.com/mu_yong_i"]]},
@@ -213,7 +215,7 @@ function render(){
   const list=S.filter(x=>{
     if(only && x.l.length===0) return false;
     if(!kw) return true;
-    return (x.n+' '+x.s.join(' ')+' '+x.l.map(v=>v[1]).join(' ')).toLowerCase().includes(kw);
+    return (x.n+' '+x.s.join(' ')+' '+x.l.map(v=>v.slice(1).join(' ')).join(' ')).toLowerCase().includes(kw);
   });
   const withSns=list.filter(x=>x.l.length).length;
   countEl.textContent=`${list.length}곳 · SNS ${withSns}`;
@@ -225,7 +227,12 @@ function render(){
       <div class="name">${x.n}</div>
       <div class="sp"></div>
       ${x.l.length
-        ? `<div class="sns">${x.l.map((v,i)=>`<a class="${v[0]==='ig'&&i===0?'':'ghost'}" href="${v[1]}" target="_blank" rel="noopener" title="${LABEL[v[0]]}" aria-label="${x.n} ${LABEL[v[0]]}">${ICON[v[0]]}</a>`).join('')}</div>`
+        ? `<div class="sns">${x.l.map((v,i)=>{
+            const tag=v[2]||'';
+            const title=tag||LABEL[v[0]];
+            const cls=[v[0]==='ig'&&i===0?'':'ghost', tag?'named':''].filter(Boolean).join(' ');
+            return `<a class="${cls}" href="${v[1]}" target="_blank" rel="noopener" title="${title}" aria-label="${x.n} ${title}">${tag||ICON[v[0]]}</a>`;
+          }).join('')}</div>`
         : `<div class="none">SNS 미등록</div>`}
     </div>`).join('');
 }
