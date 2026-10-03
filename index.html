@@ -1,335 +1,1151 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>비북스 b.books — 부천 원미동 동네서점</title>
-<meta name="description" content="부천 원미동, 104칸의 0.1평 서점이 모인 동네책방 비북스. 서가를 나누고, 모임을 열고, 공간을 빌려드립니다.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="비북스 b.books — 부천 원미동 동네서점">
-<meta property="og:description" content="104칸의 0.1평 서점이 모인 동네책방. 서가를 나누고, 모임을 열고, 공간을 빌려드립니다.">
-<meta property="og:image" content="https://bbooks.co.kr/images/og.jpg">
-<meta property="og:url" content="https://bbooks.co.kr/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --paper: #f3ede2;
-    --paper-2: #ebe3d4;
-    --card: #fbf8f2;
-    --ink: #2b211b;
-    --ink-2: #4f4239;
-    --muted: #8a7b6e;
-    --line: #d9cebd;
-    --rule: rgba(43, 33, 27, .09);
-    --stamp: #b8432a;
-    --serif: 'Gowun Batang', 'Noto Serif KR', 'AppleMyungjo', serif;
-    --mono: 'Courier Prime', 'Courier New', monospace;
-    --display: 'Fraunces', Georgia, serif;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--serif);
-    font-size: 16.5px;
-    line-height: 1.85;
-    word-break: keep-all;
-    overflow-wrap: break-word;
-  }
-  /* paper grain */
-  body::before {
-    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
-    opacity: .35; mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .38 0 0 0 0 .3 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  a { color: inherit; }
-  img { display: block; max-width: 100%; height: auto; }
-  ::selection { background: #e7d3b8; }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>b.books — 비북스 | 원미동 동네서점</title>
+  <meta name="description" content="부천 원미동 동네서점. 100여 개의 책장 임대형 공유서점(0.1평 서점). PEOPLE · LOCAL · STORY"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  .label {
-    font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em;
-    text-transform: uppercase; color: var(--muted);
-  }
-
-  /* ── layout: Thanks Books style left index ── */
-  .wrap { display: grid; grid-template-columns: 230px minmax(0, 1fr); max-width: 1120px; margin: 0 auto; }
-  .side {
-    position: sticky; top: 0; height: 100vh; padding: 44px 28px 32px 32px;
-    display: flex; flex-direction: column; gap: 36px;
-  }
-  .logo { text-decoration: none; display: block; }
-  .logo b { font-family: var(--display); font-weight: 600; font-size: 34px; letter-spacing: -.02em; line-height: 1; display: block; }
-  .logo span { font-size: 13px; color: var(--ink-2); display: block; margin-top: 6px; }
-  .index { list-style: none; font-family: var(--mono); font-size: 13.5px; }
-  .index li + li { margin-top: 4px; }
-  .index a { text-decoration: none; color: var(--ink-2); display: inline-block; padding: 2px 0; }
-  .index a:hover, .index a.on { color: var(--ink); }
-  .index a.on::before { content: "→ "; color: var(--stamp); }
-  .side-foot { margin-top: auto; font-size: 12.5px; color: var(--muted); line-height: 1.7; }
-  .side-foot a { text-decoration: none; border-bottom: 1px solid var(--line); }
-
-  main { padding: 44px 48px 0 40px; border-left: 1px solid var(--line); min-width: 0; }
-  section { max-width: 720px; padding: 64px 0; border-top: 1px dashed var(--line); scroll-margin-top: 20px; }
-  section:first-child { border-top: 0; padding-top: 0; }
-  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 26px; }
-  .sec-head .no { font-family: var(--mono); color: var(--stamp); font-size: 13px; }
-  h2 { font-size: 23px; font-weight: 700; letter-spacing: -.01em; }
-  p + p { margin-top: 1em; }
-  .lead { font-size: 18px; }
-  .muted { color: var(--muted); }
-
-  /* ── photos as prints ── */
-  .print {
-    background: #fffdf8; padding: 10px 10px 34px; position: relative;
-    box-shadow: 0 1px 1px rgba(43,33,27,.08), 0 10px 26px -12px rgba(43,33,27,.28);
-  }
-  .print img { filter: sepia(.18) saturate(.88) contrast(.96); }
-  .print figcaption {
-    position: absolute; left: 12px; right: 12px; bottom: 8px;
-    font-family: var(--mono); font-size: 12px; color: var(--muted);
-  }
-  .tape::before {
-    content: ""; position: absolute; top: -11px; left: 50%; width: 96px; height: 24px;
-    transform: translateX(-50%) rotate(-2deg);
-    background: rgba(226, 213, 184, .78); box-shadow: 0 1px 2px rgba(0,0,0,.06);
-  }
-
-  /* ── 00 opening ── */
-  .open-quote { font-size: 26px; line-height: 1.6; font-weight: 700; letter-spacing: -.015em; margin: 6px 0 30px; }
-  .open-quote em { font-style: normal; background: linear-gradient(transparent 62%, #e9d6b7 62%); }
-  .hero { margin: 0 0 34px; transform: rotate(-.6deg); }
-  .facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 26px; font-family: var(--mono); font-size: 13px; color: var(--ink-2); }
-  .facts b { font-family: var(--serif); font-size: 15px; color: var(--ink); margin-right: 4px; }
-
-  /* ── 01 history ledger ── */
-  .ledger { list-style: none; border-top: 1px solid var(--ink); }
-  .ledger li {
-    display: grid; grid-template-columns: 92px 1fr; gap: 18px;
-    padding: 14px 0 15px; border-bottom: 1px solid var(--rule);
-  }
-  .ledger time { font-family: var(--mono); font-size: 14px; color: var(--stamp); padding-top: 2px; }
-  .ledger strong { display: block; font-size: 16.5px; }
-  .ledger span { display: block; font-size: 14.5px; color: var(--ink-2); line-height: 1.7; margin-top: 2px; }
-  .ledger li.now time::after { content: " ●"; font-size: 9px; vertical-align: 3px; }
-
-  /* ── 02 what we do: Lisbon-style poster cards ── */
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .card {
-    background: var(--card); border: 1px solid var(--line); text-decoration: none;
-    display: flex; flex-direction: column; transition: transform .25s ease, box-shadow .25s ease;
-  }
-  .card:hover { transform: translateY(-3px) rotate(-.3deg); box-shadow: 0 14px 28px -16px rgba(43,33,27,.35); }
-  .card .ph { aspect-ratio: 4 / 5; overflow: hidden; border-bottom: 1px solid var(--line); }
-  .card .ph img { width: 100%; height: 100%; object-fit: cover; filter: sepia(.2) saturate(.85) contrast(.96); }
-  .card .body { padding: 16px 16px 18px; display: flex; flex-direction: column; flex: 1; }
-  .card .kicker { font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; color: var(--muted); }
-  .card h3 { font-size: 19px; margin: 4px 0 8px; }
-  .card p { font-size: 14px; line-height: 1.75; color: var(--ink-2); }
-  .card .go { margin-top: auto; padding-top: 14px; font-family: var(--mono); font-size: 12.5px; color: var(--ink); }
-  .card .go::after { content: " →"; color: var(--stamp); }
-  .also { margin-top: 22px; font-size: 14.5px; color: var(--ink-2); }
-
-  /* ── 03 name ── */
-  .names { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin-top: 26px; }
-  .names div { padding: 18px 16px 18px 0; }
-  .names div + div { padding-left: 16px; border-left: 1px solid var(--line); }
-  .names b { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 30px; line-height: 1; display: block; margin-bottom: 8px; }
-  .names span { font-size: 14px; color: var(--ink-2); line-height: 1.7; display: block; }
-
-  /* ── 04 visit ── */
-  .visit { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; align-items: start; }
-  dl div { padding: 11px 0; border-bottom: 1px solid var(--rule); }
-  dl div:first-child { border-top: 1px solid var(--ink); }
-  dt { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; color: var(--muted); }
-  dd { font-size: 15.5px; }
-  dd a { text-decoration: none; border-bottom: 1px solid var(--line); }
-  .visit .print { transform: rotate(1deg); margin-top: 8px; }
-  .btn-line {
-    display: inline-block; margin-top: 18px; padding: 9px 16px; border: 1px solid var(--ink);
-    font-family: var(--mono); font-size: 13px; text-decoration: none; background: transparent;
-    transition: background .2s, color .2s;
-  }
-  .btn-line:hover { background: var(--ink); color: var(--paper); }
-
-  footer { max-width: 720px; padding: 40px 0 56px; border-top: 1px solid var(--ink); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  footer .label { letter-spacing: .1em; }
-
-  /* ── mobile ── */
-  @media (max-width: 860px) {
-    .wrap { display: block; }
-    .side {
-      position: sticky; top: 0; z-index: 20; height: auto; padding: 14px 16px 0;
-      gap: 10px; background: var(--paper); border-bottom: 1px solid var(--line);
+    :root {
+      --navy: #1a4a2e;
+      --navy2: #255c3a;
+      --accent: #3aaa6a;
+      --bg: #f5f7f3;
+      --white: #ffffff;
+      --text: #1c2b22;
+      --muted: #6b7c72;
+      --border: #dce5de;
+      --shadow: 0 4px 24px rgba(26, 74, 46, 0.08);
+      --shadow-lg: 0 12px 40px rgba(26, 74, 46, 0.12);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --max: 1100px;
+      --header-h: 64px;
     }
-    .logo { display: flex; align-items: baseline; gap: 10px; }
-    .logo b { font-size: 24px; }
-    .logo span { margin: 0; font-size: 12.5px; }
-    .index { display: flex; gap: 18px; overflow-x: auto; white-space: nowrap; padding-bottom: 10px; scrollbar-width: none; font-size: 13px; }
-    .index::-webkit-scrollbar { display: none; }
-    .index li + li { margin-top: 0; }
-    .side-foot { display: none; }
-    main { padding: 28px 16px 0; border-left: 0; }
-    section { padding: 48px 0; scroll-margin-top: 96px; }
-    .open-quote { font-size: 21px; }
-    .cards { grid-template-columns: 1fr; gap: 16px; }
-    .card { flex-direction: row; }
-    .card .ph { aspect-ratio: auto; width: 38%; flex: none; border-bottom: 0; border-right: 1px solid var(--line); }
-    .names { grid-template-columns: 1fr; }
-    .names div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
-    .visit { grid-template-columns: 1fr; gap: 26px; }
-    .ledger li { grid-template-columns: 74px 1fr; gap: 12px; }
-  }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card { transition: none; } }
-</style>
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 400;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; cursor: pointer; border: none; background: none; }
+
+    /* ── Header ── */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .header.scrolled {
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .header:not(.scrolled) .logo { color: var(--white); }
+    .header:not(.scrolled) .nav-link { color: rgba(255,255,255,0.88); }
+    .header:not(.scrolled) .nav-link:hover { color: var(--white); }
+    .header:not(.scrolled) .hamburger span { background: var(--white); }
+
+    .header.scrolled .logo { color: var(--navy); }
+    .header.scrolled .nav-link { color: var(--text); }
+    .header.scrolled .nav-link:hover { color: var(--accent); }
+    .header.scrolled .hamburger span { background: var(--navy); }
+
+    .logo {
+      font-family: 'Noto Serif KR', serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+      transition: color 0.3s;
+    }
+
+    .nav-desktop {
+      display: none;
+      gap: 28px;
+    }
+
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s, background 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      position: fixed;
+      top: var(--header-h);
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transform: translateY(-120%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .nav-mobile.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .nav-mobile a {
+      padding: 14px 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      border-radius: var(--radius-sm);
+    }
+
+    .nav-mobile a:hover { background: var(--bg); color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      background: var(--navy);
+      color: var(--white);
+      padding: calc(var(--header-h) + 48px) 24px 64px;
+      overflow: hidden;
+    }
+
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.35;
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba(58, 170, 106, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(58, 170, 106, 0.1) 0%, transparent 40%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 39px,
+          rgba(255, 255, 255, 0.03) 39px,
+          rgba(255, 255, 255, 0.03) 40px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 39px,
+          rgba(255, 255, 255, 0.03) 39px,
+          rgba(255, 255, 255, 0.03) 40px
+        );
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif KR', serif;
+      font-weight: 700;
+      font-size: clamp(3.5rem, 14vw, 6.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .hero-slogan {
+      font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero-brand-desc {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: rgba(255, 255, 255, 0.72);
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    .hero-brand-desc strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: transform 0.2s, background 0.2s, color 0.2s;
+    }
+
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+
+    .btn-primary:hover { filter: brightness(1.08); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-muted {
+      background: var(--border);
+      color: var(--muted);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .btn-navy {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .btn-navy:hover { background: var(--navy2); }
+
+    /* ── Sections common ── */
+    section {
+      padding: 72px 24px;
+    }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif KR', serif;
+      font-weight: 700;
+      font-size: clamp(1.65rem, 5vw, 2.25rem);
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Keywords ── */
+    .keywords {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .keyword-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .keyword-card {
+      padding: 28px 24px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    .keyword-card .icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      line-height: 1;
+    }
+
+    .keyword-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .keyword-card p {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── Programs ── */
+    .programs .section-desc { margin-bottom: 32px; }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .program-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .program-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .badge-new {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .program-card .icon { font-size: 2.25rem; margin-bottom: 16px; }
+
+    .program-card h3 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.25rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .program-card p {
+      flex: 1;
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .program-card .btn {
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    /* ── Brand story ── */
+    .brand-story {
+      padding: 96px 0;
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .brand-story .section-label { color: var(--accent); }
+    .brand-story .section-title { color: var(--white); }
+    .brand-story .section-desc { color: rgba(255, 255, 255, 0.65); }
+
+    .brand-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    @media (min-width: 769px) {
+      .brand-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .brand-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+
+    .brand-card-accent {
+      background: rgba(58, 170, 106, 0.15);
+      border-color: rgba(58, 170, 106, 0.35);
+    }
+
+    .brand-letter {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .brand-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .brand-card p {
+      font-size: 0.875rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    /* ── b. Keywords ── */
+    .bwords {
+      padding: 80px 0;
+      background: var(--bg);
+    }
+
+    .bwords-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    @media (min-width: 769px) {
+      .bwords-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .bword {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .bword strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .bword span {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* ── SNS ── */
+    .sns { text-align: center; }
+
+    .sns .section-desc {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .sns-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .sns-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 24px 16px;
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--white);
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    .sns-btn:hover { transform: translateY(-3px); filter: brightness(1.05); }
+
+    .sns-btn .sns-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+    }
+
+    .sns-instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .sns-threads { background: #000000; }
+    .sns-facebook { background: #1877f2; }
+    .sns-youtube { background: #ff0000; }
+
+
+    /* ── Map / Visit ── */
+    .visit {
+      background: var(--bg);
+    }
+
+    .visit-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .visit-info {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+    }
+
+    .visit-info dl {
+      display: grid;
+      gap: 18px;
+    }
+
+    .visit-info dt {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .visit-info dd {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .visit-info dd a {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .visit-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .visit-buttons .btn { width: 100%; }
+
+    .btn-naver {
+      background: #03c75a;
+      color: var(--white);
+    }
+
+    .btn-naver:hover { filter: brightness(1.06); }
+
+    .map-frame {
+      aspect-ratio: 16 / 11;
+      min-height: 280px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--white);
+      position: relative;
+    }
+
+    #naverMap {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+    }
+
+    /* 네이버 지도 타일이 global img 규칙에 깨지지 않도록 */
+    #naverMap img {
+      max-width: none;
+    }
+
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      border: 0;
+      display: block;
+    }
+
+    .map-open-hint {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      z-index: 2;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(26, 74, 46, 0.88);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      transition: background 0.2s;
+    }
+
+    .map-open-hint:hover { background: var(--navy); }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--navy);
+      color: rgba(255, 255, 255, 0.75);
+      padding: 48px 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .footer-brand .logo {
+      color: var(--white);
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .footer-copy {
+      max-width: var(--max);
+      margin: 32px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.75rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    /* ── Desktop ── */
+    @media (min-width: 769px) {
+      .header { padding: 0 40px; }
+
+      .nav-desktop { display: flex; }
+      .hamburger { display: none; }
+      .nav-mobile { display: none !important; }
+
+      .hero { padding: calc(var(--header-h) + 80px) 40px 100px; }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: end;
+        gap: 48px;
+      }
+
+      .hero-btns {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .hero-title { font-size: clamp(4.5rem, 8vw, 7rem); }
+
+      section { padding: 100px 40px; }
+
+      .keyword-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .program-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .sns-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 720px;
+      }
+
+      .visit-layout {
+        grid-template-columns: 1fr 1.1fr;
+        align-items: stretch;
+      }
+
+      .footer-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
 
-  <aside class="side">
-    <a class="logo" href="#top"><b>b.books</b><span>비북스 · 부천 원미동</span></a>
-    <nav aria-label="목차">
-      <ul class="index">
-        <li><a href="#about">비북스</a></li>
-        <li><a href="#history">걸어온 길</a></li>
-        <li><a href="#work">하는 일</a></li>
-        <li><a href="#name">이름</a></li>
-        <li><a href="#visit">찾아오기</a></li>
-      </ul>
+  <header class="header" id="header">
+    <a href="#" class="logo">b.books</a>
+    <nav class="nav-desktop" aria-label="주요 메뉴">
+      <a class="nav-link" href="https://moim.bbooks.co.kr/september.html" target="_blank" rel="noopener">비모임</a>
+      <a class="nav-link" href="https://moim.bbooks.co.kr/september.html#yes24kim" target="_blank" rel="noopener">비톡스</a>
+      <a class="nav-link" href="https://moim.bbooks.co.kr/september.html" target="_blank" rel="noopener">밤밀온</a>
+      <a class="nav-link" href="#about">브랜드</a>
+      <a class="nav-link" href="#map">찾아오기</a>
     </nav>
-    <div class="side-foot">
-      OPEN 10:00 — 18:00<br>
-      <a href="tel:050713534850">0507-1353-4850</a><br>
-      <a href="https://www.instagram.com/b_books2026/" target="_blank" rel="noopener">@b_books2026</a>
+    <button class="hamburger" id="hamburger" type="button" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <nav class="nav-mobile" id="navMobile" aria-label="모바일 메뉴">
+    <a href="https://moim.bbooks.co.kr/september.html" target="_blank" rel="noopener">비모임</a>
+    <a href="https://moim.bbooks.co.kr/september.html#yes24kim" target="_blank" rel="noopener">비톡스</a>
+    <a href="https://moim.bbooks.co.kr/september.html" target="_blank" rel="noopener">밤밀온</a>
+    <a href="#about">브랜드</a>
+    <a href="#map">찾아오기</a>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="hero-pattern" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div>
+        <p class="hero-eyebrow">BUCHEON · WONMI</p>
+        <h1 class="hero-title">b.books</h1>
+        <p class="hero-slogan">PEOPLE · LOCAL · STORY</p>
+        <p class="hero-brand-desc">
+          원미구청 맞은편, 구.용서점 자리에 문을 연 동네책방.<br>
+          100여 개의 취향이 모인 세상에서 가장 작은 서점들의 거리,<br>
+          <strong>0.1평 공유서점</strong>이 비북스입니다.
+        </p>
+      </div>
+      <div class="hero-btns">
+        <a class="btn btn-primary" href="https://www.instagram.com/b_books2026/" target="_blank" rel="noopener">비북스 인스타그램</a>
+        <a class="btn btn-outline" href="#map">찾아오기</a>
+      </div>
     </div>
-  </aside>
+  </section>
 
-  <main id="top">
-
-    <section id="about">
-      <p class="label">Bucheon · Wonmi-dong · since 2026</p>
-      <h1 class="open-quote">세상에서 가장 작은 서점들이<br><em>한 지붕 아래</em> 모여 있습니다.</h1>
-      <figure class="print tape hero">
-        <img src="images/shelves.jpg" width="1600" height="900" alt="비북스 매장. 벽을 따라 칸칸이 나뉜 나무 서가와 스탠드 조명">
-        <figcaption>B02, 부천로136번길 24</figcaption>
-      </figure>
-      <p class="lead">비북스는 원미구청 맞은편, 오래된 용서점이 있던 자리에 문을 연 동네책방입니다.</p>
-      <p>벽을 따라 늘어선 서가를 0.1평씩 104칸으로 나눴습니다. 한 칸마다 주인이 있고, 주인마다 고른 책이 다릅니다. 그래서 이곳에는 하나의 큰 서점 대신 백 개의 작은 서점이 있습니다. 서가를 채운 사람들이 모임을 열고, 손님이 다시 서가의 주인이 되면서 책방은 조금씩 자라고 있습니다.</p>
-      <div class="facts">
-        <span><b>104</b>칸의 0.1평 서점</span>
-        <span><b>매달</b> 열리는 비모임</span>
-        <span><b>5</b>가지 대관 공간</span>
+  <section class="keywords fade-in">
+    <div class="container">
+      <div class="keyword-grid">
+        <article class="keyword-card">
+          <div class="icon" aria-hidden="true">📚</div>
+          <h3>0.1평 서점</h3>
+          <p>100여 개의 취향이 모인 공유서점</p>
+        </article>
+        <article class="keyword-card">
+          <div class="icon" aria-hidden="true">🌿</div>
+          <h3>동네책방</h3>
+          <p>원미동 사람들의 이야기가 있는 공간</p>
+        </article>
+        <article class="keyword-card">
+          <div class="icon" aria-hidden="true">🎭</div>
+          <h3>문화클래스</h3>
+          <p>매달 열리는 모임과 행사</p>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="history">
-      <div class="sec-head"><span class="no">01</span><h2>걸어온 길</h2></div>
-      <ol class="ledger">
-        <li><time>2026.05</time><div><strong>비북스, 문을 열다</strong><span>0.1평 서점의 첫 점주들을 모으고 서가를 채우기 시작했습니다.</span></div></li>
-        <li><time>2026.05</time><div><strong>첫 작가와의 만남, 첫 밤샘 독서</strong><span>b.talks 박동수 편집장 『철학책 독서 모임』 · 밤밀온 EP.1 『원미동 사람들』 · 첫 b.box day 마켓</span></div></li>
-        <li><time>2026.06</time><div><strong>비모임 시작</strong><span>점주들이 직접 여는 월간 모임이 열리기 시작했습니다. 첫 b.voice, 느린호수 &amp; 앗트의 듀엣 북토크.</span></div></li>
-        <li><time>2026.07</time><div><strong>0.1평 서점 정식 운영</strong><span>104칸 중 91칸이 채워진 채 정식 운영을 시작했습니다. b.talks 권혁란 작가 『이름의 빈자리에』, 달빛리딩클럽.</span></div></li>
-        <li><time>2026.08</time><div><strong>이야기가 늘어나다</strong><span>b.talks 이수영 작가 『선을 넘는 북클럽』, 어린이와 함께하는 b.grow, 점주들의 b.voice 세 차례.</span></div></li>
-        <li><time>2026.09</time><div><strong>두 번째 b.box day</strong><span>박스 하나에 담긴 0.1평 서점들이 매장을 가득 채웠습니다. b.talks 김은영 작가, 『토지』 100일 완독 챌린지 시작.</span></div></li>
-        <li class="now"><time>2026.10</time><div><strong>1인실을 열다</strong><span>세미나실, 매장 테이블, 계단 좌석에 이어 혼자 머무는 1인실을 열고 대관 안내를 새로 정리했습니다.</span></div></li>
-      </ol>
-    </section>
+  <section class="brand-story fade-in" id="about">
+    <div class="container">
+      <p class="section-label">Brand Story</p>
+      <h2 class="section-title">하나의 이름,<br>세 개의 의미</h2>
+      <p class="section-desc">b.books라는 이름에는 세 겹의 의미가 겹쳐 있습니다.<br>지역과 꿈, 그리고 연대.</p>
+      <div class="brand-grid">
+        <article class="brand-card">
+          <div class="brand-letter">b</div>
+          <h3>Bucheon</h3>
+          <p>책 읽는 도시 부천에 위치한, 지역과 함께 성장하는 서점 플랫폼. 원미구에서 자기만의 서점을 꿈꾸는 이들의 첫 번째 공간.</p>
+        </article>
+        <article class="brand-card">
+          <div class="brand-letter">be</div>
+          <h3>To Become</h3>
+          <p>완성이 아닌 과정. begin, becoming, belong, beyond— 서점의 꿈을 시작하는 가장 현실적인 첫 발판.</p>
+        </article>
+        <article class="brand-card">
+          <div class="brand-letter">bee</div>
+          <h3>Honeycomb</h3>
+          <p>촘촘히 붙은 서가의 칸, 셀을 채우는 벌처럼. 0.1평의 서가들이 모여 만드는 인적 네트워크와 연대의 생태계.</p>
+        </article>
+        <article class="brand-card brand-card-accent">
+          <div class="brand-letter">0.1평</div>
+          <h3>The Cell</h3>
+          <p>정방형 서가 하나의 크기, 0.1평. 가장 작은 단위에서 시작하는 큐레이션의 세계. 작지만 선명한 나만의 서점.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-    <section id="work">
-      <div class="sec-head"><span class="no">02</span><h2>하는 일</h2></div>
-      <div class="cards">
-        <a class="card" href="#visit">
-          <div class="ph"><img src="images/corner.jpg" width="1100" height="619" alt="칸칸이 나뉜 0.1평 서가" loading="lazy"></div>
-          <div class="body">
-            <span class="kicker">SHELF · 0.1평 서점</span>
-            <h3>서가 한 칸의 서점</h3>
-            <p>정방형 서가 한 칸에 자기만의 서점을 엽니다. 새책, 헌책, 직접 만든 굿즈까지. 판매와 정산은 비북스가 함께합니다.</p>
-            <span class="go">입점 문의</span>
-          </div>
+  <section class="bwords fade-in">
+    <div class="container">
+      <p class="section-label">b. Keywords</p>
+      <h2 class="section-title">b로 시작하는<br>비북스의 언어들</h2>
+      <div class="bwords-grid">
+        <div class="bword"><strong>b</strong>asement <span>발견의 공간</span></div>
+        <div class="bword"><strong>b</strong>etween <span>사람과 책 사이</span></div>
+        <div class="bword"><strong>b</strong>orderless <span>경계 없는 플랫폼</span></div>
+        <div class="bword"><strong>b</strong>egin <span>시작</span></div>
+        <div class="bword"><strong>b</strong>ecoming <span>완성이 아닌 과정</span></div>
+        <div class="bword"><strong>b</strong>elong <span>자기 자리를 갖는다는 것</span></div>
+        <div class="bword"><strong>b</strong>eyond <span>0.1평 너머의 세계</span></div>
+        <div class="bword"><strong>b</strong>old <span>작지만 선명한 태도</span></div>
+        <div class="bword"><strong>b</strong>loom <span>피어오르다</span></div>
+        <div class="bword"><strong>b</strong>ridge <span>연결</span></div>
+        <div class="bword"><strong>b</strong>ee <span>벌집, 연대</span></div>
+        <div class="bword"><strong>b</strong>ooks <span>당연히, 책</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="programs fade-in" id="programs">
+    <div class="container">
+      <p class="section-label">Together</p>
+      <h2 class="section-title">함께 읽고,<br>함께 만드는 이야기</h2>
+      <p class="section-desc">책을 매개로 만나는 다섯 가지 방식</p>
+      <div class="program-grid">
+        <article class="program-card">
+          <div class="icon" aria-hidden="true">📖</div>
+          <h3>b.moim 비모임</h3>
+          <p>매달 b.books 서점주들이 직접 기획하는 소규모 모임. 독서, 드로잉, 편지, 영화— 책을 매개로 만나는 다양한 형태의 시간.</p>
+          <a class="btn btn-navy" href="https://moim.bbooks.co.kr/september.html" target="_blank" rel="noopener">모임 신청하기</a>
+        </article>
+        <article class="program-card">
+          <div class="icon" aria-hidden="true">🎙️</div>
+          <h3>b.talks 비톡스</h3>
+          <p>작가와의 만남. 책과 삶에 관한 진짜 이야기를 나누는 매월 개최 북토크.</p>
+          <a class="btn btn-navy" href="https://moim.bbooks.co.kr/september.html#yes24kim" target="_blank" rel="noopener">비톡스 보러가기</a>
+        </article>
+        <article class="program-card">
+          <div class="icon" aria-hidden="true">📦</div>
+          <h3>b.box 비박스 마켓</h3>
+          <p>0.1평보다 작은 1박스 마켓. 책과 수공예, 독립출판물을 파는 셀러들의 작은 장터.</p>
+          <a class="btn btn-navy" href="https://box.bbooks.co.kr/" target="_blank" rel="noopener">5월 비박스 페이지 보러가기</a>
+        </article>
+        <article class="program-card">
+          <div class="icon" aria-hidden="true">🌙</div>
+          <h3>b.am on 밤밀온</h3>
+          <p>잠들지 않는 서점에서 보내는 특별한 밤. 독서, 대화, 게임— 테마별로 이어지는 밀도 높은 야간 프로그램.</p>
+          <a class="btn btn-navy" href="https://moim.bbooks.co.kr/september.html" target="_blank" rel="noopener">밤밀온 보러가기</a>
+        </article>
+        <article class="program-card">
+          <div class="icon" aria-hidden="true">🎤</div>
+          <h3>b.voice 비보이스</h3>
+          <p>점주가 미니 강연이나 행사로 꺼내는 이야기. 비북스 점주의 목소리를 듣는 별도의 자리.</p>
+          <a class="btn btn-navy" href="https://moim.bbooks.co.kr/september.html" target="_blank" rel="noopener">비보이스 보러가기</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sns fade-in" id="sns">
+    <div class="container">
+      <p class="section-label">Follow Us</p>
+      <h2 class="section-title">비북스 소식 받기</h2>
+      <p class="section-desc">인스타그램에서 비북스의 일상을 먼저 만나보세요 📸</p>
+      <div class="sns-grid">
+        <a class="sns-btn sns-instagram" href="https://www.instagram.com/b_books2026/" target="_blank" rel="noopener">
+          <span class="sns-icon" aria-hidden="true">📷</span>
+          Instagram
         </a>
-        <a class="card" href="https://moim.bbooks.co.kr/" target="_blank" rel="noopener">
-          <div class="ph"><img src="images/table.jpg" width="1100" height="619" alt="책장으로 둘러싸인 긴 모임 테이블" loading="lazy"></div>
-          <div class="body">
-            <span class="kicker">GATHER · 비모임</span>
-            <h3>책으로 모이는 시간</h3>
-            <p>점주와 작가가 여는 독서·글쓰기·필사 모임, 작가와의 만남 b.talks, 밤새 읽는 밤밀온. 매달 새 일정이 올라옵니다.</p>
-            <span class="go">이번 달 모임</span>
-          </div>
+        <a class="sns-btn sns-threads" href="https://www.threads.com/@b_books2026" target="_blank" rel="noopener">
+          <span class="sns-icon" aria-hidden="true">@</span>
+          Threads
         </a>
-        <a class="card" href="https://moim.bbooks.co.kr/space/" target="_blank" rel="noopener">
-          <div class="ph"><img src="images/stairs.jpg" width="1100" height="619" alt="서가 아래 좌식 의자가 놓인 계단 좌석" loading="lazy"></div>
-          <div class="body">
-            <span class="kicker">SPACE · 대관</span>
-            <h3>책 사이에 머무는 자리</h3>
-            <p>세미나실, 매장 테이블, 계단 좌석, 1인실, 전체 대관. 모임과 북토크, 촬영, 혼자만의 작업에 빌려드립니다.</p>
-            <span class="go">공간 둘러보기</span>
-          </div>
+        <a class="sns-btn sns-facebook" href="https://www.facebook.com/BeBooks2026" target="_blank" rel="noopener">
+          <span class="sns-icon" aria-hidden="true">f</span>
+          Facebook
+        </a>
+        <a class="sns-btn sns-youtube" href="https://www.youtube.com/@b.books2026/featured" target="_blank" rel="noopener">
+          <span class="sns-icon" aria-hidden="true">▶</span>
+          YouTube
         </a>
       </div>
-      <p class="also">계절마다 0.1평 서점들이 박스 하나씩 들고 나오는 북 &amp; 플리마켓 <b>b.box day</b>도 열립니다.</p>
-    </section>
+    </div>
+  </section>
 
-    <section id="name">
-      <div class="sec-head"><span class="no">03</span><h2>이름</h2></div>
-      <p>b.books의 b에는 세 가지 뜻을 겹쳐 두었습니다.</p>
-      <div class="names">
-        <div><b>Bucheon</b><span>책 읽는 도시 부천, 그중에서도 원미동에서 시작한 서점.</span></div>
-        <div><b>be-</b><span>완성이 아니라 되어가는 중. 자기 서점을 꿈꾸는 사람의 첫 칸.</span></div>
-        <div><b>bee</b><span>벌집처럼 촘촘한 서가의 칸들, 그 칸을 채우는 사람들의 연대.</span></div>
-      </div>
-    </section>
-
-    <section id="visit">
-      <div class="sec-head"><span class="no">04</span><h2>찾아오기</h2></div>
-      <div class="visit">
-        <div>
+  <section class="visit fade-in" id="map">
+    <div class="container">
+      <p class="section-label">Visit</p>
+      <h2 class="section-title">찾아오기</h2>
+      <div class="visit-layout">
+        <div class="visit-info">
           <dl>
-            <div><dt>ADDRESS</dt><dd>경기도 부천시 원미구 부천로136번길 24, 지하 B02호<br><span class="muted">원미구청 맞은편</span></dd></div>
-            <div><dt>HOURS</dt><dd>매일 10:00 — 18:00</dd></div>
-            <div><dt>WAY</dt><dd>춘의역 2번 출구, 부천역에서 걸어서<br><span class="muted">주말엔 원미구청 주차장 이용 가능</span></dd></div>
-            <div><dt>CONTACT</dt><dd><a href="tel:050713534850">0507-1353-4850</a><br><span class="muted">입점 · 대관 · 협업 문의</span></dd></div>
-            <div><dt>INSTAGRAM</dt><dd><a href="https://www.instagram.com/b_books2026/" target="_blank" rel="noopener">@b_books2026</a></dd></div>
+            <div>
+              <dt>주소</dt>
+              <dd>부천시 원미구 부천로 136번길 24, B02호<br><small style="color:var(--muted)">(원미구청 맞은편)</small></dd>
+            </div>
+            <div>
+              <dt>오시는 길</dt>
+              <dd>춘의역 2번출구 / 부천역 도보</dd>
+            </div>
+            <div>
+              <dt>운영시간</dt>
+              <dd>OPEN 10:00 — CLOSE 18:00</dd>
+            </div>
+            <div>
+              <dt>전화</dt>
+              <dd><a href="tel:050713534850">0507-1353-4850</a></dd>
+            </div>
+            <div>
+              <dt>문의</dt>
+              <dd>대관·입점·협업 문의<br><a href="tel:050713534850">0507-1353-4850</a></dd>
+            </div>
           </dl>
-          <a class="btn-line" href="https://naver.me/5Ollmubn" target="_blank" rel="noopener">네이버 지도에서 보기</a>
+          <div class="visit-buttons">
+            <a class="btn btn-naver" href="https://naver.me/5Ollmubn" target="_blank" rel="noopener">네이버 지도로 보기</a>
+          </div>
         </div>
-        <figure class="print tape">
-          <img src="images/store.jpg" width="1100" height="619" alt="비북스 매장 입구 쪽에서 본 서가와 테이블" loading="lazy">
-          <figcaption>계단을 내려오면, 서가의 거리</figcaption>
-        </figure>
+        <div class="map-frame">
+          <div id="naverMap" role="region" aria-label="비북스 위치 지도"></div>
+          <a class="map-open-hint" href="https://naver.me/5Ollmubn" target="_blank" rel="noopener">네이버 지도 앱에서 열기</a>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer>
-      <span class="label">© 2026 b.books 비북스</span>
-      <span class="label">PEOPLE · LOCAL · STORY</span>
-    </footer>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo">b.books</span>
+        <p>
+          부천시 원미구 부천로 136번길 24, B02호<br>
+          0507-1353-4850<br>
+          원미동 동네서점 · 0.1평 공유서점
+        </p>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 b.books. All rights reserved.</p>
+  </footer>
 
-  </main>
-</div>
+  <script>
+    (function () {
+      const header = document.getElementById('header');
+      const hamburger = document.getElementById('hamburger');
+      const navMobile = document.getElementById('navMobile');
 
-<script>
-  // 지금 보고 있는 섹션을 목차에 표시
-  (function () {
-    var links = [].slice.call(document.querySelectorAll('.index a'));
-    var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
-    var cur = -1, ticking = false;
-    function update() {
-      ticking = false;
-      var i = 0, line = innerHeight * 0.35;
-      secs.forEach(function (s, n) { if (s.getBoundingClientRect().top <= line) i = n; });
-      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) i = secs.length - 1;
-      if (i === cur) return;
-      cur = i;
-      links.forEach(function (a, n) { a.classList.toggle('on', n === i); });
-      var nav = links[i].closest('.index');
-      if (nav.scrollWidth > nav.clientWidth) nav.scrollLeft = links[i].parentNode.offsetLeft - 16;
-    }
-    addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-    addEventListener('resize', update);
-    update();
-  })();
-</script>
+      function onScroll() {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      hamburger.addEventListener('click', function () {
+        const open = hamburger.classList.toggle('open');
+        navMobile.classList.toggle('open', open);
+        hamburger.setAttribute('aria-expanded', open);
+        hamburger.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+      });
+
+      navMobile.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          hamburger.classList.remove('open');
+          navMobile.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      const fadeEls = document.querySelectorAll('.fade-in');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { root: null, rootMargin: '0px 0px -8% 0px', threshold: 0.12 }
+        );
+        fadeEls.forEach(function (el) { observer.observe(el); });
+      } else {
+        fadeEls.forEach(function (el) { el.classList.add('visible'); });
+      }
+    })();
+  </script>
+
+  <!--
+    네이버 지도 API: https://console.ncloud.com → Application → Maps → Web Dynamic Map
+    ncpKeyId(클라이언트 ID) 입력 · Web 서비스 URL은 호스트만 등록 (예: https://bbooks.co.kr)
+  -->
+  <script>
+    (function () {
+      var NAVER_MAP_KEY_ID = 'xfcg4uyt4m';
+      var LAT = 37.4963;
+      var LNG = 126.7865;
+      var PLACE_NAME = '비북스 b.books';
+      var ADDRESS = '부천시 원미구 부천로 136번길 24, B02호';
+      var NAVER_PLACE_URL = 'https://naver.me/5Ollmubn';
+
+      var mapEl = document.getElementById('naverMap');
+      if (!mapEl) return;
+
+      function showOsmFallback() {
+        var pad = 0.004;
+        var bbox = [LNG - pad, LAT - pad, LNG + pad, LAT + pad].join('%2C');
+        mapEl.innerHTML =
+          '<iframe title="비북스 위치 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ' +
+          'src="https://www.openstreetmap.org/export/embed.html?bbox=' + bbox +
+          '&amp;layer=mapnik&amp;marker=' + LAT + '%2C' + LNG + '"></iframe>';
+      }
+
+      function initNaverMap() {
+        if (!window.naver || !window.naver.maps) {
+          showOsmFallback();
+          return;
+        }
+        var map = new window.naver.maps.Map('naverMap', {
+          center: new window.naver.maps.LatLng(LAT, LNG),
+          zoom: 17,
+          zoomControl: true,
+          zoomControlOptions: { position: window.naver.maps.Position.TOP_RIGHT }
+        });
+
+        var marker = new window.naver.maps.Marker({
+          position: new window.naver.maps.LatLng(LAT, LNG),
+          map: map,
+          title: PLACE_NAME
+        });
+
+        var infoContent =
+          '<div style="padding:12px 14px;text-align:center;line-height:1.5;min-width:180px;">' +
+          '<strong style="font-size:14px;color:#1a4a2e;">' + PLACE_NAME + '</strong><br>' +
+          '<span style="font-size:12px;color:#6b7c72;">' + ADDRESS + '</span><br>' +
+          '<a href="' + NAVER_PLACE_URL + '" target="_blank" rel="noopener" ' +
+          'style="display:inline-block;margin-top:8px;font-size:12px;font-weight:700;color:#03c75a;">길찾기 →</a>' +
+          '</div>';
+
+        var infoWindow = new window.naver.maps.InfoWindow({ content: infoContent, borderWidth: 0, backgroundColor: '#fff' });
+        infoWindow.open(map, marker);
+
+        window.naver.maps.Event.addListener(marker, 'click', function () {
+          window.open(NAVER_PLACE_URL, '_blank', 'noopener');
+        });
+      }
+
+      window.navermap_authFailure = function () {
+        showOsmFallback();
+      };
+
+      if (NAVER_MAP_KEY_ID) {
+        // SDK callback이 먼저 호출되거나, 전역 naver 생성이 약간 늦는 경우가 있어
+        // 짧게 재시도 후 실패하면 대체 지도로 전환합니다.
+        window.initBbooksNaverMap = function () {
+          var tries = 0;
+          (function waitForNaver() {
+            tries += 1;
+            if (window.naver && window.naver.maps) {
+              initNaverMap();
+              return;
+            }
+            if (tries >= 25) {
+              showOsmFallback();
+              return;
+            }
+            setTimeout(waitForNaver, 80);
+          })();
+        };
+        var script = document.createElement('script');
+        script.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' +
+          encodeURIComponent(NAVER_MAP_KEY_ID) + '&callback=initBbooksNaverMap';
+        script.async = true;
+        script.onerror = showOsmFallback;
+        document.head.appendChild(script);
+      } else {
+        showOsmFallback();
+      }
+    })();
+  </script>
 </body>
 </html>
