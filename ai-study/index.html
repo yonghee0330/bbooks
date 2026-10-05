@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>부천 AI 프로젝트 클럽 1기</title>
+<meta name="description" content="동네에서 함께 공부하고 실천해보는 AI 스터디 모임. 막연한 공부에 그치지 않고 구체적인 숫자를 만들어봅니다. 비북스 매주 토요일, 10회, 8명. 1기 모집 10/16 마감.">
+<meta property="og:title" content="부천 AI 프로젝트 클럽 1기 모집">
+<meta property="og:description" content="동네에서 함께 공부하고 실천해보는 AI 스터디 모임! 막연한 공부에 그치지 않고, 구체적인 숫자를 만들어봅니다.">
+<meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1411" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234e6813'/%3E%3Cpath d='M7 22l6-6 4 4 8-9' stroke='%23ffffff' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css?v=1005b">
+<style>
+/* ---------- HERO ---------- */
+.hero { background: var(--paper); border-bottom: 1px solid var(--line); padding: clamp(48px, 7vw, 88px) 0 clamp(48px, 7vw, 80px); }
+.hero-grid { display: grid; grid-template-columns: 1.3fr .8fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
+@media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+.recruit { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.recruit-tag { font: 800 clamp(26px, 4vw, 36px)/1 var(--sans); letter-spacing: -.03em; color: var(--signal-ink); background: var(--signal); padding: 10px 18px; border-radius: 8px; }
+.recruit-when { font-size: 16px; font-weight: 600; color: var(--ink-2); }
+.hero .eyebrow { padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--ink-2); font-size: 14px; font-weight: 600; }
+.live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+.hero h1 { font: 800 clamp(34px, 5.4vw, 54px)/1.25 var(--sans); letter-spacing: -.045em; margin: 22px 0 20px; }
+.hero h1 .line { display: block; overflow: hidden; padding-bottom: .08em; }
+.hero h1 .line > span { display: inline-block; transform: translateY(105%); animation: rise .8s cubic-bezier(.2,.75,.15,1) forwards; animation-delay: calc(.08s + var(--i) * .1s); }
+@keyframes rise { to { transform: none; } }
+.hero h1 .num-word { color: var(--signal); }
+.hero .sub { color: var(--ink-2); font-size: clamp(18px, 2vw, 21px); line-height: 1.6; max-width: 600px; margin: 0 0 28px; opacity: 0; animation: fade .7s .5s forwards; }
+.hero .sub b { color: var(--ink); font-weight: 700; }
+@keyframes fade { to { opacity: 1; } }
+.meta { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; margin: 0 0 28px; border: 1px solid var(--line); border-radius: var(--r); background: var(--card); opacity: 0; animation: fade .7s .6s forwards; }
+.meta div { padding: 12px 20px; }
+.meta div + div { border-left: 1px solid var(--line); }
+.meta dt { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
+.meta dd { margin: 0; font-weight: 700; font-size: 17px; line-height: 1.35; }
+@media (max-width: 600px) { .meta { grid-template-columns: 1fr 1fr; } .meta div:nth-child(3) { border-left: 0; } .meta div:nth-child(n+3) { border-top: 1px solid var(--line); } }
+.cta-row { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; opacity: 0; animation: fade .7s .7s forwards; }
+.cd { display: flex; gap: 8px; font-size: 14px; color: var(--muted); align-items: baseline; }
+.cd b { font: 800 22px/1 var(--sans); color: var(--ink); font-variant-numeric: tabular-nums; margin-right: 1px; }
+.cd-label { font-size: 14px; font-weight: 600; color: var(--muted); display: block; margin-bottom: 6px; }
+
+/* hero number card */
+.ncard { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 22px 22px 16px; opacity: 0; transform: translateY(14px); animation: cardIn .7s .35s ease forwards; }
+@keyframes cardIn { to { opacity: 1; transform: none; } }
+.ncard-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
+.ncard .chip { transition: color .4s; }
+.ncard .ex { font-size: 13px; color: var(--muted); font-weight: 500; }
+.ncard .metric { font-size: 16px; color: var(--muted); min-height: 1.5em; }
+.ncard .bignum { display: flex; align-items: baseline; gap: 8px; margin: 2px 0 6px; }
+.ncard .bignum .v { font: 800 clamp(48px, 7vw, 68px)/1 var(--sans); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.ncard .bignum .u { font-size: 19px; color: var(--muted); font-weight: 500; }
+.ncard .delta { font-size: 15px; font-weight: 700; padding: 4px 9px; border-radius: 4px; margin-left: auto; align-self: center; transition: background .4s, color .4s; }
+.ncard svg { width: 100%; height: auto; overflow: visible; }
+.ncard .axis text { font: 500 9px var(--sans); fill: var(--muted); }
+.ncard .gl { stroke: var(--line); }
+.ncard .path { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.ncard .area { opacity: .1; }
+.ncard .dot { transition: opacity .3s; }
+.ncard .tgt { stroke-dasharray: 3 4; stroke: var(--muted); opacity: .5; }
+.ncard .tgt-l { font: 600 9px var(--sans); fill: var(--muted); }
+.ncard-foot { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); margin-top: 10px; }
+.ncard .pager { display: flex; gap: 5px; }
+.ncard .pager i { width: 16px; height: 3px; border-radius: 2px; background: var(--line); overflow: hidden; position: relative; }
+.ncard .pager i.on::after { content: ''; position: absolute; inset: 0; background: var(--ink); transform-origin: left; animation: bar 5s linear forwards; }
+@keyframes bar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (max-width: 900px) { .ncard { max-width: 520px; } }
+
+/* ---------- STATS + PRINCIPLES ---------- */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: var(--r); background: var(--card); margin: 40px 0 20px; }
+.stats > div { padding: 24px 24px 22px; }
+.stats > div + div { border-left: 1px solid var(--line); }
+.stats .v { font: 800 clamp(40px, 6vw, 60px)/1 var(--sans); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.stats .v small { font: 700 clamp(18px, 2.4vw, 22px) var(--sans); margin-left: 3px; letter-spacing: -.02em; color: var(--ink-2); }
+.stats .k { margin-top: 10px; color: var(--muted); font-size: 16px; }
+@media (max-width: 640px) { .stats { grid-template-columns: 1fr; } .stats > div + div { border-left: 0; border-top: 1px solid var(--line); } }
+.principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 860px) { .principles { grid-template-columns: 1fr; } }
+.pr { padding: 24px; }
+.pr .ico { height: 64px; width: auto; margin-bottom: 16px; }
+.pr h3 { font-size: 21px; letter-spacing: -.03em; margin: 0 0 8px; line-height: 1.4; }
+.pr h3 s { color: var(--muted); text-decoration-thickness: 1.5px; text-decoration-color: var(--signal); font-weight: 500; }
+.pr p { margin: 0; color: var(--ink-2); font-size: 17px; }
+
+/* ---------- HOST ---------- */
+.host { display: grid; grid-template-columns: 96px 1fr; gap: clamp(20px, 4vw, 40px); align-items: start; margin-top: 8px; }
+@media (max-width: 640px) { .host { grid-template-columns: 1fr; } }
+.host-av { width: 96px; height: 96px; border-radius: 50%; background: var(--signal); color: var(--signal-ink); display: grid; place-items: center; font: 800 36px var(--sans); }
+.host-facts { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.host-facts li { display: grid; grid-template-columns: 100px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 17px; color: var(--ink-2); }
+.host-facts li b { font-size: 15px; font-weight: 700; color: var(--signal); }
+@media (max-width: 520px) { .host-facts li { grid-template-columns: 1fr; gap: 2px; } }
+.host-note { margin: 16px 0 0; font-size: 15px; color: var(--muted); }
+
+/* ---------- TYPES ---------- */
+.types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+@media (max-width: 860px) { .types { grid-template-columns: 1fr; } }
+.type { padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+.type .mini { height: 110px; margin: -4px -4px 2px; }
+.type .mini .ln { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 1.8s cubic-bezier(.4,0,.2,1) .2s; }
+.type.in .mini .ln { stroke-dashoffset: 0; }
+.type .mini .ar { opacity: 0; transition: opacity .6s 1.4s; }
+.type.in .mini .ar { opacity: 1; }
+.type .mini .base { stroke: var(--line); stroke-dasharray: 3 4; }
+.type .mini text { font: 600 10px var(--sans); fill: var(--muted); }
+.type h3 { margin: 0; font-size: 22px; letter-spacing: -.03em; display: flex; align-items: center; gap: 8px; }
+.type h3 .arrow { font-size: 14px; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: var(--rule); color: var(--ink-2); }
+.type p { margin: 0; color: var(--ink-2); font-size: 17px; }
+.type .eg { font-size: 15px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; margin-top: auto; }
+.type .eg b { color: var(--ink); font-weight: 600; }
+.promise { margin-top: 20px; display: flex; gap: 12px; align-items: flex-start; padding: 16px 20px; border-radius: var(--r); border: 1px solid var(--line); background: var(--signal-soft); font-size: 17px; color: var(--ink-2); }
+.promise b { color: var(--ink); }
+.promise .st { flex: none; font-size: 13px; font-weight: 800; line-height: 1; color: var(--signal-ink); background: var(--signal); padding: 5px 7px; border-radius: 4px; margin-top: 3px; }
+
+/* ---------- ROADMAP ---------- */
+.road { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; }
+.phasebar { display: grid; grid-template-columns: 2fr 5fr 2fr; gap: 6px; margin: 44px 0 10px; }
+.phasebar > div { position: relative; }
+.phasebar .bar { height: 6px; border-radius: 3px; background: var(--rule); overflow: hidden; }
+.phasebar .bar i { display: block; height: 100%; background: var(--pc); transform: scaleX(0); transform-origin: left; transition: transform 1s cubic-bezier(.6,0,.2,1); transition-delay: var(--d); }
+.road.in .phasebar .bar i { transform: scaleX(1); }
+.phasebar h4 { margin: 12px 0 2px; font-size: 19px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.phasebar h4 .mono { font-size: 14px; color: var(--muted); font-weight: 500; }
+.phasebar p { margin: 0; font-size: 15px; color: var(--muted); }
+.phasebar .deliv { margin-top: 6px; font-size: 14px; font-weight: 600; line-height: 1.4; color: var(--ink-2); }
+@media (max-width: 720px) { .phasebar { grid-template-columns: 1fr; gap: 18px; } }
+.note-road { margin: 24px 0 0; padding: 12px 16px; border-radius: 6px; background: var(--paper); border: 1px solid var(--line); font-size: 16px; color: var(--muted); }
+.note-road b { color: var(--ink); }
+.sessions { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 32px; }
+@media (max-width: 980px) { .sessions { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .sessions { grid-template-columns: 1fr; } }
+.ss { background: var(--paper); border: 1px solid var(--line); border-top: 3px solid var(--pc); border-radius: var(--r); padding: 14px 14px 14px; position: relative; transition: border-color .2s, background .2s; min-height: 148px; display: flex; flex-direction: column; }
+.ss:hover { background: var(--card); border-color: var(--pc); }
+.ss .top { display: flex; justify-content: space-between; align-items: baseline; font-size: 14px; color: var(--muted); }
+.ss .top b { font: 800 24px/1 var(--sans); color: var(--ink); font-variant-numeric: tabular-nums; }
+.ss h5 { font-size: 17px; margin: 12px 0 6px; line-height: 1.4; letter-spacing: -.02em; }
+.ss p { margin: auto 0 0; font-size: 14px; color: var(--muted); line-height: 1.5; }
+.ss.demo { background: var(--night); border-color: var(--night); border-top-color: var(--night); color: var(--night-ink); }
+.ss.demo .top, .ss.demo p { color: var(--night-muted); }
+.ss.demo .top b, .ss.demo h5 { color: #fff; }
+.ss.demo .badge { position: absolute; right: 10px; top: 10px; background: var(--signal); color: var(--signal-ink); font-size: 13px; font-weight: 800; line-height: 1; padding: 4px 6px; border-radius: 3px; }
+
+/* ---------- WEEKLY ---------- */
+.weekly { display: grid; grid-template-columns: 280px 1fr; gap: clamp(32px, 6vw, 72px); align-items: center; margin-top: 40px; }
+@media (max-width: 860px) { .weekly { grid-template-columns: 1fr; } .clock { max-width: 260px; margin: auto; } }
+.clock { position: relative; aspect-ratio: 1; }
+.clock svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.clock .seg { fill: none; stroke-width: 22; transition: stroke-dashoffset 1s cubic-bezier(.6,0,.2,1); }
+.clock .hand { transform-origin: 150px 150px; transition: transform .6s cubic-bezier(.6,0,.2,1); }
+.clock .ctr { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; pointer-events: none; }
+.clock .ctr b { font: 800 44px/1 var(--sans); display: block; letter-spacing: -.04em; }
+.clock .ctr span { font-size: 14px; color: var(--muted); }
+.wsteps { display: grid; gap: 10px; }
+.wstep { display: grid; grid-template-columns: 56px 1fr auto; gap: 16px; align-items: center; padding: 16px 18px; border-radius: var(--r); border: 1px solid var(--line); background: var(--card); transition: border-color .2s; }
+.wstep.on { border-color: var(--wc); box-shadow: inset 3px 0 0 var(--wc); }
+.wstep .t { font-size: 14px; font-weight: 600; line-height: 1.5; color: var(--muted); font-variant-numeric: tabular-nums; }
+.wstep h4 { margin: 0 0 2px; font-size: 18px; letter-spacing: -.02em; }
+.wstep p { margin: 0; font-size: 16px; color: var(--ink-2); }
+.wstep .m { font: 800 28px/1 var(--sans); color: var(--wc); font-variant-numeric: tabular-nums; }
+.wstep .m small { font: 500 14px var(--sans); color: var(--muted); }
+.roles { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; font-size: 16px; color: var(--ink-2); align-items: center; }
+
+/* ---------- PROJECT IDEAS ---------- */
+.ideas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; margin-top: 40px; }
+@media (max-width: 860px) { .ideas { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .ideas { grid-template-columns: 1fr; } }
+.idea { background: var(--card); padding: 22px 22px; display: flex; flex-direction: column; min-height: 170px; transition: background .15s; }
+.idea:hover { background: var(--paper); }
+.idea .no { font-size: 14px; font-weight: 600; color: var(--signal); }
+.idea h3 { font-size: 20px; letter-spacing: -.03em; margin: 8px 0 6px; }
+.idea p { margin: 0; color: var(--ink-2); font-size: 16px; }
+.idea .metric { margin-top: auto; padding-top: 14px; font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--muted); }
+.idea .metric::before { content: '지표 · '; color: var(--muted); font-weight: 500; }
+
+/* ---------- FIT ---------- */
+.fit { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+@media (max-width: 760px) { .fit { grid-template-columns: 1fr; } }
+.fit .card { padding: 24px 26px; }
+.fit h3 { margin: 0 0 14px; font-size: 19px; display: flex; gap: 10px; align-items: center; }
+.fit ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.fit li { display: flex; gap: 10px; font-size: 17px; color: var(--ink-2); }
+.fit li::before { content: '✓'; font-weight: 800; color: var(--ok); flex: none; }
+.fit .no li::before { content: '–'; color: var(--muted); }
+
+/* ---------- SPACE ---------- */
+.space-grid { display: grid; grid-template-columns: 1.5fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; margin-top: 32px; }
+.space-grid figure { margin: 0; position: relative; border-radius: var(--r); overflow: hidden; background: var(--line); }
+.space-grid figure:first-child { grid-row: 1 / 3; }
+.space-grid img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 3; }
+.space-grid figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 24px 14px 10px; font-size: 15px; color: #fff; background: linear-gradient(transparent, rgba(15,23,42,.65)); }
+@media (max-width: 720px) { .space-grid { grid-template-columns: 1fr; grid-template-rows: auto; } .space-grid figure:first-child { grid-row: auto; } }
+.space-info { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 14px; border: 1px solid var(--line); border-radius: var(--r); background: var(--card); }
+.space-info > div { padding: 16px 20px; }
+.space-info > div + div { border-left: 1px solid var(--line); }
+.space-info dt { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+.space-info dd { margin: 0; font-size: 17px; color: var(--ink-2); }
+.space-info a { color: var(--signal); font-weight: 600; text-decoration: none; }
+@media (max-width: 720px) { .space-info { grid-template-columns: 1fr; } .space-info > div + div { border-left: 0; border-top: 1px solid var(--line); } }
+
+/* ---------- PROCESS ---------- */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 40px; position: relative; }
+.steps::before { content: ''; position: absolute; top: 13px; left: 14px; right: 14px; height: 2px; background: var(--line); }
+.steps .prog { position: absolute; top: 13px; left: 14px; height: 2px; background: var(--signal); width: 0; transition: width 1.4s cubic-bezier(.6,0,.2,1) .3s; }
+.steps.in .prog { width: calc(var(--p) * (100% - 28px)); }
+.step { position: relative; padding-right: 16px; }
+.step .pt { width: 28px; height: 28px; border-radius: 50%; background: var(--paper); border: 2px solid var(--line); display: grid; place-items: center; font-size: 14px; font-weight: 700; position: relative; z-index: 1; color: var(--muted); }
+.step.done .pt { background: var(--signal); border-color: var(--signal); color: var(--signal-ink); }
+.step.now .pt { border-color: var(--signal); color: var(--signal); }
+.step .d { font-size: 15px; font-weight: 700; margin: 14px 0 4px; color: var(--signal); }
+.step h4 { margin: 0 0 4px; font-size: 18px; }
+.step p { margin: 0; font-size: 16px; color: var(--ink-2); }
+@media (max-width: 760px) {
+  .steps { grid-template-columns: 1fr; gap: 24px; }
+  .steps::before { top: 14px; bottom: 14px; left: 13px; right: auto; width: 2px; height: auto; }
+  .steps .prog { display: none; }
+  .step { padding-left: 46px; } .step .pt { position: absolute; left: 0; top: 0; } .step .d { margin-top: 2px; }
+}
+.select { display: grid; grid-template-columns: 1.2fr .8fr; gap: 16px; margin-top: 40px; }
+@media (max-width: 860px) { .select { grid-template-columns: 1fr; } }
+.select .card { padding: 24px 26px; }
+.select h3 { margin: 0 0 6px; font-size: 19px; }
+.select ol { margin: 14px 0 0; padding: 0; list-style: none; counter-reset: c; display: grid; gap: 12px; }
+.select li { counter-increment: c; display: grid; grid-template-columns: 28px 1fr; gap: 10px; font-size: 17px; }
+.select li::before { content: counter(c); width: 24px; height: 24px; border-radius: 50%; background: var(--signal-soft); color: var(--signal); display: grid; place-items: center; font-size: 14px; font-weight: 800; }
+.select li b { display: block; }
+.select li span { color: var(--muted); font-size: 15px; }
+.fee dl { margin: 14px 0 0; display: grid; gap: 14px; }
+.fee dt { font-size: 14px; font-weight: 700; color: var(--signal); }
+.fee dd { margin: 4px 0 0; font-size: 17px; }
+
+/* ---------- FAQ ---------- */
+.faq { margin-top: 32px; border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; padding: 20px 44px 20px 0; font-weight: 700; font-size: 18px; position: relative; letter-spacing: -.02em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: ''; position: absolute; right: 8px; top: 50%; width: 12px; height: 12px; margin-top: -6px; color: var(--muted);
+  background: linear-gradient(currentColor, currentColor) center/12px 2px no-repeat, linear-gradient(currentColor, currentColor) center/2px 12px no-repeat; transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq .a { padding: 0 0 20px; color: var(--ink-2); font-size: 17px; max-width: 760px; }
+.faq .a p { margin: 0 0 8px; }
+
+/* ---------- FINAL ---------- */
+.final { background: var(--night); color: var(--night-ink); text-align: center; }
+.final .eyebrow { color: #b6d36a; }
+.final h2 { font: 800 clamp(34px, 6vw, 54px)/1.25 var(--sans); letter-spacing: -.04em; margin: 14px 0 16px; color: #fff; }
+.final h2 em { font-style: normal; color: #b6d36a; }
+.final .lead { margin: 0 auto 28px; color: var(--night-muted); }
+.final .btn-primary { background: #fff; color: #0f172a; }
+.final .btn-primary:hover { background: #e2e8f0; }
+.final .cd { justify-content: center; margin-top: 26px; color: var(--night-muted); }
+.final .cd b { color: #fff; }
+.sticky-cta { position: fixed; z-index: 40; left: 50%; bottom: 16px; transform: translate(-50%, 120%); transition: transform .3s ease; display: flex; gap: 12px; align-items: center;
+  background: var(--night); color: var(--night-ink); padding: 8px 8px 8px 18px; border-radius: 8px; box-shadow: 0 8px 24px rgba(15, 23, 42, .25); font-size: 16px; white-space: nowrap; }
+.sticky-cta.show { transform: translate(-50%, 0); }
+.sticky-cta .t { font-weight: 800; color: #fff; }
+.sticky-cta .btn-primary { background: #fff; color: #0f172a; }
+
+/* ---------- 모바일: 첫 화면에 핵심(모집·카피·신청 버튼)이 한눈에 ---------- */
+@media (max-width: 640px) {
+  .hero { padding: 22px 0 34px; }
+  .hero-grid > div:first-child { display: flex; flex-direction: column; }
+  .recruit { order: 0; } .hero h1 { order: 1; margin: 16px 0 12px; } .hero .sub { order: 2; margin-bottom: 20px; }
+  .cta-row { order: 3; flex-direction: column; align-items: stretch; gap: 14px; margin-bottom: 22px; }
+  .cta-row .btn { width: 100%; padding: 17px 20px; font-size: 19px; }
+  .meta { order: 4; margin: 0; }
+  .meta dd { font-size: 18px; }
+  .host-av { width: 72px; height: 72px; font-size: 28px; }
+  .sessions { grid-template-columns: 1fr; }
+  .ss { min-height: 0; }
+  .wstep { grid-template-columns: 1fr auto; gap: 6px 14px; }
+  .wstep .t { grid-column: 1 / -1; }
+  .space-info dd { font-size: 18px; }
+  .sticky-cta { left: 12px; right: 12px; transform: translateY(140%); justify-content: space-between; }
+  .sticky-cta.show { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="./"><span class="brand-mark">AI</span>부천 AI 프로젝트 클럽 <small>1기 · 비북스</small></a>
+    <nav class="nav" aria-label="주요">
+      <a href="#about">소개</a>
+      <a href="#host">진행자</a>
+      <a href="#roadmap">로드맵</a>
+      <a href="#faq">FAQ</a>
+      <a href="members.html">멤버 라운지</a>
+      <a class="btn btn-primary btn-sm" href="apply.html">신청하기</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="recruit"><span class="recruit-tag">1기 모집</span><span class="recruit-when">신청 10/6(화) 시작 · 10/16(금) 12:00 마감</span></div>
+      <h1>
+        <span class="line"><span style="--i:0">동네에서 함께 공부하고</span></span>
+        <span class="line"><span style="--i:1"><span class="num-word">실천해보는</span> AI 스터디 모임!</span></span>
+      </h1>
+      <p class="sub">막연한 공부에 그치지 않고, <b>구체적인 숫자</b>를 만들어봅니다. 매주 토요일 비북스에서 8명이 함께해요.</p>
+      <dl class="meta">
+        <div><dt>When</dt><dd>토 14:00–15:30</dd></div>
+        <div><dt>Period</dt><dd>10.17 – 12.19<br><span class="muted" style="font-weight:500">총 10회</span></dd></div>
+        <div><dt>Seats</dt><dd>8명</dd></div>
+        <div><dt>Where</dt><dd>비북스<br><span class="muted" style="font-weight:500">부천 원미동</span></dd></div>
+      </dl>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="apply.html" data-cta>1기 신청하기 <span class="arr">→</span></a>
+        <div><span class="cd-label" id="cd-label"></span><div class="cd" data-countdown></div></div>
+      </div>
+    </div>
+
+    <div style="position:relative">
+      <article class="ncard" aria-label="숫자 진척 예시" id="ncard">
+        <div class="ncard-top"><span class="chip" id="nc-type"><i></i>절감형</span><span class="ex">EXAMPLE · 예시</span></div>
+        <div class="metric" id="nc-metric"></div>
+        <div class="bignum"><span class="v" id="nc-v">0</span><span class="u" id="nc-u"></span><span class="delta" id="nc-d"></span></div>
+        <svg viewBox="0 0 320 150" id="nc-svg" aria-hidden="true"></svg>
+        <div class="ncard-foot"><span id="nc-cap">W1 시작점 → W10 마무리</span><span class="pager" id="nc-pager"><i></i><i></i><i></i></span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="block" id="about">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>What is this</span>
+    <h2 class="h2" data-reveal style="--d:.05s">배우러 오는 곳이 아니라,<br><em>만들러</em> 오는 곳입니다.</h2>
+    <p class="lead" data-reveal style="--d:.1s">각자 목표를 세우고, 매주 만나 진행 상황을 나눕니다.</p>
+
+    <div class="stats" data-reveal>
+      <div><div class="v"><span data-count="10">0</span><small>회</small></div><div class="k">매주 토요일 · 10/17 ~ 12/19</div></div>
+      <div><div class="v"><span data-count="8">0</span><small>명</small></div><div class="k">서로 깊게 볼 수 있는 인원</div></div>
+      <div><div class="v"><span data-count="1">0</span><small>개의 숫자</small></div><div class="k">3개월 동안 만들어 갈 숫자</div></div>
+    </div>
+
+    <div class="principles">
+      <article class="card pr" data-reveal>
+        <svg class="ico ico-share" viewBox="0 0 120 76" aria-hidden="true"><g fill="none" stroke="var(--line)" stroke-width="1.5"><line x1="30" y1="38" x2="60" y2="16"/><line x1="60" y1="16" x2="90" y2="38"/><line x1="90" y1="38" x2="60" y2="60"/><line x1="60" y1="60" x2="30" y2="38"/><line x1="30" y1="38" x2="90" y2="38"/></g><g><circle cx="30" cy="38" r="9" fill="var(--c-design)"/><circle cx="60" cy="16" r="9" fill="var(--signal)"/><circle cx="90" cy="38" r="9" fill="var(--c-prove)"/><circle cx="60" cy="60" r="9" fill="var(--ink)"/></g></svg>
+        <h3><s>강의</s> → 함께 나누기</h3>
+        <p>새로 발견한 걸 알려 주고, 서로의 프로젝트를 함께 봐요.</p>
+      </article>
+      <article class="card pr" data-reveal style="--d:.1s">
+        <svg class="ico ico-prob" viewBox="0 0 120 76" aria-hidden="true"><rect x="40" y="18" width="40" height="40" rx="8" fill="var(--ink)"/><text x="60" y="44" text-anchor="middle" fill="var(--paper)" font-family="JetBrains Mono" font-size="16" font-weight="600">?</text><g class="p"><circle cx="22" cy="20" r="6" fill="none" stroke="var(--signal)" stroke-width="2"/><circle cx="98" cy="58" r="6" fill="none" stroke="var(--c-design)" stroke-width="2"/><circle cx="100" cy="16" r="4" fill="var(--c-prove)"/></g></svg>
+        <h3><s>도구</s> → 문제</h3>
+        <p>어떤 도구냐보다, 어떤 문제를 풀었는지 나눠요.</p>
+      </article>
+      <article class="card pr" data-reveal style="--d:.2s">
+        <svg class="ico" viewBox="0 0 120 76" aria-hidden="true"><g transform="translate(22 0)"><g class="ico-rot"><circle cx="38" cy="38" r="30" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 5"/><circle cx="38" cy="8" r="8" fill="var(--signal)"/><circle cx="64" cy="53" r="8" fill="var(--c-design)"/><circle cx="12" cy="53" r="8" fill="var(--c-prove)"/></g></g></svg>
+        <h3>역할은 돌아갑니다</h3>
+        <p>진행자와 기록자를 매주 돌아가며 맡아요.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- HOST -->
+<section class="block" id="host" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Your host</span>
+    <div class="host" data-reveal>
+      <div class="host-av" aria-hidden="true">H</div>
+      <div>
+        <h2 class="h2" style="margin:10px 0 14px">가르치는 사람이 아니라,<br><em>각자의 시도를 응원하고 돕는 사람</em>입니다.</h2>
+        <p class="lead">Hose는 비북스 매니저예요. 컴퓨터공학을 전공했지만 오랫동안 책 관련 일만 했고, AI 시대에 다시 공부를 시작했어요.</p>
+        <ul class="host-facts">
+          <li><b>하는 일</b>짧은 미니특강을 준비하고, 새로운 정보를 함께 나눠요.</li>
+          <li><b>하지 않는 일</b>정해진 커리큘럼으로 가르치지 않아요.</li>
+          <li><b>같이 하는 일</b>진행 현황을 듣고, 아이디어를 보태요.</li>
+        </ul>
+        <p class="host-note">비공식 스터디예요. Anthropic의 공식 프로그램이 아니며, 공개된 학습 자료를 바탕으로 정리해요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPES -->
+<section class="block" id="numbers" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>How we measure</span>
+    <h2 class="h2" data-reveal>막연한 공부에 그치지 않고,<br><em>구체적인 숫자</em>를 만들어봅니다.</h2>
+    <p class="lead" data-reveal>세 유형 중 하나를 골라, 핵심 숫자 1개를 정해요.</p>
+    <div class="types">
+      <article class="card type" data-reveal>
+        <svg class="mini" viewBox="0 0 280 120" aria-hidden="true">
+          <line class="base" x1="10" y1="22" x2="270" y2="22"/>
+          <path class="ln" stroke="var(--c-design)" d="M14 22 C 60 26, 80 40, 110 52 S 170 82, 200 88 S 250 96, 266 98"/>
+          <circle class="ar" cx="266" cy="98" r="6" fill="var(--c-design)"/>
+          <text x="14" y="14">60분</text><text class="ar" x="232" y="116">10분</text>
+        </svg>
+        <h3>절감형 <span class="arrow">↓</span></h3>
+        <p>시간·비용을 줄여요.</p>
+        <div class="eg">숫자 예 <b>주당 절감 시간 · 건당 작업 시간</b></div>
+      </article>
+      <article class="card type" data-reveal style="--d:.1s">
+        <svg class="mini" viewBox="0 0 280 120" aria-hidden="true">
+          <line class="base" x1="10" y1="96" x2="270" y2="96"/>
+          <path class="ln" stroke="var(--c-build)" d="M14 96 L40 92 L66 94 L92 84 L118 80 L144 70 L170 62 L196 50 L222 38 L248 30 L266 20"/>
+          <circle class="ar" cx="266" cy="20" r="6" fill="var(--c-build)"/>
+          <text x="14" y="114">12건</text><text class="ar" x="226" y="12">25건</text>
+        </svg>
+        <h3>매출 증대형 <span class="arrow">↑</span></h3>
+        <p>홍보·판매를 키워요.</p>
+        <div class="eg">숫자 예 <b>유입수 · 문의 수 · 주문 건수</b></div>
+      </article>
+      <article class="card type" data-reveal style="--d:.2s">
+        <svg class="mini" viewBox="0 0 280 120" aria-hidden="true">
+          <line class="base" x1="10" y1="96" x2="270" y2="96"/>
+          <path class="ln" stroke="var(--c-prove)" d="M14 96 L120 96 L120 96 L150 80 L176 72 L202 58 L228 46 L266 26"/>
+          <g class="ar"><line x1="120" y1="102" x2="120" y2="58" stroke="var(--c-prove)" stroke-dasharray="3 3"/><rect x="92" y="38" width="56" height="18" rx="9" fill="var(--c-prove)"/><text x="120" y="51" text-anchor="middle" fill="#fff" style="fill:#fff">LAUNCH</text></g>
+          <circle class="ar" cx="266" cy="26" r="6" fill="var(--c-prove)"/>
+          <text x="14" y="114">0</text><text class="ar" x="232" y="16">첫 판매</text>
+        </svg>
+        <h3>신사업형 <span class="arrow">★</span></h3>
+        <p>새 상품·서비스를 만들어요.</p>
+        <div class="eg">숫자 예 <b>출시 여부 · 첫 판매 · 판매 건수</b></div>
+      </article>
+    </div>
+    <div class="promise" data-reveal><span class="st">NO HYPE</span><div><b>수익을 약속하지 않아요.</b> 목표에 못 미쳐도 괜찮아요. 효과 없던 것도 소중한 결과예요.</div></div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="block road" id="roadmap">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Roadmap · 10 Saturdays</span>
+    <h2 class="h2" data-reveal>킥오프로 시작해,<br><em>각자의 목표</em>대로 실행하고 마무리합니다.</h2>
+    <p class="lead" data-reveal>1회는 킥오프, 2~9회는 각자 목표대로 실행, 10회는 마무리. 1기는 파일럿으로 함께 실험해요.</p>
+    <div class="phasebar" id="phasebar"></div>
+    <div class="sessions" id="sessions"></div>
+    <p class="note-road" data-reveal>주당 <b>1~2시간</b>이면 충분해요.</p>
+  </div>
+</section>
+
+<!-- WEEKLY -->
+<section class="block" id="weekly">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Every Saturday · 90 min</span>
+    <h2 class="h2" data-reveal>새로 알게 된 걸 나누고,<br><em>각자의 시도</em>를 함께 봅니다.</h2>
+    <div class="weekly">
+      <div class="clock" data-reveal>
+        <svg viewBox="0 0 300 300" aria-hidden="true" id="clock"></svg>
+        <div class="ctr"><div><b id="clock-min">90</b><span id="clock-lbl">분 · 14:00–15:30</span></div></div>
+      </div>
+      <div>
+        <div class="wsteps" id="wsteps"></div>
+        <div class="roles" data-reveal>미니특강은 Hose가, 진행자·기록자는 매주 돌아가며 <span class="chip"><i style="color:var(--signal)"></i>진행자</span><span class="chip"><i style="color:var(--c-build)"></i>기록자</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAKEAWAY -->
+<section class="block" id="takeaway" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>What you take home</span>
+    <h2 class="h2" data-reveal>3개월 뒤,<br><em>손에 남는 것</em>.</h2>
+    <p class="lead" data-reveal>거창하지 않아도 괜찮아요.</p>
+    <div class="principles" style="margin-top:36px">
+      <article class="card pr" data-reveal>
+        <svg class="ico" viewBox="0 0 120 76" aria-hidden="true"><g fill="none" stroke="var(--line)" stroke-width="1.5"><line x1="14" y1="64" x2="106" y2="64"/></g><g fill="var(--signal)"><rect x="22" y="44" width="14" height="20" rx="3" opacity=".35"/><rect x="46" y="34" width="14" height="30" rx="3" opacity=".55"/><rect x="70" y="22" width="14" height="42" rx="3" opacity=".8"/><rect x="94" y="8" width="14" height="56" rx="3"/></g></svg>
+        <h3>처음과 비교한 나의 숫자</h3>
+        <p>시작점부터 마지막 모임까지, 내가 만든 변화를 숫자로 나눠요.</p>
+      </article>
+      <article class="card pr" data-reveal style="--d:.1s">
+        <svg class="ico" viewBox="0 0 120 76" aria-hidden="true"><g fill="none" stroke="var(--ink)" stroke-width="2"><rect x="30" y="12" width="60" height="52" rx="8" fill="var(--card)"/><line x1="42" y1="28" x2="78" y2="28"/><line x1="42" y1="38" x2="70" y2="38"/><line x1="42" y1="48" x2="60" y2="48"/></g><circle cx="86" cy="52" r="9" fill="var(--c-build)"/><path d="M82 52l3 3 5-6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>나의 시도 아카이브</h3>
+        <p>매주 해 본 것과 배운 것을 기록으로 남겨요.</p>
+      </article>
+      <article class="card pr" data-reveal style="--d:.2s">
+        <svg class="ico" viewBox="0 0 120 76" aria-hidden="true"><g fill="none" stroke="var(--line)" stroke-width="1.5"><line x1="30" y1="38" x2="60" y2="16"/><line x1="60" y1="16" x2="90" y2="38"/><line x1="90" y1="38" x2="60" y2="60"/><line x1="60" y1="60" x2="30" y2="38"/></g><g><circle cx="30" cy="38" r="9" fill="var(--c-design)"/><circle cx="60" cy="16" r="9" fill="var(--c-build)"/><circle cx="90" cy="38" r="9" fill="var(--c-prove)"/><circle cx="60" cy="60" r="9" fill="var(--ink)"/></g></svg>
+        <h3>함께 공부할 동네 사람들</h3>
+        <p>서로 응원해 준 동네 사람들이 생겨요.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- IDEAS -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Project ideas</span>
+    <h2 class="h2" data-reveal>이런 프로젝트가 <em>잘 맞아요</em>.</h2>
+    <p class="lead" data-reveal>이미 하는 일에 붙이고, 매주 숫자로 확인할 수 있는 것.</p>
+    <div class="ideas" data-reveal>
+      <div class="idea"><span class="no">01 · 절감</span><h3>업무 절감</h3><p>반복 업무 자동화</p><span class="metric">주당 절감 시간</span></div>
+      <div class="idea"><span class="no">02 · 매출</span><h3>B2B 영업 리드</h3><p>고객 정리 · 맞춤 제안 메일</p><span class="metric">발송 수 · 회신율</span></div>
+      <div class="idea"><span class="no">03 · 신사업</span><h3>디지털 상품 출시</h3><p>전자책 · 템플릿 1종</p><span class="metric">출시 · 판매 건수</span></div>
+      <div class="idea"><span class="no">04 · 매출</span><h3>자영업 마케팅</h3><p>가게 SNS 콘텐츠</p><span class="metric">팔로워 · 예약·문의 수</span></div>
+      <div class="idea"><span class="no">05 · 매출</span><h3>지식 채널</h3><p>블로그 · 뉴스레터 · 숏폼</p><span class="metric">구독자 · 조회수</span></div>
+      <div class="idea"><span class="no">06 · 바이브코딩</span><h3>내 일에 쓰는 작은 도구</h3><p>계산기 · 문의 폼 · 정리표</p><span class="metric">사용 횟수 · 절감 시간</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Is this for me?</span>
+    <h2 class="h2" data-reveal>이런 분께 <em>맞아요</em>.</h2>
+    <div class="fit">
+      <div class="card" data-reveal><h3><span class="chip" style="background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)">맞아요</span></h3>
+        <ul><li>AI를 몇 번이라도 써 봤어요</li><li>내 일에 붙여 숫자로 확인하고 싶어요</li><li>코딩을 몰라도 괜찮아요</li><li>잘 안 된 시도도 나눌 수 있어요</li><li>10회 중 8회 이상 올 수 있어요</li></ul></div>
+      <div class="card no" data-reveal style="--d:.1s"><h3><span class="chip">이런 분은 다음 기회에</span></h3>
+        <ul><li>AI를 한 번도 안 써 봤어요 (입문 강의 먼저)</li><li>붙일 일이 아직 전혀 없어요</li><li>수익을 보장받고 싶어요</li><li>듣기만 하고 싶어요</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPACE -->
+<section class="block" id="space" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Where we meet</span>
+    <h2 class="h2" data-reveal>책장에 둘러싸인<br><em>비북스 세미나실</em>에서.</h2>
+    <p class="lead" data-reveal>양쪽 벽이 서가인 작은 모임방이에요. 8명이 둘러앉기 좋아요.</p>
+    <div class="space-grid" data-reveal>
+      <figure><img src="images/space/seminar-2.jpg" width="1200" height="674" loading="lazy" alt="화이트보드와 모니터, 테이블이 있는 비북스 세미나실"><figcaption>화이트보드와 모니터가 있는 세미나실</figcaption></figure>
+      <figure><img src="images/space/seminar-3.jpg" width="1200" height="674" loading="lazy" alt="서가 앞에 놓인 긴 테이블"><figcaption>여덟 명이 둘러앉기 딱 좋은 테이블</figcaption></figure>
+      <figure><img src="images/space/seminar-4.jpg" width="1200" height="674" loading="lazy" alt="모니터와 콘센트, 프린터"><figcaption>노트북 충전 걱정 없는 자리</figcaption></figure>
+    </div>
+    <dl class="space-info" data-reveal>
+      <div><dt>ADDRESS</dt><dd>부천시 원미구 부천로 136번길 24, B02호<br><span class="muted">원미구청 맞은편</span></dd></div>
+      <div><dt>PROVIDED</dt><dd>와이파이 · 모니터 · 프로젝터 · 콘센트 · 프린트<br><span class="muted" style="font-size:15px">개인 노트북은 챙겨 오세요</span></dd></div>
+      <div><dt>MAP</dt><dd><a href="https://naver.me/5Ollmubn" target="_blank" rel="noopener">네이버 지도에서 보기 →</a><br><span class="muted" style="font-size:15px">매주 토 13:45부터 입실</span></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="block" id="process" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>How to join</span>
+    <h2 class="h2" data-reveal>신청부터 <em>첫 모임</em>까지.</h2>
+    <div class="steps" id="steps" data-reveal>
+      <span class="prog"></span>
+      <div class="step"><span class="pt">1</span><div class="d">10/6(화) –</div><h4>신청서 작성</h4><p>10문항 · 3~5분</p></div>
+      <div class="step"><span class="pt">2</span><div class="d">10/16(금) 12:00</div><h4>신청 마감</h4><p>8명 초과 시 선발</p></div>
+      <div class="step"><span class="pt">3</span><div class="d">10/16(금) 20:00</div><h4>결과 안내</h4><p>문자 · 메일</p></div>
+      <div class="step"><span class="pt">4</span><div class="d">10/17(토) 14:00</div><h4>1회차 킥오프</h4><p>각자 쓰는 AI 공유</p></div>
+    </div>
+    <div class="select">
+      <div class="card" data-reveal>
+        <h3>8명을 넘으면, 이렇게 선발해요</h3>
+        <ol>
+          <li><div><b>붙여 볼 일</b><span>구체적인가</span></div></li>
+          <li><div><b>다양성</b><span>직군 · 도구 · 경험이 겹치지 않게</span></div></li>
+          <li><div><b>코스 적합도</b><span>기대하는 것이 맞는가</span></div></li>
+          <li><div><b>출석</b><span>10회 중 8회 이상 가능한가</span></div></li>
+        </ol>
+      </div>
+      <div class="card fee" data-reveal style="--d:.1s">
+        <h3>참여 조건</h3>
+        <dl>
+          <div><dt>FEE</dt><dd id="fee"></dd><p class="muted" style="margin:4px 0 0">회당 5,000원 꼴 · 공간 대관 + 다과·음료 포함<br>중간에 빠져도 환불되지 않아요</p></div>
+          <div><dt>BRING</dt><dd>노트북</dd></div>
+          <div><dt>SPACE</dt><dd>비북스 세미나실 · 와이파이 · 모니터</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>FAQ</span>
+    <h2 class="h2" data-reveal>자주 묻는 질문</h2>
+    <div class="faq" data-reveal>
+      <details><summary>AI를 얼마나 잘 써야 하나요?</summary><div class="a"><p>가끔 질문하는 정도면 충분해요. 수준 차이는 서로에게 도움이 돼요.</p></div></details>
+      <details><summary>누가 이끄나요? 강의가 있나요?</summary><div class="a"><p>가르치는 수업은 아니에요. Hose는 각자의 시도를 응원하고 돕는 사람이에요. 새로운 정보 공유(미니특강 포함), 프로젝트 진행현황 공유, Q&A로 진행돼요.</p></div></details>
+      <details><summary>10회는 어떻게 흘러가나요?</summary><div class="a"><p>1회 킥오프, 2~9회 각자 목표대로 실행, 10회 마무리예요. 정해진 커리큘럼 없이 함께 실험해요.</p></div></details>
+      <details><summary>코딩을 못 해도 되나요?</summary><div class="a"><p>괜찮아요. AI에게 말로 설명해서 만드는 방식(바이브코딩)이라, 코딩 경험이 없어도 따라올 수 있어요.</p></div></details>
+      <details><summary>시간이 얼마나 드나요?</summary><div class="a"><p>모임 1시간 30분 외에 주 1~2시간이면 충분해요.</p></div></details>
+      <details><summary>어떤 도구를 써야 하나요?</summary><div class="a"><p>제한 없어요. 유료 구독도 필수가 아니에요.</p></div></details>
+      <details><summary>프로젝트를 아직 못 정했어요.</summary><div class="a"><p>방향만 있으면 돼요. 킥오프에서 함께 다듬어요. 다만 붙일 일(업무·가게·사업 등)은 있어야 해요.</p></div></details>
+      <details><summary>수익이 안 나면 실패인가요?</summary><div class="a"><p>아니요. 시간을 줄이는 것, 문의가 늘어나는 것도 숫자예요. 못 미쳐도 괜찮아요.</p></div></details>
+      <details><summary>빠지는 날이 있으면요?</summary><div class="a"><p>10회 중 8회 이상을 권해요. 불참 예정일은 신청서에 적어 주세요.</p></div></details>
+      <details><summary>참가비가 있나요?</summary><div class="a"><p id="fee-faq"></p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="block final">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>1기 모집 · 8 seats</span>
+    <h2 data-reveal>혼자는 어렵지만,<br>함께 하면 <em>쉽습니다</em>.</h2>
+    <p class="lead" data-reveal>AI 공부도 그렇습니다. 신청서는 3~5분이면 돼요.</p>
+    <a class="btn btn-primary" href="apply.html" data-reveal data-cta style="font-size:19px;padding:16px 28px">1기 신청서 작성하기 <span class="arr">→</span></a>
+    <div class="cd" data-countdown></div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>부천 AI 프로젝트 클럽 1기 · 비북스 (부천 원미동)</div>
+    <div style="display:flex;gap:18px;flex-wrap:wrap"><a href="members.html">멤버 라운지</a><a href="https://www.instagram.com/bbooks_bucheon/" target="_blank" rel="noopener">Instagram</a><a href="https://moim.bbooks.co.kr/" target="_blank" rel="noopener">비모임</a><a href="admin.html">운영</a></div>
+  </div>
+</footer>
+
+<div class="sticky-cta" id="sticky"><span class="lbl" id="sticky-lbl"></span><a class="btn btn-primary btn-sm" href="apply.html">신청하기 →</a></div>
+
+<script src="assets/config.js?v=1005b"></script>
+<script src="assets/app.js?v=1005b"></script>
+<script>
+(function () {
+  const C = CLUB, B = BAPC;
+  /* 신청 오픈(10/6) 전에는 '오픈까지', 이후에는 '마감까지' */
+  const openAt = new Date(C.open).getTime(), preOpen = Date.now() < openAt;
+  document.querySelectorAll('[data-countdown]').forEach(el => B.countdown(el, preOpen ? C.open : C.deadline));
+  document.getElementById('cd-label').textContent = preOpen ? '신청 오픈 10/6(화) 00:00 까지' : '마감 10/16(금) 12:00 까지';
+  document.querySelectorAll('[data-cta]').forEach(a => { if (preOpen) a.firstChild.textContent = '10/6(화) 신청 오픈 안내 '; });
+  if (preOpen) setTimeout(() => location.reload(), Math.min(openAt - Date.now() + 1500, 2147483000));
+  document.getElementById('fee').textContent = C.fee;
+  document.getElementById('fee-faq').textContent = C.feeDetail;
+
+  /* hero number card — 세 유형 예시를 순환 */
+  const isDark = () => { const t = document.documentElement.dataset.theme; return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; };
+  const hx = (light, dark) => isDark() ? dark : light;
+  const EX = [
+    { type: '절감형', color: 'var(--c-design)', hex: hx('#4e6813', '#a3c85a'), metric: '책 소개 1권 작성 시간', unit: '분', dir: 'down', vals: [60, 58, 51, 44, 40, 31, 26, 19, 14, 10] },
+    { type: '매출 증대형', color: 'var(--c-build)', hex: hx('#7c9a22', '#c9e07a'), metric: '월 예약·문의 수', unit: '건', dir: 'up', vals: [12, 12, 13, 15, 14, 17, 19, 21, 23, 25] },
+    { type: '신사업형', color: 'var(--c-prove)', hex: hx('#2f7a5a', '#6ccfa0'), metric: '템플릿 누적 판매', unit: '건', dir: 'up', vals: [0, 0, 0, 0, 1, 2, 4, 6, 8, 11], launch: 4 }
+  ];
+  const svg = document.getElementById('nc-svg'), W = 320, H = 150, P = { l: 6, r: 10, t: 16, b: 22 };
+  let idx = 0, timer;
+  function draw(i) {
+    const e = EX[i], vs = e.vals, max = Math.max(...vs) * 1.12, min = Math.min(0, Math.min(...vs));
+    const x = k => P.l + k * (W - P.l - P.r) / (vs.length - 1);
+    const y = v => P.t + (1 - (v - min) / (max - min)) * (H - P.t - P.b);
+    const pts = vs.map((v, k) => [x(k), y(v)]);
+    const d = pts.map((p, k) => (k ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+    const area = d + ` L${x(vs.length - 1)} ${H - P.b} L${x(0)} ${H - P.b} Z`;
+    const tgt = vs[vs.length - 1];
+    let grid = ''; for (let k = 0; k < 4; k++) { const gy = P.t + k * (H - P.t - P.b) / 3; grid += `<line class="gl" x1="0" x2="${W}" y1="${gy}" y2="${gy}"/>`; }
+    const ax = vs.map((_, k) => k % 3 === 0 || k === 9 ? `<text x="${x(k)}" y="${H - 4}" text-anchor="middle">W${k + 1}</text>` : '').join('');
+    const launch = e.launch != null ? `<g opacity="0" style="transition:opacity .4s 1s" class="lz"><line x1="${x(e.launch)}" x2="${x(e.launch)}" y1="${P.t}" y2="${H - P.b}" stroke="${e.hex}" stroke-dasharray="2 3"/><text x="${x(e.launch) + 4}" y="${P.t + 8}" class="tgt-l" style="fill:${e.hex}">LAUNCH</text></g>` : '';
+    svg.innerHTML = `<defs><linearGradient id="ga" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${e.hex}"/><stop offset="1" stop-color="${e.hex}" stop-opacity="0"/></linearGradient></defs>
+      ${grid}<line class="tgt" x1="0" x2="${W}" y1="${y(tgt)}" y2="${y(tgt)}"/><text class="tgt-l" x="2" y="${y(tgt) - 5}">TARGET ${tgt}${e.unit}</text>
+      <path class="area" d="${area}" fill="url(#ga)"/>${launch}
+      <path class="path" id="nc-path" d="${d}" stroke="${e.hex}"/>
+      ${pts.map((p, k) => `<circle class="dot" cx="${p[0]}" cy="${p[1]}" r="${k === pts.length - 1 ? 5 : 2.5}" fill="${k === pts.length - 1 ? e.hex : 'var(--card)'}" stroke="${e.hex}" stroke-width="2" opacity="0" style="transition-delay:${(k * .12).toFixed(2)}s"/>`).join('')}
+      <g class="axis">${ax}</g>`;
+    const path = svg.querySelector('#nc-path'), len = path.getTotalLength();
+    path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      path.style.transition = B.reduced() ? 'none' : 'stroke-dashoffset 1.6s cubic-bezier(.45,0,.2,1)';
+      path.style.strokeDashoffset = 0;
+      svg.querySelectorAll('.dot').forEach(c => c.setAttribute('opacity', 1));
+      const lz = svg.querySelector('.lz'); if (lz) lz.setAttribute('opacity', 1);
+    }));
+    const t = document.getElementById('nc-type'); t.lastChild.textContent = e.type; t.style.color = e.hex;
+    document.getElementById('nc-metric').textContent = e.metric;
+    document.getElementById('nc-u').textContent = e.unit;
+    const v = document.getElementById('nc-v'); v.dataset.from = vs[0]; v.textContent = vs[0]; B.countUp(v, tgt, 1600);
+    const dl = document.getElementById('nc-d'), ch = vs[0] ? Math.round((tgt - vs[0]) / vs[0] * 100) : null;
+    dl.textContent = ch == null ? '0 → ' + tgt + e.unit : (ch > 0 ? '▲ +' : '▼ ') + ch + '%';
+    dl.style.background = e.hex + '26'; dl.style.color = e.hex;
+    document.querySelectorAll('#nc-pager i').forEach((p, k) => { p.classList.remove('on'); void p.offsetWidth; if (k === i) p.classList.add('on'); });
+  }
+  function cycle() { draw(idx); clearTimeout(timer); timer = setTimeout(() => { idx = (idx + 1) % EX.length; cycle(); }, 5000); }
+  setTimeout(cycle, 700);
+  document.getElementById('ncard').addEventListener('click', () => { idx = (idx + 1) % EX.length; cycle(); });
+
+  /* roadmap */
+  document.getElementById('phasebar').innerHTML = C.phases.map((p, i) =>
+    `<div style="--pc:${p.color};--d:${i * .45}s"><div class="bar"><i></i></div><h4>${p.name} <span class="mono">${p.range}</span></h4><p>${p.desc}</p><p class="deliv">남는 것 · ${p.deliv}</p></div>`).join('');
+  const pc = Object.fromEntries(C.phases.map(p => [p.key, p.color]));
+  document.getElementById('sessions').innerHTML = C.sessions.map((s, i) => {
+    const demo = s.n === 10;
+    return `<article class="ss${demo ? ' demo' : ''}" title="${B.esc(s.focus)}" data-reveal style="--pc:${pc[s.phase]};--d:${(i % 5) * .06}s;--d2:${.3 + (i % 5) * .06}s">
+      
+      <div class="top"><b>${String(s.n).padStart(2, '0')}</b><span>${B.fmtDate(s.date)}</span></div>
+      <h5>${B.esc(s.title)}</h5><p>${B.esc(s.out)}</p></article>`;
+  }).join('');
+  const road = document.querySelector('.road');
+  new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { road.classList.add('in'); o.disconnect(); } }), { threshold: .2 }).observe(road);
+
+  /* weekly clock */
+  const R = 120, CIRC = 2 * Math.PI * R, colors = ['var(--signal)', 'var(--c-design)', 'var(--c-prove)'];
+  const TOT = C.weekly.reduce((a, w) => a + w.min, 0);
+  let acc = 0, starts = [];
+  const segs = C.weekly.map((w, i) => { const frac = w.min / TOT, off = acc; starts.push(off); acc += frac;
+    return `<circle class="seg" data-i="${i}" cx="150" cy="150" r="${R}" stroke="${colors[i]}" stroke-dasharray="${(frac * CIRC - 4).toFixed(1)} ${CIRC}" stroke-dashoffset="${(frac * CIRC).toFixed(1)}" style="transform:rotate(${off * 360}deg);transform-origin:150px 150px;transition-delay:${i * .25}s"/>`; }).join('');
+  const ticks = Array.from({ length: 12 }, (_, k) => { const a = k / 12 * 2 * Math.PI; return `<line x1="${150 + Math.cos(a) * 92}" y1="${150 + Math.sin(a) * 92}" x2="${150 + Math.cos(a) * 98}" y2="${150 + Math.sin(a) * 98}" stroke="var(--line)" stroke-width="2"/>`; }).join('');
+  const clock = document.getElementById('clock');
+  clock.innerHTML = `<circle cx="150" cy="150" r="${R}" fill="none" stroke="var(--rule)" stroke-width="26"/>${segs}${ticks}<g class="hand" id="hand"><line x1="196" y1="150" x2="232" y2="150" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/><circle cx="236" cy="150" r="5" fill="var(--ink)"/></g>`;
+  let t0 = 0;
+  document.getElementById('wsteps').innerHTML = C.weekly.map((w, i) => {
+    const s = 14 * 60 + t0, e = s + w.min; t0 += w.min;
+    const hm = m => Math.floor(m / 60) + ':' + String(m % 60).padStart(2, '0');
+    return `<div class="wstep" data-i="${i}" style="--wc:${colors[i]}" data-reveal><div class="t">${hm(s)}<br>${hm(e)}</div><div><h4>${w.name}</h4><p>${w.desc}</p></div><div class="m">${w.min}<small>분</small></div></div>`;
+  }).join('');
+  const steps = [...document.querySelectorAll('.wstep')];
+  let wi = -1, wtimer, clockOn = false;
+  function focusStep(i) {
+    wi = i; steps.forEach((s, k) => s.classList.toggle('on', k === i));
+    document.getElementById('hand').style.transform = `rotate(${(starts[i] + C.weekly[i].min / TOT / 2) * 360}deg)`;
+    document.getElementById('clock-min').textContent = C.weekly[i].min;
+    document.getElementById('clock-lbl').textContent = '분 · ' + C.weekly[i].name;
+  }
+  function autoClock() { clearTimeout(wtimer); focusStep((wi + 1) % C.weekly.length); wtimer = setTimeout(autoClock, 2600); }
+  steps.forEach((s, i) => { s.addEventListener('mouseenter', () => { clearTimeout(wtimer); focusStep(i); }); s.addEventListener('mouseleave', () => { wtimer = setTimeout(autoClock, 2600); }); });
+  new IntersectionObserver((es) => es.forEach(e => {
+    if (e.isIntersecting && !clockOn) { clockOn = true; clock.querySelectorAll('.seg').forEach(c => c.style.strokeDashoffset = 0); setTimeout(autoClock, 900); }
+  }), { threshold: .4 }).observe(clock);
+
+  /* count-ups when visible */
+  const cio = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { B.countUp(e.target, +e.target.dataset.count, 1300); cio.unobserve(e.target); } }), { threshold: .6 });
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+  /* process progress: 오늘 날짜 기준 */
+  const now = B.today(), marks = [C.open, C.deadline, C.announce, C.firstSession].map(d => new Date(d));
+  const done = marks.filter(m => m <= now).length;
+  document.querySelectorAll('#steps .step').forEach((s, k) => { if (k < done) s.classList.add('done'); else if (k === done) s.classList.add('now'); });
+  document.getElementById('steps').style.setProperty('--p', Math.max(0, done - 1) / 3 + (done > 0 && done < 4 ? .12 : 0));
+
+  /* sticky cta */
+  const sticky = document.getElementById('sticky'), st = document.getElementById('sticky-lbl'), hero = document.querySelector('.hero'), fin = document.querySelector('.final');
+  const end = new Date(C.deadline).getTime();
+  const upd = () => { const d = Math.max(0, end - Date.now()); st.textContent = Date.now() < openAt ? '1기 모집 · 신청 10/6(화) 오픈' : d ? `1기 모집 · 마감까지 D-${Math.ceil(d / 864e5)}` : '1기 모집 마감'; };
+  upd(); setInterval(upd, 60000);
+  let heroVis = true, finVis = false;
+  const sv = () => sticky.classList.toggle('show', !heroVis && !finVis);
+  new IntersectionObserver(es => { heroVis = es[0].isIntersecting; sv(); }).observe(hero);
+  new IntersectionObserver(es => { finVis = es[0].isIntersecting; sv(); }).observe(fin);
+
+  B.reveal();
+})();
+</script>
+</body>
+</html>
