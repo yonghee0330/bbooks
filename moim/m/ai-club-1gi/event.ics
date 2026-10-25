@@ -1,0 +1,121 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//BeeBooks//bmoim//KO
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:부천 AI 특공대 1기
+X-WR-TIMEZONE:Asia/Seoul
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+BEGIN:VEVENT
+UID:ai-club-1gi-all-0@bmoim.bbooks
+DTSTAMP:20261025T231013Z
+DTSTART:20261031T050000Z
+DTEND:20261031T063000Z
+SUMMARY:부천 AI 특공대 1기 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:1기 진행 중\, 지금 합류할 수 있어요. 매주 토
+ 요일 14:00–15:30 비북스 세미나실에서 각자 목표를 정
+ 해 AI를 써 보고 진행 상황을 나눠요. 10/17–12/19\, 총 10
+ 회.\nhttps://bbooks.co.kr/moim/m/ai-club-1gi/
+URL:https://bbooks.co.kr/moim/m/ai-club-1gi/
+END:VEVENT
+BEGIN:VEVENT
+UID:ai-club-1gi-all-1@bmoim.bbooks
+DTSTAMP:20261025T231013Z
+DTSTART:20261107T050000Z
+DTEND:20261107T063000Z
+SUMMARY:부천 AI 특공대 1기 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:1기 진행 중\, 지금 합류할 수 있어요. 매주 토
+ 요일 14:00–15:30 비북스 세미나실에서 각자 목표를 정
+ 해 AI를 써 보고 진행 상황을 나눠요. 10/17–12/19\, 총 10
+ 회.\nhttps://bbooks.co.kr/moim/m/ai-club-1gi/
+URL:https://bbooks.co.kr/moim/m/ai-club-1gi/
+END:VEVENT
+BEGIN:VEVENT
+UID:ai-club-1gi-all-2@bmoim.bbooks
+DTSTAMP:20261025T231013Z
+DTSTART:20261114T050000Z
+DTEND:20261114T063000Z
+SUMMARY:부천 AI 특공대 1기 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:1기 진행 중\, 지금 합류할 수 있어요. 매주 토
+ 요일 14:00–15:30 비북스 세미나실에서 각자 목표를 정
+ 해 AI를 써 보고 진행 상황을 나눠요. 10/17–12/19\, 총 10
+ 회.\nhttps://bbooks.co.kr/moim/m/ai-club-1gi/
+URL:https://bbooks.co.kr/moim/m/ai-club-1gi/
+END:VEVENT
+BEGIN:VEVENT
+UID:ai-club-1gi-all-3@bmoim.bbooks
+DTSTAMP:20261025T231013Z
+DTSTART:20261121T050000Z
+DTEND:20261121T063000Z
+SUMMARY:부천 AI 특공대 1기 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:1기 진행 중\, 지금 합류할 수 있어요. 매주 토
+ 요일 14:00–15:30 비북스 세미나실에서 각자 목표를 정
+ 해 AI를 써 보고 진행 상황을 나눠요. 10/17–12/19\, 총 10
+ 회.\nhttps://bbooks.co.kr/moim/m/ai-club-1gi/
+URL:https://bbooks.co.kr/moim/m/ai-club-1gi/
+END:VEVENT
+BEGIN:VEVENT
+UID:ai-club-1gi-all-4@bmoim.bbooks
+DTSTAMP:20261025T231013Z
+DTSTART:20261128T050000Z
+DTEND:20261128T063000Z
+SUMMARY:부천 AI 특공대 1기 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:1기 진행 중\, 지금 합류할 수 있어요. 매주 토
+ 요일 14:00–15:30 비북스 세미나실에서 각자 목표를 정
+ 해 AI를 써 보고 진행 상황을 나눠요. 10/17–12/19\, 총 10
+ 회.\nhttps://bbooks.co.kr/moim/m/ai-club-1gi/
+URL:https://bbooks.co.kr/moim/m/ai-club-1gi/
+END:VEVENT
+BEGIN:VEVENT
+UID:ai-club-1gi-all-5@bmoim.bbooks
+DTSTAMP:20261025T231013Z
+DTSTART:20261205T050000Z
+DTEND:20261205T063000Z
+SUMMARY:부천 AI 특공대 1기 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:1기 진행 중\, 지금 합류할 수 있어요. 매주 토
+ 요일 14:00–15:30 비북스 세미나실에서 각자 목표를 정
+ 해 AI를 써 보고 진행 상황을 나눠요. 10/17–12/19\, 총 10
+ 회.\nhttps://bbooks.co.kr/moim/m/ai-club-1gi/
+URL:https://bbooks.co.kr/moim/m/ai-club-1gi/
+END:VEVENT
+BEGIN:VEVENT
+UID:ai-club-1gi-all-6@bmoim.bbooks
+DTSTAMP:20261025T231013Z
+DTSTART:20261212T050000Z
+DTEND:20261212T063000Z
+SUMMARY:부천 AI 특공대 1기 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:1기 진행 중\, 지금 합류할 수 있어요. 매주 토
+ 요일 14:00–15:30 비북스 세미나실에서 각자 목표를 정
+ 해 AI를 써 보고 진행 상황을 나눠요. 10/17–12/19\, 총 10
+ 회.\nhttps://bbooks.co.kr/moim/m/ai-club-1gi/
+URL:https://bbooks.co.kr/moim/m/ai-club-1gi/
+END:VEVENT
+BEGIN:VEVENT
+UID:ai-club-1gi-all-7@bmoim.bbooks
+DTSTAMP:20261025T231013Z
+DTSTART:20261219T050000Z
+DTEND:20261219T063000Z
+SUMMARY:부천 AI 특공대 1기 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:1기 진행 중\, 지금 합류할 수 있어요. 매주 토
+ 요일 14:00–15:30 비북스 세미나실에서 각자 목표를 정
+ 해 AI를 써 보고 진행 상황을 나눠요. 10/17–12/19\, 총 10
+ 회.\nhttps://bbooks.co.kr/moim/m/ai-club-1gi/
+URL:https://bbooks.co.kr/moim/m/ai-club-1gi/
+END:VEVENT
+END:VCALENDAR
