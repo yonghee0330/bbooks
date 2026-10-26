@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>비북스 서가 6개월 추가모집</title>
+
+  <script>
+  // ══════════════════════════════════════════════════════════════════
+  //  ✏️ 모집 정보 — 여기만 고치면 됩니다
+  // ══════════════════════════════════════════════════════════════════
+
+  // 구글 Apps Script 웹앱 URL (비워두면 테스트 모드: 시트에 저장되지 않음)
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzaVULVsTMgIIFAG0tozcBg4o6DpW4VZ2YWgGPVAPDHNs9vjhrA7inSHpzqDc119PJW/exec";
+
+  // 모집 서가 (선착순 — 신청이 들어오면 시트에서 자동 마감)
+  const SHELVES = ["A-2", "B-65", "C-72", "C-104", "C-105"];
+
+  const RECRUIT = {
+    period:  "2026.11.1 ~ 2027.4.30",
+    price:   "10만원",
+    priceNum: "10만원",
+    account: "카카오뱅크 7942-33-45474 (예금주 경규환)",
+  };
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:   #1a1a1a;
+      --mid:   #5a5a5a;
+      --faint: #d4cfc9;
+      --paper: #f9f7f4;
+      --accent:#2e2e2e;
+      --serif: 'Noto Serif KR', Georgia, serif;
+      --sans:  'Noto Sans KR', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.75;
+      min-height: 100vh;
+      word-break: keep-all;
+    }
+
+    /* ── HERO (공간 사진 배경) ───────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      color: #fff;
+      background: #1a1a1a url("images/space.jpg") center 40% / cover no-repeat;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(20,16,12,.5) 0%, rgba(20,16,12,0) 22%),
+        linear-gradient(to top, rgba(20,16,12,.85) 0%, rgba(20,16,12,.45) 28%, rgba(20,16,12,0) 55%);
+    }
+
+    .hero-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 28px 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 1;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 0 24px 40px;
+    }
+
+    .logo-tag {
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+    }
+
+    .brand-btn {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,.7);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .02em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background .2s, color .2s;
+    }
+
+    .brand-btn:hover { background: #fff; color: var(--ink); }
+
+    .hero-badge {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 3px 10px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .04em;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(28px, 7vw, 40px);
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -.02em;
+      text-shadow: 0 1px 12px rgba(0,0,0,.25);
+    }
+
+    /* ── INTRO · PRICING ─────────────────────────── */
+    .intro {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 32px 24px 36px;
+      border-bottom: 1px solid var(--faint);
+    }
+
+    .sub {
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.8;
+    }
+
+    .pricing {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--faint);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .price-main {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 600;
+    }
+
+    .price-detail {
+      font-size: 12px;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: block;
+      margin-top: 22px;
+      padding: 15px 20px;
+      background: var(--ink);
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .hero-cta:hover { background: #333; }
+
+    .photo-credit {
+      margin-top: 12px;
+      font-size: 11px;
+      color: rgba(255,255,255,.6);
+    }
+
+    /* ── SECTIONS ───────────────────────────────── */
+    .section {
+      max-width: 560px;
+      margin: 40px auto 0;
+      padding: 0 24px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 14px;
+    }
+
+    /* ── SHELVES ────────────────────────────────── */
+    .shelves {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border: 1px solid var(--faint);
+      background: #fff;
+    }
+
+    .shelf {
+      padding: 16px 4px 12px;
+      text-align: center;
+    }
+
+    .shelf + .shelf { border-left: 1px solid var(--faint); }
+
+    .shelf-no {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -.01em;
+    }
+
+    .shelf-status {
+      margin-top: 2px;
+      font-size: 11px;
+      color: var(--mid);
+    }
+
+    .shelf.taken { background: var(--paper); }
+    .shelf.taken .shelf-no { color: #aaa; text-decoration: line-through; }
+    .shelf.taken .shelf-status { color: #b03030; }
+
+    .shelves-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--mid);
+    }
+
+    /* ── GUIDE ──────────────────────────────────── */
+    .benefits { list-style: none; border-top: 1px solid var(--faint); }
+
+    .benefits li {
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--faint);
+    }
+
+    .benefit-no {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 600;
+      min-width: 20px;
+      padding-top: 1px;
+    }
+
+    .benefit-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .benefit-desc {
+      font-size: 12px;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    .guide-section { margin-bottom: 20px; }
+    .guide-section:last-child { margin-bottom: 0; }
+
+    .guide-section h3 {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .guide-section p,
+    .guide-section li {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.75;
+    }
+
+    .guide-section ul { padding-left: 18px; }
+    .guide-section li + li { margin-top: 4px; }
+    .guide-section strong { color: var(--ink); font-weight: 500; }
+
+    /* ── SCHEDULE ───────────────────────────────── */
+    .schedule {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--faint);
+      background: #fff;
+    }
+
+    .step { padding: 14px 8px; text-align: center; }
+    .step + .step { border-left: 1px solid var(--faint); }
+
+    .step-label {
+      font-size: 11px;
+      letter-spacing: .06em;
+      color: var(--mid);
+    }
+
+    .step-date {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+
+    /* ── FORM ────────────────────────────────────── */
+    .form-wrap {
+      max-width: 560px;
+      margin: 56px auto 80px;
+      padding: 0 24px;
+    }
+
+    .form-title {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+
+    .field { margin-bottom: 28px; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 8px;
+    }
+
+    .req { color: #c00; }
+    .opt { color: #aaa; text-transform: none; letter-spacing: 0; }
+
+    input, select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1.5px solid var(--faint);
+      border-radius: 0;
+      padding: 8px 0;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input:focus, select:focus { border-bottom-color: var(--ink); }
+
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a5a5a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 4px center;
+      padding-right: 24px;
+    }
+
+    select option:disabled { color: #aaa; }
+
+    ::placeholder { color: #bbb; }
+
+    .checkbox-hint {
+      font-size: 12px;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .checkbox-hint strong { color: var(--ink); font-weight: 500; }
+
+    .check-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      border: 2px solid var(--ink);
+      background: #fff;
+      cursor: pointer;
+      text-transform: none;
+      letter-spacing: 0;
+      transition: background .2s;
+    }
+
+    .check-card + .check-card { margin-top: 10px; }
+    .check-card:has(input:checked) { background: #f3efe9; }
+
+    .check-card input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      margin-top: 1px;
+      flex-shrink: 0;
+      border: 2px solid var(--ink);
+      background: #fff;
+      cursor: pointer;
+      position: relative;
+      padding: 0;
+    }
+
+    .check-card input[type="checkbox"]:checked { background: var(--ink); }
+
+    .check-card input[type="checkbox"]:checked::after {
+      content: "✓";
+      color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .check-text {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .check-text small {
+      display: block;
+      margin-top: 4px;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--mid);
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 16px 40px;
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 14px;
+      letter-spacing: .06em;
+      border: none;
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    .btn:hover { background: #333; }
+    .btn:disabled { background: #aaa; cursor: not-allowed; }
+
+    #status {
+      margin-top: 18px;
+      font-size: 13px;
+      min-height: 20px;
+      color: var(--mid);
+    }
+    #status.err { color: #b03030; }
+
+    .form-closed-notice {
+      display: none;
+      padding: 28px 0 12px;
+      font-family: var(--serif);
+      font-size: 16px;
+      color: var(--mid);
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    body.recruitment-closed #applyForm { display: none; }
+    body.recruitment-closed .form-closed-notice { display: block; }
+
+    /* ── DONE ────────────────────────────────────── */
+    .done { display: none; }
+    .done.is-open { display: block; }
+
+    .done-title {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .done-sub {
+      font-size: 13px;
+      color: var(--mid);
+      margin-bottom: 20px;
+    }
+
+    .summary { border-top: 1px solid var(--faint); }
+
+    .summary div {
+      display: flex;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--faint);
+      font-size: 14px;
+    }
+
+    .summary dt {
+      min-width: 80px;
+      font-size: 12px;
+      color: var(--mid);
+      padding-top: 1px;
+    }
+
+    .summary dd { word-break: break-all; }
+
+    .test-note {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #b03030;
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--faint);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: #aaa;
+    }
+
+    @media (max-width: 480px) {
+      .pricing { flex-direction: column; align-items: flex-start; gap: 6px; }
+    }
+
+    @media (max-width: 360px) {
+      .shelf-no { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ───────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-top">
+    <p class="logo-tag">b.books — 0.1평 서점</p>
+    <a class="brand-btn" href="https://bbooks.co.kr" target="_blank" rel="noopener noreferrer">비북스 브랜드 페이지</a>
+  </div>
+
+  <div class="hero-inner">
+    <span class="hero-badge">6개월 추가모집 · 선착순</span>
+    <h1 id="hero">남은 <span id="remainHero">5</span>자리,<br>6개월 함께할 서점주를 찾습니다.</h1>
+    <p class="photo-credit">부천 원미동 비북스 서가 공간</p>
+  </div>
+</header>
+
+<!-- ── INTRO · PRICE ────────────────────────────── -->
+<section class="intro">
+  <p class="sub" id="heroSub">
+    비북스 서가에 빈자리 5개가 생겼습니다.<br>
+    11월부터 6개월 동안 0.1평 책방을 꾸려갈 분을 <strong>선착순</strong>으로 모십니다.
+  </p>
+
+  <div class="pricing">
+    <div class="price-main" id="priceMain"></div>
+    <div class="price-detail">
+      6개월 이용 · <span id="period"></span><br>
+      선착순 신청 · 5자리 마감 시 종료
+    </div>
+  </div>
+
+  <a class="hero-cta" href="#apply">신청하기</a>
+</section>
+
+<!-- ── SHELVES ──────────────────────────────────── -->
+<section class="section">
+  <p class="section-label">모집 서가 · <span id="remainLabel">5</span>자리 남음</p>
+  <div class="shelves" id="shelves"></div>
+  <p class="shelves-note">신청이 접수되는 순서대로 바로 마감됩니다.</p>
+</section>
+
+<!-- ── BENEFITS ─────────────────────────────────── -->
+<section class="section">
+  <p class="section-label">점주 혜택</p>
+  <ol class="benefits">
+    <li>
+      <span class="benefit-no">1</span>
+      <div>
+        <p class="benefit-title">나만의 0.1평 서가</p>
+        <p class="benefit-desc">기본 세팅(거치대, 미니 북앤드)과 서점 이름 네임 플레이트를 제작·부착해 드립니다.</p>
+      </div>
+    </li>
+    <li>
+      <span class="benefit-no">2</span>
+      <div>
+        <p class="benefit-title">판매·정산은 비북스가</p>
+        <p class="benefit-desc">점주가 자리에 없어도 매장에서 판매하고, 토스 포스로 재고를 관리해 매월 말 정산합니다.</p>
+      </div>
+    </li>
+    <li>
+      <span class="benefit-no">3</span>
+      <div>
+        <p class="benefit-title">새책 도매가 구입</p>
+        <p class="benefit-desc">비북스 도매처로 새책을 정가의 80%에 주문할 수 있습니다.</p>
+      </div>
+    </li>
+    <li>
+      <span class="benefit-no">4</span>
+      <div>
+        <p class="benefit-title">모임·행사 공간 활용</p>
+        <p class="benefit-desc">세미나실(최대 8인)과 계단 강연 공간에서 독서모임·강연·낭독회를 열 수 있습니다.</p>
+      </div>
+    </li>
+    <li>
+      <span class="benefit-no">5</span>
+      <div>
+        <p class="benefit-title">함께 홍보</p>
+        <p class="benefit-desc">점주 SNS 계정과 모임·행사 소식을 비북스 채널에서 함께 알립니다.</p>
+      </div>
+    </li>
+    <li>
+      <span class="benefit-no">6</span>
+      <div>
+        <p class="benefit-title">b.box day 셀러 무료</p>
+        <p class="benefit-desc">계절마다 열리는 북 &amp; 플리마켓에 0.1평 점주는 무료로 참가합니다.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ── GUIDE ────────────────────────────────────── -->
+<section class="section">
+  <p class="section-label">운영·정산 안내</p>
+
+  <div class="guide-section">
+    <h3>서가 구성</h3>
+    <p>각 점주의 큐레이션이 담긴 서가를 구성해 주세요. 새책, 헌책, 열람용, 굿즈 등 자유롭게 채울 수 있습니다. 기본 세팅 외에 가진 재료로 서가를 꾸밀 수 있습니다.</p>
+  </div>
+
+  <div class="guide-section">
+    <h3>수익 배분</h3>
+    <ul>
+      <li>판매 후 <strong>매월 말 정산</strong></li>
+      <li>새책 <strong>10%</strong>, 중고책·굿즈 <strong>15%</strong> 수수료 제외 후 정산</li>
+      <li>도매처로 구입한 새책(정가의 80%)은 정산 시 전액 정산</li>
+      <li>월말 정산액은 각 점주 토스 포스 계정에 포인트로 적립 (송금·구입 가능)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── SCHEDULE ─────────────────────────────────── -->
+<section class="section">
+  <p class="section-label">일정</p>
+  <div class="schedule">
+    <div class="step"><div class="step-label">신청</div><div class="step-date">지금부터<br>선착순</div></div>
+    <div class="step"><div class="step-label">이용 시작</div><div class="step-date">2026.11.1</div></div>
+    <div class="step"><div class="step-label">이용 종료</div><div class="step-date">2027.4.30</div></div>
+  </div>
+</section>
+
+<!-- ── FORM ─────────────────────────────────────── -->
+<section class="form-wrap" id="apply">
+  <p class="form-title" id="formTitle">신청하기</p>
+
+  <div class="form-closed-notice">
+    5개 서가 모집이 모두 마감되었습니다.<br>
+    관심 가져주셔서 감사합니다.
+  </div>
+
+  <form id="applyForm" novalidate>
+
+    <div class="field">
+      <label for="name">이름 <span class="req">*</span></label>
+      <input id="name" type="text" placeholder="홍길동" autocomplete="name" />
+    </div>
+
+    <div class="field">
+      <label for="phone">연락처 <span class="req">*</span></label>
+      <input id="phone" type="tel" placeholder="010-0000-0000" autocomplete="tel" inputmode="tel" />
+    </div>
+
+    <div class="field">
+      <label for="email">이메일 <span class="req">*</span></label>
+      <input id="email" type="email" placeholder="name@example.com" autocomplete="email" />
+    </div>
+
+    <div class="field">
+      <label for="spot">희망 서가 <span class="req">*</span></label>
+      <select id="spot"></select>
+    </div>
+
+    <div class="field">
+      <label for="shopName">책방 이름 (가칭) <span class="req">*</span></label>
+      <input id="shopName" type="text" placeholder="예: 밤의 서가" />
+    </div>
+
+    <div class="field">
+      <label for="concept">책방 컨셉 한 줄 <span class="req">*</span></label>
+      <input id="concept" type="text" maxlength="80" placeholder="어떤 책방인지 한 줄로 적어주세요" />
+    </div>
+
+    <div class="field">
+      <label for="genre">주로 놓을 책 분야 <span class="req">*</span></label>
+      <input id="genre" type="text" placeholder="예: 에세이, 그림책, 중고 인문서" />
+    </div>
+
+    <div class="field">
+      <label for="link">SNS 또는 소개 링크 <span class="opt">(선택)</span></label>
+      <input id="link" type="text" placeholder="인스타그램, 블로그 등" />
+    </div>
+
+    <div class="field">
+      <label>입금 안내 <span class="req">*</span></label>
+      <p class="checkbox-hint">
+        입금계좌: <span id="hintAccount"></span><br>
+        신청 전 <strong id="hintPrice"></strong>을 위 계좌로 입금해주세요.<br>
+        입금자명은 신청 시 이름과 동일하게 부탁드립니다.
+      </p>
+      <label class="check-card" for="depositOk">
+        <input id="depositOk" type="checkbox" />
+        <span class="check-text">
+          <span id="depositText"></span>
+          <small>입금 확인 후 최종 접수됩니다.</small>
+        </span>
+      </label>
+      <label class="check-card" for="privacyOk">
+        <input id="privacyOk" type="checkbox" />
+        <span class="check-text">
+          개인정보 수집·이용에 동의합니다.
+          <small>수집 항목: 이름, 연락처, 이메일 · 목적: 입점 안내 연락 · 보관: 이용 기간 종료 시까지</small>
+        </span>
+      </label>
+    </div>
+
+    <button class="btn" id="submitBtn" type="submit">신청하기</button>
+    <p id="status"></p>
+  </form>
+
+  <div class="done" id="done">
+    <p class="done-title">신청이 접수됐습니다.</p>
+    <p class="done-sub">입금 확인 후 곧 연락드리겠습니다 :)</p>
+    <dl class="summary" id="summary"></dl>
+    <p class="test-note" id="testNote" hidden>테스트 모드 — 시트 주소가 연결되지 않아 저장되지 않았습니다.</p>
+  </div>
+</section>
+
+<footer>
+  비북스 b.books &nbsp;·&nbsp; 문의: 카카오채널
+</footer>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const form = $("applyForm");
+  const btn = $("submitBtn");
+  const status = $("status");
+  const spotSelect = $("spot");
+  const digits = (v) => v.replace(/\D/g, "");
+
+  let takenSpots = new Set();
+
+  // ── 정적 정보 ──────────────────────────────────────────────────
+  $("priceMain").textContent = RECRUIT.price;
+  $("period").textContent = RECRUIT.period;
+  $("hintAccount").textContent = RECRUIT.account;
+  $("hintPrice").textContent = RECRUIT.priceNum;
+  $("depositText").textContent = `${RECRUIT.priceNum}을 입금했으며, 입금자명을 이름과 동일하게 기재했습니다.`;
+
+  // ── 서가 현황 · 선택지 ─────────────────────────────────────────
+  function render() {
+    const remaining = SHELVES.filter((s) => !takenSpots.has(s)).length;
+
+    $("shelves").innerHTML = SHELVES.map((s) => {
+      const taken = takenSpots.has(s);
+      return `<div class="shelf${taken ? " taken" : ""}">
+        <div class="shelf-no">${s}</div>
+        <div class="shelf-status">${taken ? "마감" : "모집 중"}</div>
+      </div>`;
+    }).join("");
+
+    const prev = spotSelect.value;
+    spotSelect.innerHTML = `<option value="">선택해주세요</option>` + SHELVES.map((s) =>
+      `<option value="${s}"${takenSpots.has(s) ? " disabled" : ""}>${s}${takenSpots.has(s) ? " (마감)" : ""}</option>`
+    ).join("");
+    spotSelect.value = prev && !takenSpots.has(prev) ? prev : "";
+
+    $("remainHero").textContent = remaining;
+    $("remainLabel").textContent = remaining;
+    document.title = `비북스 서가 6개월 추가모집 — 남은 ${remaining}자리`;
+
+    const closed = remaining === 0;
+    document.body.classList.toggle("recruitment-closed", closed);
+    if (closed) {
+      $("hero").textContent = "6개월 추가모집 5개 서가 마감!";
+      $("heroSub").innerHTML = "5개 서가 모두 함께할 주인을 찾았습니다.<br>관심 가져주셔서 감사합니다.";
+    }
+  }
+
+  // ── 시트 연동 ──────────────────────────────────────────────────
+  async function gasFetch(url, options = {}) {
+    const res = await fetch(url, { redirect: "follow", ...options });
+    const text = await res.text();
+    try {
+      return JSON.parse(text);
+    } catch (err) {
+      console.warn("Apps Script 응답 파싱 실패:", text.slice(0, 200));
+      return null;
+    }
+  }
+
+  async function loadTakenSpots() {
+    if (!APPS_SCRIPT_URL) return;
+    try {
+      const json = await gasFetch(APPS_SCRIPT_URL);
+      if (!json || !json.takenSpots) return;
+      takenSpots = new Set(json.takenSpots);
+      render();
+    } catch (err) {
+      console.warn("서가 현황을 불러오지 못했습니다.", err);
+    }
+  }
+
+  // ── 제출 ───────────────────────────────────────────────────────
+  function fail(msg) {
+    status.className = "err";
+    status.textContent = msg;
+  }
+
+  function collect() {
+    const v = (id) => $(id).value.trim();
+    return {
+      timestamp: new Date().toLocaleString("ko-KR"),
+      name: v("name"),
+      phone: v("phone"),
+      email: v("email"),
+      spot: spotSelect.value,
+      shopName: v("shopName"),
+      concept: v("concept"),
+      genre: v("genre"),
+      link: v("link"),
+      depositConfirmed: "예",
+      privacyAgreed: "예",
+    };
+  }
+
+  function validate(d) {
+    if (!d.name) return "이름을 적어주세요.";
+    if (!/^01\d{8,9}$/.test(digits(d.phone))) return "연락처를 010-0000-0000 형식으로 적어주세요.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return "이메일 주소를 확인해주세요.";
+    if (!d.spot) return "희망 서가를 골라주세요.";
+    if (takenSpots.has(d.spot)) return `${d.spot} 서가는 방금 마감되었습니다. 다른 서가를 골라주세요.`;
+    if (!d.shopName) return "책방 이름(가칭)을 적어주세요.";
+    if (!d.concept) return "책방 컨셉을 한 줄로 적어주세요.";
+    if (!d.genre) return "주로 놓을 책 분야를 적어주세요.";
+    if (!$("depositOk").checked) return "입금 확인 체크박스를 체크해주세요.";
+    if (!$("privacyOk").checked) return "개인정보 수집·이용 동의에 체크해주세요.";
+    return "";
+  }
+
+  function showDone(d, testMode) {
+    const rows = [
+      ["서가", d.spot],
+      ["이름", d.name],
+      ["연락처", d.phone],
+      ["이메일", d.email],
+      ["책방 이름", d.shopName],
+      ["컨셉", d.concept],
+      ["책 분야", d.genre],
+    ];
+    if (d.link) rows.push(["링크", d.link]);
+
+    const summary = $("summary");
+    summary.innerHTML = "";
+    rows.forEach(([k, val]) => {
+      const row = document.createElement("div");
+      const dt = document.createElement("dt");
+      const dd = document.createElement("dd");
+      dt.textContent = k;
+      dd.textContent = val;
+      row.append(dt, dd);
+      summary.append(row);
+    });
+
+    $("testNote").hidden = !testMode;
+    form.style.display = "none";
+    $("formTitle").style.display = "none";
+    $("done").classList.add("is-open");
+    $("apply").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const d = collect();
+    const err = validate(d);
+    if (err) return fail(err);
+
+    if (!APPS_SCRIPT_URL) return showDone(d, true);
+
+    btn.disabled = true;
+    btn.textContent = "전송 중…";
+    status.className = "";
+    status.textContent = "";
+
+    try {
+      const json = await gasFetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(d),
+      });
+
+      if (!json) return fail("전송 결과를 확인하지 못했습니다. 잠시 후 다시 시도하거나 카카오채널로 문의해주세요.");
+      if (json.takenSpots) {
+        takenSpots = new Set(json.takenSpots);
+        render();
+      }
+      if (json.result !== "success") return fail(json.message || "전송에 실패했습니다. 잠시 후 다시 시도해주세요.");
+
+      takenSpots.add(d.spot);
+      render();
+      showDone(d, false);
+    } catch (err) {
+      console.warn("신청 전송 오류:", err);
+      fail("전송에 실패했습니다. 잠시 후 다시 시도해주세요.");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "신청하기";
+    }
+  });
+
+  render();
+  loadTakenSpots();
+  if (APPS_SCRIPT_URL) setInterval(loadTakenSpots, 30000);
+</script>
+
+</body>
+</html>
