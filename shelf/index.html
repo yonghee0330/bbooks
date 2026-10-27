@@ -16,6 +16,13 @@
   // 모집 서가 (선착순 — 신청이 들어오면 시트에서 자동 마감)
   const SHELVES = ["A-2", "B-65", "C-72", "C-104", "C-105"];
 
+  // 동별 서가 정보 (모집 서가 비고란에 표시)
+  const ZONES = {
+    A: { size: "48.5 x 25 x 20",   cells: "두 칸" },
+    B: { size: "44 x 25 x 20",     cells: "두 칸" },
+    C: { size: "44.5 x 28.5 x 19.5", cells: "세 칸" },
+  };
+
   const RECRUIT = {
     period:  "2026.11.1 ~ 2027.4.30",
     price:   "10만원",
@@ -246,6 +253,42 @@
       margin-top: 10px;
       font-size: 12px;
       color: var(--mid);
+    }
+
+    .zone-note {
+      margin-top: 16px;
+      border-top: 1px solid var(--faint);
+    }
+
+    .zone-note-label {
+      padding: 10px 0 2px;
+      font-size: 11px;
+      letter-spacing: .14em;
+      color: var(--mid);
+    }
+
+    .zone-row {
+      display: grid;
+      grid-template-columns: 40px 1fr auto;
+      gap: 10px;
+      align-items: baseline;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--faint);
+      font-size: 13px;
+    }
+
+    .zone-name {
+      font-family: var(--serif);
+      font-weight: 600;
+    }
+
+    .zone-size { color: var(--ink); }
+    .zone-size small { color: var(--mid); font-size: 12px; }
+
+    .zone-spots {
+      font-size: 12px;
+      color: var(--mid);
+      text-align: right;
     }
 
     /* ── GUIDE ──────────────────────────────────── */
@@ -582,6 +625,10 @@
   <p class="section-label">모집 서가 · <span id="remainLabel">5</span>자리 남음</p>
   <div class="shelves" id="shelves"></div>
   <p class="shelves-note">신청이 접수되는 순서대로 바로 마감됩니다.</p>
+  <div class="zone-note">
+    <p class="zone-note-label">비고 · 동별 서가 크기</p>
+    <div id="zoneRows"></div>
+  </div>
 </section>
 
 <!-- ── BENEFITS ─────────────────────────────────── -->
@@ -782,9 +829,17 @@
       </div>`;
     }).join("");
 
+    $("zoneRows").innerHTML = Object.entries(ZONES).map(([zone, z]) => `
+      <div class="zone-row">
+        <span class="zone-name">${zone}동</span>
+        <span class="zone-size">${z.size} <small>· ${z.cells}</small></span>
+        <span class="zone-spots">${SHELVES.filter((s) => s.startsWith(zone + "-")).join(", ")}</span>
+      </div>`).join("");
+
+    const zoneOf = (s) => ZONES[s.split("-")[0]];
     const prev = spotSelect.value;
     spotSelect.innerHTML = `<option value="">선택해주세요</option>` + SHELVES.map((s) =>
-      `<option value="${s}"${takenSpots.has(s) ? " disabled" : ""}>${s}${takenSpots.has(s) ? " (마감)" : ""}</option>`
+      `<option value="${s}"${takenSpots.has(s) ? " disabled" : ""}>${s} · ${zoneOf(s).cells}${takenSpots.has(s) ? " (마감)" : ""}</option>`
     ).join("");
     spotSelect.value = prev && !takenSpots.has(prev) ? prev : "";
 
