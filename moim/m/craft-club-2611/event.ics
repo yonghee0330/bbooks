@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//BeeBooks//bmoim//KO
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Craft Club
+X-WR-TIMEZONE:Asia/Seoul
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+BEGIN:VEVENT
+UID:craft-club-2611-1115-0@bmoim.bbooks
+DTSTAMP:20261027T092214Z
+DTSTART:20261115T053000Z
+DTEND:20261115T070000Z
+SUMMARY:Craft Club · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:영국 출신 Lovey쌤과 11월 크래프트. 추워지는 
+ 날씨에 마음이 따뜻해지는 미술공예\, 정해진 작품 없
+ 이 자유롭게. 11/15(일) 14:30 비북스.\nhttps://bbooks.co.kr/moim
+ /m/craft-club-2611/
+URL:https://bbooks.co.kr/moim/m/craft-club-2611/
+END:VEVENT
+END:VCALENDAR
