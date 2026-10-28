@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//BeeBooks//bmoim//KO
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:이혈테라피 1day class
+X-WR-TIMEZONE:Asia/Seoul
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+BEGIN:VEVENT
+UID:ear-therapy-2611-1107-0@bmoim.bbooks
+DTSTAMP:20261028T104403Z
+DTSTART:20261107T070000Z
+DTEND:20261107T090000Z
+SUMMARY:이혈테라피 1day class · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:작은 귀 안에 담긴 몸 지도를 살펴보고\, 기석
+ 으로 자극하는 법을 배우는 이혈테라피 원데이. 11/7(토
+ ) 16시 비북스.\nhttps://bbooks.co.kr/moim/m/ear-therapy-2611/
+URL:https://bbooks.co.kr/moim/m/ear-therapy-2611/
+END:VEVENT
+END:VCALENDAR
