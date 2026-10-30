@@ -8,12 +8,12 @@ X-WR-TIMEZONE:Asia/Seoul
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 BEGIN:VEVENT
 UID:btalk-seogyul-2611-1128-0@bmoim.bbooks
-DTSTAMP:20261030T133745Z
+DTSTAMP:20261030T140339Z
 DTSTART:20261128T070000Z
 DTEND:20261128T090000Z
 SUMMARY:비톡스 · 서귤 작가 북토크 · 비북스
-LOCATION:비북스 계단 좌석\, 경기도 부천시 원미구 부천
- 로136번길 24 지하 B02호
+LOCATION:비북스\, 경기도 부천시 원미구 부천로136번길 24 
+ 지하 B02호
 DESCRIPTION:서귤 작가의 신작 장편 《채달금전》 출간 기
  념 북토크. 11/28(토) 16시 부천 비북스. 회비 1만원\, 참
  가자 전원 5천원 도서 쿠폰(당일 사용) + 북토크 도서 10
