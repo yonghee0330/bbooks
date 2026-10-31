@@ -1464,6 +1464,9 @@
     "freeOver": 50000
    },
    "detailImage": "books/9791175911352.jpg",
+   "memoLabel": "서귤 작가에게 한마디",
+   "memoHint": "작가님께 궁금한 점이나 북토크에서 묻고 싶은 질문을 남겨 주세요. 미리 모아 전해 드릴게요.",
+   "memoPlaceholder": "예) 채달금이라는 인물은 어떻게 떠올리셨나요?",
    "url": "m/btalk-seogyul-2611/",
    "dateText": "11/28(토) 16:00–18:00",
    "cardDate": "11.28 (토) 16:00",
