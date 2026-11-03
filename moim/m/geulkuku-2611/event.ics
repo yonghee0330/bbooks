@@ -1,0 +1,100 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//BeeBooks//bmoim//KO
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:함께 쓰는 글쓰기 모임 : 글크크
+X-WR-TIMEZONE:Asia/Seoul
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+BEGIN:VEVENT
+UID:geulkuku-2611-pilot-0@bmoim.bbooks
+DTSTAMP:20261103T024107Z
+DTSTART:20261106T063000Z
+DTEND:20261106T083000Z
+SUMMARY:함께 쓰는 글쓰기 모임 : 글크크 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:매주 책 제목으로 한 편 쓰고\, 금요일 비북스
+ 에서 읽고 합평하는 글쓰기 파일럿. 11–12월\, 금 15:30
+ –17:30\, 무료.\nhttps://bbooks.co.kr/moim/m/geulkuku-2611/
+URL:https://bbooks.co.kr/moim/m/geulkuku-2611/
+END:VEVENT
+BEGIN:VEVENT
+UID:geulkuku-2611-pilot-1@bmoim.bbooks
+DTSTAMP:20261103T024107Z
+DTSTART:20261113T063000Z
+DTEND:20261113T083000Z
+SUMMARY:함께 쓰는 글쓰기 모임 : 글크크 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:매주 책 제목으로 한 편 쓰고\, 금요일 비북스
+ 에서 읽고 합평하는 글쓰기 파일럿. 11–12월\, 금 15:30
+ –17:30\, 무료.\nhttps://bbooks.co.kr/moim/m/geulkuku-2611/
+URL:https://bbooks.co.kr/moim/m/geulkuku-2611/
+END:VEVENT
+BEGIN:VEVENT
+UID:geulkuku-2611-pilot-2@bmoim.bbooks
+DTSTAMP:20261103T024107Z
+DTSTART:20261120T063000Z
+DTEND:20261120T083000Z
+SUMMARY:함께 쓰는 글쓰기 모임 : 글크크 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:매주 책 제목으로 한 편 쓰고\, 금요일 비북스
+ 에서 읽고 합평하는 글쓰기 파일럿. 11–12월\, 금 15:30
+ –17:30\, 무료.\nhttps://bbooks.co.kr/moim/m/geulkuku-2611/
+URL:https://bbooks.co.kr/moim/m/geulkuku-2611/
+END:VEVENT
+BEGIN:VEVENT
+UID:geulkuku-2611-pilot-3@bmoim.bbooks
+DTSTAMP:20261103T024107Z
+DTSTART:20261127T063000Z
+DTEND:20261127T083000Z
+SUMMARY:함께 쓰는 글쓰기 모임 : 글크크 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:매주 책 제목으로 한 편 쓰고\, 금요일 비북스
+ 에서 읽고 합평하는 글쓰기 파일럿. 11–12월\, 금 15:30
+ –17:30\, 무료.\nhttps://bbooks.co.kr/moim/m/geulkuku-2611/
+URL:https://bbooks.co.kr/moim/m/geulkuku-2611/
+END:VEVENT
+BEGIN:VEVENT
+UID:geulkuku-2611-pilot-4@bmoim.bbooks
+DTSTAMP:20261103T024107Z
+DTSTART:20261204T063000Z
+DTEND:20261204T083000Z
+SUMMARY:함께 쓰는 글쓰기 모임 : 글크크 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:매주 책 제목으로 한 편 쓰고\, 금요일 비북스
+ 에서 읽고 합평하는 글쓰기 파일럿. 11–12월\, 금 15:30
+ –17:30\, 무료.\nhttps://bbooks.co.kr/moim/m/geulkuku-2611/
+URL:https://bbooks.co.kr/moim/m/geulkuku-2611/
+END:VEVENT
+BEGIN:VEVENT
+UID:geulkuku-2611-pilot-5@bmoim.bbooks
+DTSTAMP:20261103T024107Z
+DTSTART:20261211T063000Z
+DTEND:20261211T083000Z
+SUMMARY:함께 쓰는 글쓰기 모임 : 글크크 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:매주 책 제목으로 한 편 쓰고\, 금요일 비북스
+ 에서 읽고 합평하는 글쓰기 파일럿. 11–12월\, 금 15:30
+ –17:30\, 무료.\nhttps://bbooks.co.kr/moim/m/geulkuku-2611/
+URL:https://bbooks.co.kr/moim/m/geulkuku-2611/
+END:VEVENT
+BEGIN:VEVENT
+UID:geulkuku-2611-pilot-6@bmoim.bbooks
+DTSTAMP:20261103T024107Z
+DTSTART:20261218T063000Z
+DTEND:20261218T083000Z
+SUMMARY:함께 쓰는 글쓰기 모임 : 글크크 · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:매주 책 제목으로 한 편 쓰고\, 금요일 비북스
+ 에서 읽고 합평하는 글쓰기 파일럿. 11–12월\, 금 15:30
+ –17:30\, 무료.\nhttps://bbooks.co.kr/moim/m/geulkuku-2611/
+URL:https://bbooks.co.kr/moim/m/geulkuku-2611/
+END:VEVENT
+END:VCALENDAR
