@@ -8,16 +8,17 @@ X-WR-TIMEZONE:Asia/Seoul
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 BEGIN:VEVENT
 UID:btalk-seogyul-2611-1128-0@bmoim.bbooks
-DTSTAMP:20261104T082134Z
+DTSTAMP:20261104T145701Z
 DTSTART:20261128T070000Z
 DTEND:20261128T090000Z
 SUMMARY:비톡스 · 서귤 작가 북토크 · 비북스
 LOCATION:비북스\, 경기도 부천시 원미구 부천로136번길 24 
  지하 B02호
 DESCRIPTION:《채달금전》 북토크와 판소리체 글쓰기 워크
- 숍. 11/28(토) 16시 부천 비북스. 회비 1만원\, 참가자 5천
- 원 도서 쿠폰(당일 사용) + 북토크 도서 10% 할인.\nhttps:/
- /bbooks.co.kr/moim/m/btalk-seogyul-2611/
+ 숍. 11/28(토) 16시 부천 비북스. 회비 1만원\, 유료참가자
+  전원 5\,000원 도서 쿠폰(0.1평서점 점주 제외\, 당일 사
+ 용) + 북토크 도서 10% 할인.\nhttps://bbooks.co.kr/moim/m/btalk-s
+ eogyul-2611/
 URL:https://bbooks.co.kr/moim/m/btalk-seogyul-2611/
 END:VEVENT
 END:VCALENDAR
