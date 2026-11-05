@@ -1,0 +1,22 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//BeeBooks//bmoim//KO
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Little Friday Salon
+X-WR-TIMEZONE:Asia/Seoul
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+BEGIN:VEVENT
+UID:little-friday-2611-1119-0@bmoim.bbooks
+DTSTAMP:20261105T075751Z
+DTSTART:20261119T100000Z
+DTEND:20261119T120000Z
+SUMMARY:Little Friday Salon · 비북스
+LOCATION:비북스 세미나실\, 경기도 부천시 원미구 부천로
+ 136번길 24 지하 B02호
+DESCRIPTION:매월 선정 책과 티페어링\, 30분 묵독 뒤 다정
+ 한 대화. 11/19(목) 19시 비북스. 《영국 정원 일기》 개
+ 별 지참.\nhttps://bbooks.co.kr/moim/m/little-friday-2611/
+URL:https://bbooks.co.kr/moim/m/little-friday-2611/
+END:VEVENT
+END:VCALENDAR
