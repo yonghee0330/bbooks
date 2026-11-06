@@ -70,7 +70,7 @@
 <body>
 <div class="wrap">
   <header>
-    <span class="badge">독서포인트 사용 마감 12/20(일)</span>
+    <span class="badge">독서포인트 사용 마감 12/20(일) · 방문은 12/19(토)까지</span>
     <div class="eyebrow">비북스 Bbooks</div>
     <h1><span class="em">독서포인트</span><br>주문서</h1>
     <p class="sub">원하는 책을 골라 주문서를 남겨주세요.<br>비북스에 오셔서 독서포인트로 결제하고 책을 가져가시면 됩니다.</p>
@@ -119,7 +119,7 @@
     <b>이용 안내</b><br>
     · 결제는 <b>비북스 방문 시 독서포인트(경기도)</b>로 진행됩니다. 온라인 결제는 없어요.<br>
     · 주문하신 도서가 입고되면 <b>안내 문자</b> 드립니다. (도매처 재고 상황에 따라 통상 1~3일 내에 입고됩니다.)<br>
-    · 독서포인트 사용 마감은 <b>12월 20일</b>입니다. 안내 문자를 받으신 뒤 마감 전에 방문해 주세요.<br>
+    · 독서포인트 사용 마감은 12월 20일(일)이지만 비북스는 일요일 휴무라, <b>늦어도 12월 19일(토)까지</b> 방문해 주세요. 안내 문자를 받으신 뒤 방문해 주세요.<br>
     · 재고·입고 상황에 따라 일부 도서는 주문이 어려울 수 있습니다.<br>
     · 비북스 주소: 원미동 88-1 B02호<br>
     · 운영 시간: 10:00 - 18:00 (금·일 휴무)
@@ -155,6 +155,7 @@ $('#searchForm').addEventListener('submit', async e => {
       const price = b.sale_price > 0 ? b.sale_price : b.price;
       const el = document.createElement('div');
       el.className = 'book';
+      el.dataset.isbn = isbn;
       el.innerHTML =
         (b.thumbnail ? `<img src="${b.thumbnail}" alt="">` : `<div class="noimg"></div>`) +
         `<div class="info"><div class="t"></div><div class="m"></div><div class="p">정가 ${won(b.price)}</div></div>` +
@@ -186,7 +187,7 @@ function renderCart(){
     d.className = 'item';
     d.innerHTML = '<span></span><span><b>' + won(c.price) + '</b> <button class="x" type="button" aria-label="삭제">×</button></span>';
     d.firstChild.textContent = c.title;
-    d.querySelector('.x').onclick = () => { cart.splice(i,1); renderCart(); document.querySelectorAll('.book .add').forEach(b=>{ if(b.textContent==='담김'){ b.disabled=false; b.textContent='담기'; }}); cart.forEach(()=>{}); };
+    d.querySelector('.x').onclick = () => { const removed = cart.splice(i,1)[0]; renderCart(); document.querySelectorAll('.book').forEach(card=>{ if(removed && card.dataset.isbn===removed.isbn){ const b=card.querySelector('.add'); b.disabled=false; b.textContent='담기'; }}); };
     list.appendChild(d);
   });
 }
