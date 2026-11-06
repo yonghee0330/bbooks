@@ -52,7 +52,8 @@
   .empty{color:#8796a8;font-size:14px;padding:6px 0}
 
   label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}
-  input[type=text],input[type=tel],input[type=date],textarea{width:100%;border:1px solid #b9d3e8;border-radius:12px;padding:12px;font:inherit;font-size:15px;background:#fbfdff}
+  .hint{margin:-2px 0 0;font-size:12px;font-weight:400;line-height:1.55;color:#5b6b7d}
+  input[type=text],input[type=tel],input[type=email],input[type=date],textarea{width:100%;border:1px solid #b9d3e8;border-radius:12px;padding:12px;font:inherit;font-size:15px;background:#fbfdff}
   textarea{min-height:70px;resize:vertical}
   input:focus,textarea:focus{outline:2px solid var(--navy);border-color:var(--navy)}
   .agree{display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:13px;color:#43566b;margin-top:16px}
@@ -98,10 +99,14 @@
     <label for="name">이름</label>
     <input id="name" type="text" required placeholder="홍길동">
     <label for="phone">연락처</label>
-    <input id="phone" type="tel" required placeholder="010-0000-0000" inputmode="tel">
+    <input id="phone" type="tel" required placeholder="010-0000-0000" inputmode="numeric" autocomplete="tel" maxlength="13" pattern="010-[0-9]{4}-[0-9]{4}" title="010-0000-0000 형식으로 입력해 주세요">
+    <p class="hint">주문 접수 확인은 문자로 안내한 뒤 진행됩니다. 전화번호를 다시 한번 확인한 뒤 입력해 주세요.</p>
+    <label for="email">이메일</label>
+    <input id="email" type="email" required placeholder="name@example.com" autocomplete="email" inputmode="email">
+    <p class="hint">주문 진행 안내용으로 받아 두는 예비 연락처입니다.</p>
     <label for="memo">요청사항 (선택)</label>
     <textarea id="memo" placeholder="예) 선물 포장 부탁드려요"></textarea>
-    <label class="agree"><input id="agree" type="checkbox" required> 주문 확인 연락을 위해 이름·연락처를 수집하는 데 동의합니다. (확인 후 즉시 폐기)</label>
+    <label class="agree"><input id="agree" type="checkbox" required> 주문 확인 연락을 위해 이름·연락처·이메일을 수집하는 데 동의합니다. (확인 후 즉시 폐기)</label>
     <button class="submit" id="submitBtn" type="submit">주문서 제출하기</button>
   </form>
 
@@ -186,14 +191,35 @@ function renderCart(){
   });
 }
 
+$('#phone').addEventListener('input', e => {
+  const digits = e.target.value.replace(/\D/g, '').slice(0, 11);
+  let formatted = digits;
+  if(digits.length > 3 && digits.length <= 7) formatted = digits.slice(0, 3) + '-' + digits.slice(3);
+  else if(digits.length > 7) formatted = digits.slice(0, 3) + '-' + digits.slice(3, 7) + '-' + digits.slice(7);
+  e.target.value = formatted;
+});
+
 $('#orderForm').addEventListener('submit', async e => {
   e.preventDefault();
   if(!cart.length){ alert('먼저 책을 1권 이상 담아주세요.'); return; }
+  const phone = $('#phone').value.trim();
+  if(!/^010-\d{4}-\d{4}$/.test(phone)){
+    alert('연락처는 010-0000-0000 형식으로 입력해 주세요.');
+    $('#phone').focus();
+    return;
+  }
+  const email = $('#email').value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    alert('이메일 형식을 확인해 주세요.');
+    $('#email').focus();
+    return;
+  }
   const btn = $('#submitBtn');
   btn.disabled = true; btn.textContent = '제출 중…';
   const payload = {
     name: $('#name').value.trim(),
-    phone: $('#phone').value.trim(),
+    phone,
+    email,
     visit: '',
     memo: $('#memo').value.trim(),
     total: cart.reduce((s,c)=>s+(c.price||0),0),
