@@ -8,63 +8,79 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --sky:#E4F2FB; --navy:#1B3A9A; --green:#DDEDB5; --pink:#F5A9C4;
-    --yellow:#F5C16C; --ink:#1a1a1a; --line:#cfe3f2; --white:#fff;
+    --sky:#EEF6FC; --navy:#1B3A9A; --green:#DDEDB5; --pink:#F5A9C4;
+    --yellow:#F5C16C; --ink:#1f2933; --sub:#4a5a6b; --line:#d6e6f3; --white:#fff;
+    --shadow:0 2px 10px rgba(27,58,154,.07);
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:'Noto Sans KR',sans-serif;color:var(--ink);background:var(--sky);min-height:100vh}
-  .wrap{max-width:720px;margin:0 auto;padding:0 20px 120px}
-  header{padding:36px 0 8px;text-align:center}
-  .badge{display:inline-block;background:var(--yellow);color:var(--ink);font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px}
-  .eyebrow{margin-top:16px;font-size:16px;font-weight:700;color:var(--navy);letter-spacing:.04em}
-  h1{margin:6px 0 16px;font-size:clamp(50px,14vw,92px);font-weight:900;color:var(--navy);line-height:1.1;letter-spacing:-2px}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;font-family:'Noto Sans KR',sans-serif;color:var(--ink);background:var(--sky);min-height:100vh;font-size:16px;line-height:1.7;word-break:keep-all}
+  .wrap{max-width:680px;margin:0 auto;padding:0 20px 120px}
+  header{padding:44px 0 12px;text-align:center}
+  .badge{display:inline-block;background:var(--yellow);color:var(--ink);font-weight:700;font-size:14px;line-height:1.5;padding:7px 16px;border-radius:999px}
+  .eyebrow{margin-top:20px;font-size:16px;font-weight:700;color:var(--navy);letter-spacing:.04em}
+  h1{margin:6px 0 20px;font-size:clamp(50px,14vw,92px);font-weight:900;color:var(--navy);line-height:1.12;letter-spacing:-2px}
   h1 .em{background:linear-gradient(transparent 55%,var(--yellow) 55%,var(--yellow) 90%,transparent 90%);padding:0 8px}
-  .sub{margin:0;color:#43566b;font-size:15px;line-height:1.6}
+  .sub{margin:0;color:var(--sub);font-size:16px;line-height:1.75}
 
-  .steps{display:flex;gap:8px;margin:22px 0 26px;font-size:13px;font-weight:700;color:var(--navy)}
-  .steps div{flex:1;background:var(--white);border-radius:12px;padding:10px 8px;text-align:center;border:1px solid var(--line)}
-  .steps b{display:block;color:var(--pink);font-size:12px}
+  .steps{display:flex;gap:10px;margin:28px 0 30px;font-size:14px;font-weight:700;line-height:1.45;color:var(--navy)}
+  .steps div{flex:1;background:var(--white);border-radius:14px;padding:12px 8px;text-align:center;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .steps b{display:block;color:#d0568a;font-size:12px;letter-spacing:.06em;margin-bottom:2px}
 
-  .search{display:flex;gap:8px;background:var(--white);border:2px solid var(--navy);border-radius:999px;padding:6px 6px 6px 20px}
+  .search{display:flex;gap:8px;background:var(--white);border:2px solid var(--navy);border-radius:999px;padding:6px 6px 6px 22px;box-shadow:var(--shadow)}
   .search input{flex:1;border:0;outline:0;font:inherit;font-size:16px;background:transparent;min-width:0}
-  .search button{border:0;background:var(--navy);color:#fff;font:inherit;font-weight:700;border-radius:999px;padding:10px 22px;cursor:pointer}
+  .search button{border:0;background:var(--navy);color:#fff;font:inherit;font-weight:700;font-size:16px;border-radius:999px;padding:12px 24px;min-height:44px;cursor:pointer}
 
-  .results{margin-top:18px;display:grid;gap:10px}
-  .book{display:flex;gap:14px;background:var(--white);border-radius:16px;padding:12px;border:1px solid var(--line)}
-  .book img,.book .noimg{width:64px;height:92px;object-fit:cover;border-radius:6px;background:var(--green);flex:none}
+  .results{margin-top:20px;display:grid;gap:12px}
+  .book{display:flex;gap:16px;background:var(--white);border-radius:16px;padding:14px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .book img,.book .noimg{width:68px;height:98px;object-fit:cover;border-radius:6px;background:var(--green);flex:none}
   .book .info{flex:1;min-width:0}
-  .book .t{font-weight:700;font-size:15px;line-height:1.4}
-  .book .m{font-size:13px;color:#5b6b7d;margin-top:2px}
-  .book .p{font-size:14px;margin-top:4px;color:var(--navy);font-weight:700}
-  .book .act{display:flex;flex-direction:column;gap:6px;justify-content:center}
-  .btn{border:0;border-radius:999px;font:inherit;font-weight:700;font-size:13px;padding:8px 14px;cursor:pointer;white-space:nowrap;text-decoration:none;text-align:center}
+  .book .t{font-weight:700;font-size:16px;line-height:1.45}
+  .book .m{font-size:14px;color:var(--sub);margin-top:3px;line-height:1.5}
+  .book .p{font-size:15px;margin-top:6px;color:var(--navy);font-weight:700}
+  .book .act{display:flex;flex-direction:column;gap:8px;justify-content:center}
+  .btn{border:0;border-radius:999px;font:inherit;font-weight:700;font-size:14px;padding:10px 16px;min-height:40px;cursor:pointer;white-space:nowrap;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center}
   .btn.add{background:var(--navy);color:#fff}
-  .btn.add:disabled{background:#aab6d6;cursor:default}
+  .btn.add:disabled{background:#7f8fbf;cursor:default}
   .btn.link{background:var(--green);color:var(--ink)}
-  .msg{text-align:center;color:#5b6b7d;padding:26px 0;font-size:14px}
+  .msg{text-align:center;color:var(--sub);padding:28px 0;font-size:15px}
 
-  .cart,.form{margin-top:30px;background:var(--white);border-radius:20px;padding:22px;border:1px solid var(--line)}
-  .cart h2,.form h2{margin:0 0 14px;font-size:18px;color:var(--navy)}
-  .item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line);font-size:14px}
+  .cart,.form{margin-top:32px;background:var(--white);border-radius:20px;padding:24px 22px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .cart h2,.form h2{margin:0 0 14px;font-size:20px;line-height:1.4;color:var(--navy)}
+  .item{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line);font-size:15px;line-height:1.5}
   .item:last-of-type{border-bottom:0}
-  .item .x{background:none;border:0;color:#b04a6b;font-size:20px;cursor:pointer;line-height:1}
-  .total{display:flex;justify-content:space-between;margin-top:12px;padding-top:12px;border-top:2px solid var(--navy);font-weight:900;color:var(--navy)}
-  .empty{color:#8796a8;font-size:14px;padding:6px 0}
+  .item .x{background:none;border:0;color:#a63c60;font-size:24px;cursor:pointer;line-height:1;padding:4px 8px;min-width:40px;min-height:40px}
+  .total{display:flex;justify-content:space-between;margin-top:12px;padding-top:14px;border-top:2px solid var(--navy);font-weight:900;font-size:17px;color:var(--navy)}
+  .empty{color:var(--sub);font-size:15px;padding:6px 0}
 
-  label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}
-  .hint{margin:-2px 0 0;font-size:12px;font-weight:400;line-height:1.55;color:#5b6b7d}
-  input[type=text],input[type=tel],input[type=email],input[type=date],textarea{width:100%;border:1px solid #b9d3e8;border-radius:12px;padding:12px;font:inherit;font-size:15px;background:#fbfdff}
-  textarea{min-height:70px;resize:vertical}
-  input:focus,textarea:focus{outline:2px solid var(--navy);border-color:var(--navy)}
-  .agree{display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:13px;color:#43566b;margin-top:16px}
-  .submit{width:100%;margin-top:18px;border:0;background:var(--navy);color:#fff;font:inherit;font-weight:900;font-size:17px;padding:16px;border-radius:999px;cursor:pointer}
-  .submit:disabled{background:#aab6d6}
+  label{display:block;font-size:15px;font-weight:700;margin:20px 0 8px}
+  .hint{margin:6px 0 0;font-size:13px;font-weight:400;line-height:1.6;color:var(--sub)}
+  input[type=text],input[type=tel],input[type=email],input[type=date],textarea{width:100%;border:1px solid #a9c7de;border-radius:12px;padding:14px;font:inherit;font-size:16px;background:#fbfdff}
+  textarea{min-height:84px;resize:vertical}
+  input:focus,textarea:focus{outline:3px solid rgba(27,58,154,.25);border-color:var(--navy)}
+  .agree{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:14px;line-height:1.6;color:var(--sub);margin-top:20px}
+  .agree input{width:20px;height:20px;margin:2px 0 0;flex:none}
+  .submit{width:100%;margin-top:22px;border:0;background:var(--navy);color:#fff;font:inherit;font-weight:900;font-size:18px;padding:17px;min-height:56px;border-radius:999px;cursor:pointer}
+  .submit:disabled{background:#7f8fbf}
 
-  .notice{margin-top:30px;background:var(--green);border-radius:16px;padding:18px 20px;font-size:14px;line-height:1.75}
+  .notice{margin-top:32px;background:var(--green);border-radius:16px;padding:22px 22px 20px;font-size:15px;line-height:1.75}
   .notice b{color:var(--navy)}
-  .done{display:none;text-align:center;background:var(--white);border-radius:20px;padding:40px 22px;margin-top:30px;border:2px solid var(--navy)}
-  .done h2{color:var(--navy);margin:0 0 10px}
-  footer{text-align:center;font-size:12px;color:#6c7d90;margin-top:34px}
+  .notice .nt{display:block;font-size:17px;margin-bottom:8px}
+  .notice ul{margin:0;padding:0;list-style:none}
+  .notice li{position:relative;padding-left:16px;margin-top:8px}
+  .notice li::before{content:"";position:absolute;left:2px;top:.8em;width:6px;height:6px;border-radius:50%;background:var(--navy)}
+  .done{display:none;text-align:center;background:var(--white);border-radius:20px;padding:40px 22px;margin-top:32px;border:2px solid var(--navy);line-height:1.8}
+  .done h2{color:var(--navy);margin:0 0 10px;font-size:22px}
+  footer{text-align:center;font-size:13px;color:var(--sub);margin-top:36px}
+  .badge{text-wrap:balance}
+  @media (max-width:420px){
+    .search{padding-left:18px}
+    .search input{font-size:15px}
+    .search button{padding:12px 18px}
+    .wrap{padding:0 16px 100px}
+    .steps{font-size:13px;gap:8px}
+    .book{gap:12px}
+  }
 </style>
 </head>
 <body>
@@ -116,13 +132,15 @@
   </div>
 
   <div class="notice">
-    <b>이용 안내</b><br>
-    · 결제는 <b>비북스 방문 시 독서포인트(경기도)</b>로 진행됩니다. 온라인 결제는 없어요.<br>
-    · 주문하신 도서가 입고되면 <b>안내 문자</b> 드립니다. (도매처 재고 상황에 따라 통상 1~3일 내에 입고됩니다.)<br>
-    · 독서포인트 사용 마감은 12월 20일(일)이지만 비북스는 일요일 휴무라, <b>늦어도 12월 19일(토)까지</b> 방문해 주세요. 안내 문자를 받으신 뒤 방문해 주세요.<br>
-    · 재고·입고 상황에 따라 일부 도서는 주문이 어려울 수 있습니다.<br>
-    · 비북스 주소: 원미동 88-1 B02호<br>
-    · 운영 시간: 10:00 - 18:00 (금·일 휴무)
+    <b class="nt">이용 안내</b>
+    <ul>
+      <li>결제는 <b>비북스 방문 시 독서포인트(경기도)</b>로 진행됩니다. 온라인 결제는 없어요.</li>
+      <li>주문하신 도서가 입고되면 <b>안내 문자</b> 드립니다. (도매처 재고 상황에 따라 통상 1~3일 내에 입고됩니다.)</li>
+      <li>독서포인트 사용 마감은 12월 20일(일)이지만 비북스는 일요일 휴무라, <b>늦어도 12월 19일(토)까지</b> 방문해 주세요. 안내 문자를 받으신 뒤 방문해 주세요.</li>
+      <li>재고·입고 상황에 따라 일부 도서는 주문이 어려울 수 있습니다.</li>
+      <li>비북스 주소: 원미동 88-1 B02호</li>
+      <li>운영 시간: 10:00 - 18:00 (금·일 휴무)</li>
+    </ul>
   </div>
   <footer>비북스 Bbooks · 책 정보 제공: 카카오 도서 검색</footer>
 </div>
