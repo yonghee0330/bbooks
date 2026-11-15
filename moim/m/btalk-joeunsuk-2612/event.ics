@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//BeeBooks//bmoim//KO
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:비톡스 · 《그림책을 통한 자존감 건드리기
+ 》
+X-WR-TIMEZONE:Asia/Seoul
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+BEGIN:VEVENT
+UID:btalk-joeunsuk-2612-1205-0@bmoim.bbooks
+DTSTAMP:20261115T125437Z
+DTSTART:20261205T070000Z
+DTEND:20261205T090000Z
+SUMMARY:비톡스 · 《그림책을 통한 자존감 건드리기》 · 
+ 비북스
+LOCATION:비북스\, 경기도 부천시 원미구 부천로136번길 24 
+ 지하 B02호
+DESCRIPTION:조은숙 선생님과 함께하는 그림책 북토크. 12/5
+ (토) 16시 부천 비북스. 그림책을 함께 읽고\, 둘러앉아 
+ 이야기하며 내 안의 자존감을 건드려 보는 시간.\nhttps:
+ //bbooks.co.kr/moim/m/btalk-joeunsuk-2612/
+URL:https://bbooks.co.kr/moim/m/btalk-joeunsuk-2612/
+END:VEVENT
+END:VCALENDAR
