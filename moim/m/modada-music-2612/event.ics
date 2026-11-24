@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//BeeBooks//bmoim//KO
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:모두다 음악
+X-WR-TIMEZONE:Asia/Seoul
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+BEGIN:VEVENT
+UID:modada-music-2612-1212-0@bmoim.bbooks
+DTSTAMP:20261124T111229Z
+DTSTART:20261212T013000Z
+DTEND:20261212T023000Z
+SUMMARY:모두다 음악 · 비북스
+LOCATION:비북스 계단 좌석\, 경기도 부천시 원미구 부천
+ 로136번길 24 지하 B02호
+DESCRIPTION:그림책을 읽고 음악을 들으며 감정을 몸으로 
+ 표현하는 어린이 신체활동. 미취학 아동부터 초등 고
+ 학년까지\, 12/12(토) 부천 비북스.\nhttps://bbooks.co.kr/moim/m
+ /modada-music-2612/
+URL:https://bbooks.co.kr/moim/m/modada-music-2612/
+END:VEVENT
+END:VCALENDAR
