@@ -8,15 +8,16 @@ X-WR-TIMEZONE:Asia/Seoul
 REFRESH-INTERVAL;VALUE=DURATION:PT12H
 BEGIN:VEVENT
 UID:storyaunt-2612-1219-0@bmoim.bbooks
-DTSTAMP:20261127T025940Z
+DTSTAMP:20261127T053442Z
 DTSTART:20261219T013000Z
 DTEND:20261219T030000Z
 SUMMARY:그림책 읽어주는 이모 · 비북스
 LOCATION:비북스 계단 좌석\, 경기도 부천시 원미구 부천
  로136번길 24 지하 B02호
-DESCRIPTION:유치원생~초등 저학년과 겨울·크리스마스 그
- 림책을 읽고 함께 독후활동을 하는 시간. 12/19(토) 오전
-  10:30 부천 비북스.\nhttps://bbooks.co.kr/moim/m/storyaunt-2612/
+DESCRIPTION:5세~10세 친구들과 크리스마스 그림책 세 권을 
+ 읽고 함께 독후활동을 하는 시간. 12/19(토) 오전 10:30~12:
+ 00 부천 원미동 비북스.\nhttps://bbooks.co.kr/moim/m/storyaunt-26
+ 12/
 URL:https://bbooks.co.kr/moim/m/storyaunt-2612/
 END:VEVENT
 END:VCALENDAR
